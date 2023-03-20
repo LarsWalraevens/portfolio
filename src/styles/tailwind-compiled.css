@@ -553,6 +553,10 @@ video {
   }
 }
 
+.static{
+  position: static;
+}
+
 .absolute{
   position: absolute;
 }
@@ -565,18 +569,14 @@ video {
   right: 0px;
 }
 
-.float-right{
-  float: right;
+.mx-2{
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 .mx-auto{
   margin-left: auto;
   margin-right: auto;
-}
-
-.mx-2{
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
 }
 
 .ml-3{
