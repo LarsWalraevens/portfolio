@@ -1,0 +1,35 @@
+* {
+    box-sizing: border-box;
+    font-family: "Marcellus", sans-serif;
+}
+
+html,
+body {
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    overflow: auto;
+    @apply bg-black-400 text-white-100;
+}
+
+body {
+    position: relative;
+}
+
+.wrapper {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+
+nav a {
+    @apply mx-3 text-[18px];
+}
+
+nav #nav-resume {
+    @apply text-sm border-white-100 border rounded-full px-3 py-1 ml-4;
+    
+}
+nav #nav-resume:hover {
+    @apply bg-white-100 text-black-200 transition ;
+}
