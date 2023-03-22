@@ -30,7 +30,7 @@ export default function Header() {
                     <Link href="/#about" id="nav-resume">{t("nav_resume")}</Link>
                 </nav>
                 <div className='flex items-center ml-4'>
-                    <span className={`${lang.toUpperCase() === "EN" ? "font-semibold" : ""} cursor-pointer`} onClick={(e) => changeLang('en')}>EN</span>
+                    <span className={`cursor-pointer`} onClick={(e) => changeLang('en')}>EN</span>
                     <span className='mx-2 lang-stripe relative'>
                         <span id="stripe" className={`absolute ${lang.toUpperCase() === "EN" ? "" : "right-0"}`}>
                             <svg width="16" height="4" viewBox="0 0 16 4" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -41,7 +41,7 @@ export default function Header() {
                             <rect width="31" height="3.99999" rx="2" fill="#393939" />
                         </svg>
                     </span>
-                    <span className={`${lang.toUpperCase() === "NL" ? "font-semibold" : ""} cursor-pointer`} onClick={(e) => changeLang('nl')} >NL</span>
+                    <span className={`cursor-pointer`} onClick={(e) => changeLang('nl')} >NL</span>
                 </div>
             </div>
         </header>

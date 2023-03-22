@@ -9,16 +9,18 @@ module.exports = {
       },
       black: {
         100: '#39393A',
-        200: '#171717',
-        400: '#131313',
+        200: '#262525',
+        300: '#171717',
+        400: '#121212',
         900: '#000000',
       },
       grey: {
-        100: '#B1B1B1',
-        200: '#AAAAAA',
-        300: '#939393',
-        400: '#545454',
-        500: '#393939',
+        100: '#D7D7D7',
+        200: '#B1B1B1',
+        300: '#AAAAAA',
+        400: '#939393',
+        500: '#545454',
+        600: '#393939',
       },
       blue: {
         100: '#CEDAF3',
@@ -51,9 +53,15 @@ module.exports = {
     extend: {
       fontFamily: {
         Marcellus: ['Marcellus', 'sans-serif'],
-        TitilliumWeb: ['Titillium Web', 'sans-serif'],
+        secondary: ['Titillium Web', 'sans-serif'],
       }
     },
+    // screens: {
+    //   'sm': '640px', // => @media (min-width: 640px) { ... }
+    //   'md': '768px', // => @media (min-width: 768px) { ... }
+    //   'lg': '1024px', // => @media (min-width: 1024px) { ... }
+    //   'xl': '1280px', // => @media (min-width: 1280px) { ... }
+    // }
     // screens: {
     //     'sm': '392px',
     //     'md': '692px',

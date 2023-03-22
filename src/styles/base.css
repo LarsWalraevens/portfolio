@@ -1,6 +1,11 @@
 * {
     box-sizing: border-box;
-    font-family: "Marcellus", sans-serif;
+    font-family: "Marcellus", sans-serif !important;
+    font-size: 16px;
+}
+
+.font-secondary {    
+    font-family: "Titillium Web", sans-serif !important;
 }
 
 html,
@@ -9,7 +14,12 @@ body {
     padding: 0px;
     height: 100%;
     overflow: auto;
-    @apply bg-black-400 text-white-100;
+    @apply !bg-black-400 !text-white-100;
+}
+
+a {
+    
+    @apply !text-white-100 hover:!no-underline focus:!no-underline active:!no-underline;
 }
 
 body {
@@ -26,10 +36,60 @@ nav a {
     @apply mx-3 text-[18px];
 }
 
-nav #nav-resume {
+nav #nav-resume,
+.btn-special {
     @apply text-sm border-white-100 border rounded-full px-3 py-1 ml-4;
     
 }
-nav #nav-resume:hover {
-    @apply bg-white-100 text-black-200 transition ;
+nav #nav-resume:hover,
+.btn-special:hover {
+    @apply bg-white-100 !text-black-300 transition ;
+}
+
+.btn {
+    @apply !border-white-100 !rounded !px-7 !py-2 !border-2 !font-secondary !uppercase !text-white-100 min-w-[130px] text-center cursor-pointer select-none;
+}
+
+.btn:hover {
+    @apply scale-105 transition;
+}
+
+.btn:active {
+    @apply scale-95 transition;
+}
+
+#underline {
+    position: relative;
+    display: inline-block;
+    z-index: 10;
+}
+#underline::after {
+    height: 5px;
+    content:" ";
+    width: 100%;
+    z-index: -1;
+    background-color: #3E3E3E;
+    left: 0px;
+    bottom: 7px;
+    transform: skewX(21);
+    
+    position: absolute;
+}
+
+.container-sm {
+    max-width: 1200px !important;
+}
+
+#hero {
+    background: url("/img/bg-dots.png");
+    background-position: center left;
+    background-size: 180px;
+    background-repeat: no-repeat;
+}
+
+#contact {
+    background: url("/img/bg-dots-right.png");
+    background-position: center right;
+    background-repeat: no-repeat;
+    background-size:  100px;
 }
