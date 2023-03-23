@@ -60,7 +60,7 @@ export default function HomeHeroSection() {
                         <Image alt="lars-walraevens-picture" quality={100} src={picture} className='h-' />
                     </div>
                     <div id="hero-image-bg">
-                        <div className='absolute right-5 top-[24%] flex flex-col items-center'>
+                        <div className='absolute right-5 top-[22%] flex flex-col items-center'>
                             <span className='mb-2'>{heroLogoIcon}</span>
                             <span className='mb-2'>{heroLineIcon}</span>
                             <HeroTooltip

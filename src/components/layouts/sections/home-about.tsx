@@ -16,7 +16,7 @@ export default function HomeAboutSection() {
 
     // # UTILS
     const { t } = useTranslation('common');
-    const optionTitleClass = (number: number) => `font-secondary flex items-center mb-2 cursor-pointer transition ${number === activeSection.key ? "font-semibold text-white-100" : " text-grey-100 ml-4 hover:scale-90 "}`
+    const optionTitleClass = (number: number) => `font-secondary flex items-center mb-2 cursor-pointer transition ${number === activeSection.key ? "font-semibold text-white-100" : " text-grey-100 ml-4 hover:scale-95 "}`
     const optionsData: Array<AboutSectionProps> = [
         {
             key: 1,

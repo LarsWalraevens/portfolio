@@ -1,5 +1,8 @@
 import Title from "@/components/layouts/title/title";
 import useTranslation from "next-translate/useTranslation";
+import autinoom from '@/../public/img/autinoom/1.png';
+import Image from "next/image";
+import ProjectTeaser from "../project/project-teaser";
 
 export default function HomeProjectsSection() {
     // # UTILS
@@ -15,10 +18,11 @@ export default function HomeProjectsSection() {
             <div className="container container-sm wrapper mx-auto relative">
                 <Title className="mb-2">{t("section_projects_title")}</Title>
                 <p className="text-grey-100">{t("section_projects_description")}</p>
-                <div className="mb-5">
-
+                <div className="my-5 flex flex-row items-center justify-center">
+                    <ProjectTeaser image={autinoom} name="Autinoom" tags={["tag", "tag"]} />
+                    <ProjectTeaser image={autinoom} name="Autinoom" tags={[]} />
                 </div>
-                <div className="flex justify-center">
+                <div className="flex justify-center pt-5">
                     {endIcon}
                 </div>
             </div>

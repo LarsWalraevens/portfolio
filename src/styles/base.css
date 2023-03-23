@@ -88,7 +88,7 @@ nav #nav-resume:hover,
 }
 
 #contact {
-    background: url("/img/bg-dots-right.png");
+    background-image: url("/img/bg-dots-right.png");
     background-position: center right;
     background-repeat: no-repeat;
     background-size:  100px;
