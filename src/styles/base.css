@@ -1,11 +1,14 @@
 * {
     box-sizing: border-box;
-    font-family: "Marcellus", sans-serif !important;
+    font-family: "Space Grotesk", sans-serif !important;
     font-size: 16px;
 }
 
 .font-secondary {    
     font-family: "Titillium Web", sans-serif !important;
+}
+.font-special {    
+    font-family: "Marcellus", sans-serif !important;
 }
 
 html,
@@ -33,12 +36,13 @@ body {
 
 
 nav a {
-    @apply mx-3 text-[18px];
+    @apply mx-3 text-[18px] hover:opacity-70;
 }
+
 
 nav #nav-resume,
 .btn-special {
-    @apply text-sm border-white-100 border rounded-full px-3 py-1 ml-4;
+    @apply text-sm border-white-100 border rounded-full px-3 py-1 ml-4 hover:opacity-100;
     
 }
 nav #nav-resume:hover,
@@ -77,8 +81,13 @@ nav #nav-resume:hover,
 }
 
 .container-sm {
-    max-width: 1200px !important;
+    @apply !w-[1200px] max-lg:!w-full
 }
+
+.swiper-wrapper {
+  align-items: center; /* add this will all relevant prefixes */
+}
+
 
 #hero {
     background: url("/img/bg-dots.png");

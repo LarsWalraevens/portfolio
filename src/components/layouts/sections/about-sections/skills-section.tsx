@@ -51,8 +51,8 @@ interface SkillItemProps {
 
 function SkillItem(props: SkillItemProps) {
     return <>
-        <div className={'flex items-center wrap mb-2'}>
-            <div className="flex items-center mr-4 min-w-[200px]">
+        <div className={'flex items-center wrap mb-2 max-lg:flex-wrap max-lg:mb-3'}>
+            <div className="flex items-center mr-4 min-w-[200px] max-lg:mb-2">
                 <span className="mr-3 w-[24px]">{props.icon}</span>
                 <span className="text-white-100 text-[18px]">{props.title}</span>
             </div>

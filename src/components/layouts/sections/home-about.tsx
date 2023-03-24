@@ -5,6 +5,8 @@ import SkillsSection from './about-sections/skills-section';
 import MotivationSection from "./about-sections/motivation-section";
 import OtherSection from "./about-sections/other-section";
 import { rightSideEffectIcon } from "@/assets/icons/icons";
+import envir from '@/assets/data/envir.json';
+import { useRouter } from "next/router";
 
 export interface AboutSectionProps {
     key: number;
@@ -16,6 +18,8 @@ export default function HomeAboutSection() {
 
     // # UTILS
     const { t } = useTranslation('common');
+    const router = useRouter();
+    const { locale } = router;
     const optionTitleClass = (number: number) => `font-secondary flex items-center mb-2 cursor-pointer transition ${number === activeSection.key ? "font-semibold text-white-100" : " text-grey-100 ml-4 hover:scale-95 "}`
     const optionsData: Array<AboutSectionProps> = [
         {
@@ -39,8 +43,36 @@ export default function HomeAboutSection() {
     const [activeSection, setActiveSection] = useState<AboutSectionProps>(optionsData[0]);
 
     return <>
-        <section id="about" className="bg-black-300 py-[80px] pb-[100px] border-y border-y-black-200 relative">
-            <div className="container container-sm wrapper mx-auto">
+        <section id="about" className="bg-black-300 py-[80px] max-lg:py-[50px] pb-[100px] border-y border-y-black-200 relative">
+            <div className="hidden container container-sm wrapper mx-auto max-lg:block">
+                <Title className="mb-4">{t("section_about_title")}</Title>
+                <div className="bg-black-100 rounded-full flex items-center justify-between text-grey-100">
+                    {
+                        optionsData.map((section: AboutSectionProps, i: number) => <Fragment key={i}>
+                            <div
+                                onClick={() => setActiveSection(section)}
+                                className={`${activeSection.key === section.key ? 'bg-white-100 py-4  rounded-full  h-100 text-black-300 font-semibold' : ''} text-center w-1/3 text-[15px] px-2 font-secondary`}
+                            >
+                                {section.title}
+                            </div>
+                        </Fragment>)
+                    }
+                </div>
+                <div className="mx-3 mt-7">
+
+                    {
+                        activeSection.key === 1 ?
+                            <SkillsSection goNext={() => setActiveSection(optionsData[1])} /> :
+                            activeSection.key === 2 ?
+                                <MotivationSection goNext={() => setActiveSection(optionsData[2])} /> :
+                                activeSection.key === 3 ?
+                                    <OtherSection goNext={() => setActiveSection(optionsData[0])} /> : null
+                    }
+                </div>
+
+            </div>
+            {/* DESKTOP */}
+            <div className="container container-sm wrapper mx-auto max-lg:hidden relative">
                 <span className="absolute right-[15vw] top-[40px]">{rightSideEffectIcon}</span>
                 <div className="flex flex-row align-start">
                     <div className="mr-10">
@@ -56,7 +88,7 @@ export default function HomeAboutSection() {
                         </div>
                         <div className="mt-5">
                             <p className="mb-3 text-grey-100">{t("section_about_resume_description")}</p>
-                            <a href="" className="btn-special ml-0">{t("main_my_resume")}</a>
+                            <a href={locale === "nl" ? envir.RESUME_NL : envir.RESUME_EN} className="btn-special ml-0">{t("main_my_resume")}</a>
                         </div>
                     </div>
                     <div className="my-4 mb-5 relative">
