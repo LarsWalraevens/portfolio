@@ -44,14 +44,15 @@ export default function HomeAboutSection() {
 
     return <>
         <section id="about" className="bg-black-300 py-[80px] max-lg:py-[50px] pb-[100px] border-y border-y-black-200 relative">
+            {/* MOBILE */}
             <div className="hidden container container-sm wrapper mx-auto max-lg:block">
                 <Title className="mb-4">{t("section_about_title")}</Title>
-                <div className="bg-black-100 rounded-full flex items-center justify-between text-grey-100">
+                <div className="bg-black-100 rounded-full flex items-center justify-between text-grey-100 mx-[-5px]">
                     {
                         optionsData.map((section: AboutSectionProps, i: number) => <Fragment key={i}>
                             <div
                                 onClick={() => setActiveSection(section)}
-                                className={`${activeSection.key === section.key ? 'bg-white-100 py-4  rounded-full  h-100 text-black-300 font-semibold' : ''} text-center w-1/3 text-[15px] px-2 font-secondary`}
+                                className={`${activeSection.key === section.key ? 'bg-white-100 py-3  rounded-full  h-100 text-black-300 font-semibold' : ''} text-center w-1/3 text-[15px] px-2 font-secondary`}
                             >
                                 {section.title}
                             </div>
@@ -71,9 +72,9 @@ export default function HomeAboutSection() {
                 </div>
 
             </div>
+            <span className="absolute right-[10vw] top-[6vh] max-lg:hidden">{rightSideEffectIcon}</span>
             {/* DESKTOP */}
             <div className="container container-sm wrapper mx-auto max-lg:hidden relative">
-                <span className="absolute right-[15vw] top-[40px]">{rightSideEffectIcon}</span>
                 <div className="flex flex-row align-start">
                     <div className="mr-10">
                         <Title className="mb-4">{t("section_about_title")}</Title>
@@ -98,9 +99,9 @@ export default function HomeAboutSection() {
                         </svg>
                         <div className="border-r-white-100 border-r-2 h-full flex items-center mt-3 mr-[5px]"></div>
                     </div>
-                    <div className="mt-1 ml-7 mr-5 max-w-[800px]">
+                    <div className="mt-1 ml-7 mr-5 max-w-[70%]">
                         <div>
-                            <h4 className="font-secondary font-semibold uppercase flex items-center mb-4">
+                            <h4 className="font-secondary font-semibold uppercase flex items-center mb-2">
                                 <span className="opacity-50 mr-3 text-[45px] font-secondary font-bold mb-1">{activeSection.number}</span>
                                 {activeSection.title}
                             </h4>

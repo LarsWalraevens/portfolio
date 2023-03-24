@@ -9,7 +9,7 @@ export default function MotivationSection(props: AboutComponentSectionProps) {
     return <>
         <div id="motivation">
             <div className="mb-5">
-                <p className="text-grey-100">{t("section_about_motivation_description1")}</p>
+                <p className="text-grey-100 mb-3" dangerouslySetInnerHTML={{ __html: t("section_about_motivation_description1") }}></p>
                 <p className="text-grey-100">{t("section_about_motivation_description2")}</p>
             </div>
             <div className="btn inline-block" onClick={() => props.goNext()}>{t("main_next")}</div>

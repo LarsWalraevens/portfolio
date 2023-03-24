@@ -3,8 +3,8 @@ export const heroMarkerIcon = <svg width="32" height="40" viewBox="0 0 32 40" fi
 </svg>;
 
 export const heroLogoIcon = <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="12.4745" height="12.4745" rx="6.23727" fill="#131313" fill-opacity="0.8" />
-    <path d="M5.58301 16.2787C5.70027 16.0442 5.92267 15.8799 6.1813 15.8368L10.1912 15.1685C13.098 14.6841 15.3116 12.299 15.5784 9.36425L15.8648 6.21455C15.8899 5.93811 16.0563 5.69435 16.3046 5.57022C16.8375 5.30375 17.4645 5.69128 17.4645 6.28711V12.6999C17.4645 15.3315 15.3312 17.4648 12.6997 17.4648H6.31603C5.7068 17.4648 5.31056 16.8236 5.58301 16.2787Z" fill="#131313" fill-opacity="0.8" />
+    <rect width="12.4745" height="12.4745" rx="6.23727" fill="#131313" fillOpacity="0.8" />
+    <path d="M5.58301 16.2787C5.70027 16.0442 5.92267 15.8799 6.1813 15.8368L10.1912 15.1685C13.098 14.6841 15.3116 12.299 15.5784 9.36425L15.8648 6.21455C15.8899 5.93811 16.0563 5.69435 16.3046 5.57022C16.8375 5.30375 17.4645 5.69128 17.4645 6.28711V12.6999C17.4645 15.3315 15.3312 17.4648 12.6997 17.4648H6.31603C5.7068 17.4648 5.31056 16.8236 5.58301 16.2787Z" fill="#131313" fillOpacity="0.8" />
 </svg>;
 
 export const heroLineIcon = <svg width="2" height="50" viewBox="0 0 2 50" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -27,8 +27,8 @@ export const heroWeightIcon = <svg width="22" height="11" viewBox="0 0 22 11" fi
 </svg>;
 
 export const heroGamingIcon = <svg width="19" height="25" viewBox="0 0 19 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M15.95 1H2.15C1.51487 1 1 1.51487 1 2.15V22.85C1 23.4851 1.51487 24 2.15 24H15.95C16.5851 24 17.1 23.4851 17.1 22.85V2.15C17.1 1.51487 16.5851 1 15.95 1Z" stroke="#363636" stroke-width="2" />
-    <path d="M4.44995 17.0996H9.04995M6.74995 19.3996V14.7996M4.44995 5.59961H13.65V11.3496H4.44995V5.59961Z" stroke="#363636" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M15.95 1H2.15C1.51487 1 1 1.51487 1 2.15V22.85C1 23.4851 1.51487 24 2.15 24H15.95C16.5851 24 17.1 23.4851 17.1 22.85V2.15C17.1 1.51487 16.5851 1 15.95 1Z" stroke="#363636" strokeWidth="2" />
+    <path d="M4.44995 17.0996H9.04995M6.74995 19.3996V14.7996M4.44995 5.59961H13.65V11.3496H4.44995V5.59961Z" stroke="#363636" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     <path d="M13.075 18.8248C13.075 18.1897 12.5602 17.6748 11.925 17.6748C11.2899 17.6748 10.775 18.1897 10.775 18.8248C10.775 19.4599 11.2899 19.9748 11.925 19.9748C12.5602 19.9748 13.075 19.4599 13.075 18.8248Z" fill="#363636" />
     <path d="M14.8 14.8004C14.8 14.1653 14.2851 13.6504 13.65 13.6504C13.0149 13.6504 12.5 14.1653 12.5 14.8004C12.5 15.4355 13.0149 15.9504 13.65 15.9504C14.2851 15.9504 14.8 15.4355 14.8 14.8004Z" fill="#363636" />
 </svg>;
@@ -42,8 +42,8 @@ export const rightSideEffectIcon = <svg width="55" height="61" viewBox="0 0 55 6
     <rect width="12.2431" height="1.74901" rx="0.874505" transform="matrix(-0.5 0.866025 0.866025 0.5 26.7495 48.3203)" fill="white" />
     <rect x="19.4513" y="50.2754" width="12.2431" height="1.74901" rx="0.874505" transform="rotate(30 19.4513 50.2754)" fill="white" />
     <rect width="10" height="10" rx="5" transform="matrix(-1 0 0 1 54.5049 33)" fill="white" />
-    <rect x="-1" y="1" width="8" height="8" rx="4" transform="matrix(-1 0 0 1 32.5049 0)" stroke="white" stroke-width="2" />
-    <path d="M18.5059 23.4504C18.5059 23.4504 11.0547 25.0541 7.41382 28.5782C4.2492 31.6414 2.0423 37.17 2.0423 37.17" stroke="white" stroke-width="2" stroke-linecap="round" />
+    <rect x="-1" y="1" width="8" height="8" rx="4" transform="matrix(-1 0 0 1 32.5049 0)" stroke="white" strokeWidth="2" />
+    <path d="M18.5059 23.4504C18.5059 23.4504 11.0547 25.0541 7.41382 28.5782C4.2492 31.6414 2.0423 37.17 2.0423 37.17" stroke="white" strokeWidth="2" strokeLinecap="round" />
 </svg>;
 
 export const mailIcon = <svg width="26" height="22" viewBox="0 0 26 22" fill="none" xmlns="http://www.w3.org/2000/svg">

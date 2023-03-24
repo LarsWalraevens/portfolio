@@ -67,17 +67,32 @@ nav #nav-resume:hover,
     display: inline-block;
     z-index: 10;
 }
-#underline::after {
-    height: 5px;
+
+b {
+    @apply !text-white-100
+}
+
+#underline::after,
+.underline-title::after {
+    height: 15px;
     content:" ";
-    width: 100%;
+    width: 90%;
+    padding-left: 30px;
     z-index: -1;
-    background-color: #3E3E3E;
-    left: 0px;
-    bottom: 7px;
-    transform: skewX(21);
-    
+    /* background-color: #6d6d6d; */
+    background-color: #555555;
+    left: 5%;
+    bottom: 16%;
+    transform: skewX(45deg);    
     position: absolute;
+
+    @apply max-lg:!bottom-[5%]
+}
+
+.underline-title::after {
+    bottom: 12% !important;
+    width: 100%;
+    left:0%;
 }
 
 .container-sm {
@@ -88,6 +103,17 @@ nav #nav-resume:hover,
   align-items: center; /* add this will all relevant prefixes */
 }
 
+.swiper-pagination-bullets {
+    @apply !bottom-[-5px]
+}
+
+.swiper-pagination-bullet-active {
+    @apply !bg-grey-300
+}
+
+.swiper-pagination-bullet {
+    @apply !bg-black-100
+}
 
 #hero {
     background: url("/img/bg-dots.png");

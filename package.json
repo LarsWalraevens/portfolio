@@ -10,6 +10,7 @@
     "frontdev": "npx concurrently -k -n NEXTJS,TAILWIND -c blue,yellow,orange \"npm run dev\" \"npx tailwindcss -i ./src/styles/globals.css -o ./src/styles/tailwind-compiled.css --watch\""
   },
   "dependencies": {
+    "@tippyjs/react": "^4.2.6",
     "@types/node": "18.15.3",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
@@ -20,7 +21,6 @@
     "next-translate": "^2.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "rsuite": "^5.28.3",
     "swiper": "^9.1.1",
     "typescript": "5.0.2"
   },

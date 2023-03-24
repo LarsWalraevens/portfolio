@@ -7,10 +7,15 @@ import javascript from '@/../public/img/javascript.png';
 import jquery from '@/../public/img/jquery.png';
 import useTranslation from "next-translate/useTranslation";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper";
+import { Pagination, Navigation, Autoplay } from "swiper";
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 
 export default function HomeToolsSection() {
     const { t } = useTranslation('common');
+
     return <>
         <section id="tools" className="bg-black-300 py-[25px] border-y border-y-black-200 relative">
             <div className="container container-sm wrapper mx-auto relative">
@@ -25,14 +30,23 @@ export default function HomeToolsSection() {
                 </div>
                 <div
                     className="lg:hidden relative mt-[-10px]">
+                    <span className="uppercase text-grey-400 hidden font-secondary text-[13px] font-semibold max-lg:w-full text-center max-lg:mb-3 max-lg:sticky max-lg:inline-block">{t("section_tools_title")}</span>
                     <Swiper
                         slidesPerView={3}
                         spaceBetween={30}
-                        className="relative"
-                        modules={[Pagination]}
-                        pagination={{
-                            clickable: true,
-                        }}>
+                        className="relative !pb-[20px]"
+                        autoplay={{
+                            delay: 2500,
+                            disableOnInteraction: false,
+                        }}
+                        pagination={true}
+                        modules={[Pagination, Autoplay, Navigation]}
+                    // pagination={{
+                    //     clickable: true,
+                    //     el: '.swiper-pagination',
+                    //     type: 'bullets',
+                    // }}
+                    >
                         <SwiperSlide>
                             <Image quality={100} src={react} className='mx-auto flex items-center h-full' alt="react-logo" />
                         </SwiperSlide>
@@ -53,7 +67,7 @@ export default function HomeToolsSection() {
                         </SwiperSlide>
                     </Swiper>
                 </div>
-                <span className="uppercase text-grey-500 absolute right-10 bottom-[-20px] font-special text-[10px] font-semibold">{t("section_tools_title")}</span>
+                <span className="uppercase text-grey-500 absolute right-10 bottom-[-20px] font-special text-[10px] font-semibold max-lg:hidden">{t("section_tools_title")}</span>
             </div>
         </section>
     </>
