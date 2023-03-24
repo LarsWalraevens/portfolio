@@ -6,6 +6,8 @@ export default function Document() {
   return (
     <Html lang={lang}>
       <Head>
+        <meta name="robots" content="noindex,nofollow" />
+        <meta key="googlebot" name="googlebot" content="noindex,follow" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
