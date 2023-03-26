@@ -40,7 +40,7 @@ export default function HomeHeroSection() {
 
     return <>
         <section id="hero" className="max-md:!bg-none">
-            <div className="container-sm container wrapper mx-auto h-[70vh] max-lg:min-h-[50vh] max-lg:h-auto flex flex-row justify-between max-lg:flex-col max-lg:justify-center relative ">
+            <div className="container-sm container wrapper mx-auto h-[70vh] min-h-[600px] max-lg:min-h-[50vh] max-lg:h-auto flex flex-row justify-between max-lg:flex-col max-lg:justify-center relative ">
 
                 <span className="absolute right-[4vw] top-[5vh] hidden max-md:inline-block">{rightSideEffectIcon}</span>
                 <div className='flex items-start flex-col justify-center mt-[-30px] max-md:!mt-[-50px]'>
