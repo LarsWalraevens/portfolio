@@ -6,8 +6,6 @@ export default function Document() {
   return (
     <Html lang={lang}>
       <Head>
-        <meta name="robots" content="noindex,nofollow" />
-        <meta key="googlebot" name="googlebot" content="noindex,follow" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -39,6 +37,7 @@ export default function Document() {
         <meta name="apple-mobile-web-app-title" content="portfolio" />
 
         <meta name="robots" content="index, follow" />
+        <meta key="googlebot" name="googlebot" content="index,follow" />
         <meta name="revisit-after" content="7 days" />
         <meta name="author" content="Lars Walraevens" />
         <meta name="keywords" content="lars walraevens, portfolio lars walraevens, portfolio, lars walraevens portfolio, webdeveloper, web developer, Lars Walraevens" />
