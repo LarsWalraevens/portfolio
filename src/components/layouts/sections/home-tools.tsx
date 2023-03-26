@@ -30,7 +30,7 @@ export default function HomeToolsSection() {
                 </div>
                 <div
                     className="lg:hidden relative mt-[-10px]">
-                    <span className="uppercase text-grey-400 hidden font-secondary text-[13px] font-semibold max-lg:w-full text-center max-lg:mb-3 max-lg:sticky max-lg:inline-block">{t("section_tools_title")}</span>
+                    <span className="uppercase text-grey-400 hidden font-secondary text-[0.8rem] font-semibold max-lg:w-full text-center max-lg:mb-3 max-lg:sticky max-lg:inline-block">{t("section_tools_title")}</span>
                     <Swiper
                         slidesPerView={3}
                         spaceBetween={30}
@@ -67,7 +67,7 @@ export default function HomeToolsSection() {
                         </SwiperSlide>
                     </Swiper>
                 </div>
-                <span className="uppercase text-grey-500 absolute right-10 bottom-[-20px] font-special text-[10px] font-semibold max-lg:hidden">{t("section_tools_title")}</span>
+                <span className="uppercase text-grey-500 absolute right-10 bottom-[-20px] font-special text-[0.6rem] font-semibold max-lg:hidden">{t("section_tools_title")}</span>
             </div>
         </section>
     </>

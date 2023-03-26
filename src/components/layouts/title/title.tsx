@@ -7,6 +7,9 @@ interface TitleProps {
 
 export default function Title(props: TitleProps) {
     return <>
-        <h3 className={`text-[25px] uppercase font-semibold font-secondary flex items-center ${props.className}`}><span className="mr-2">{logoIcon}</span>{props.children}</h3>
+        <h3 className={`${props.className}`}>
+            <span className="mr-2 inline-block mb-[2px]">{logoIcon}</span>
+            <span className="text-[1.5rem] uppercase font-semibold font-secondary">{props.children}</span>
+        </h3>
     </>
 }

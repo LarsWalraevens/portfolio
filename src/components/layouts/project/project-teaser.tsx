@@ -11,7 +11,7 @@ interface ProjectTeaserProps {
 export default function ProjectTeaser(props: ProjectTeaserProps) {
 
     // # CLIENT STATES
-    const [projectData, setProjectData] = useState<false | ProjectDataItem>(false)
+    const [projectData, setProjectData] = useState<false | ProjectDataItem>(false); // fix: nextjs render not equal to dom render - so put in state and use useEffect 
 
     useEffect(() => {
         setProjectData(props.data)
@@ -24,12 +24,12 @@ export default function ProjectTeaser(props: ProjectTeaserProps) {
         ">
                     <div className="absolute z-10 flex flex-col bg-black-300 rounded-sm px-3 py-2 border-2 border-grey-600 min-w-[250px] 
              bottom-4 right-5">
-                        <h4 className="text-[18px] font-secondary font-normal flex items-center"> <span className="mr-2">{logoIcon}</span> {projectData.name}</h4>
+                        <h4 className="text-[1.1rem] font-secondary font-normal flex items-center"> <span className="mr-2">{logoIcon}</span> {projectData.name}</h4>
                         <div className="flex items-center">
                             {
                                 projectData.tags.length === 0 ? null :
                                     projectData.tags.map((tag, i) => <Fragment key={i}>
-                                        <div className="inline-block mr-2 font-secondary text-[14px] text-grey-100">
+                                        <div className="inline-block mr-2 font-secondary text-[0.9rem] text-grey-100">
                                             <span className="font-semibold inline-block font-special mr-[2px]">#</span>
                                             {tag}
                                         </div>
@@ -40,7 +40,9 @@ export default function ProjectTeaser(props: ProjectTeaserProps) {
                     <Image
                         quality={100}
                         src={`/img/${projectData.code}/teaser.png`}
-                        layout='fill'
+                        sizes="fill"
+                        width={100}
+                        height={100}
                         priority
                         alt={`${projectData.name.trim().toLowerCase()}-image`}
                         className="rounded w-full h-full filter grayscale 

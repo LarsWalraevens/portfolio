@@ -12,14 +12,13 @@ export default function Header() {
 
     // # UTILS
     const { t, lang } = useTranslation('common');
-    const navMobileClasses = `py-3 mb-4 w-full border-grey-500 border-y border-opacity-50 bg-black-200 bg-opacity-50`
+    const navMobileClasses = `py-3 mb-4 w-full border-grey-500 border-y border-opacity-50 bg-black-200 bg-opacity-50 h-full relative`
 
     const router = useRouter();
     const { locale } = router;
 
     const changeLang = (newLang: "nl" | "en") => {
-        router.push(router.asPath, router.asPath, { locale: newLang });
-
+        router.push(router.asPath.split("#")[0], router.asPath.split("#")[0], { locale: newLang });
     }
     return <>
         {
@@ -27,9 +26,9 @@ export default function Header() {
                 // MOBILE
                 <div className="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-50 overflow-hidden bg-black-300">
                     <div className="flex justify-between items-center mx-4 mt-5">
-                        <div className="scale-[130%] ml-[2px] mt-[-4px]">{logoIcon}</div>
-                        <div className='flex items-center' onClick={(e) => changeLang(lang === "nl" ? 'en' : 'nl')}>
-                            <span className={`cursor-pointer text-[20px]`}>EN</span>
+                        <div className="scale-[130%] ml-[4px] mt-[-3px] w-[30px]">{logoIcon}</div>
+                        <div className='flex items-center no-select' onClick={(e) => changeLang(lang === "nl" ? 'en' : 'nl')}>
+                            <span className={`cursor-pointer text-[1.2rem]`}>EN</span>
                             <span className='mx-2 lang-stripe relative'>
                                 <span id="stripe" className={`absolute ${lang.toUpperCase() === "EN" ? "" : "right-0"}`}>
                                     <svg width="16" height="4" viewBox="0 0 16 4" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -40,27 +39,56 @@ export default function Header() {
                                     <rect width="31" height="3.99999" rx="2" fill="#393939" />
                                 </svg>
                             </span>
-                            <span className={`cursor-pointer text-[20px]`} >NL</span>
+                            <span className={`cursor-pointer text-[1.2rem]`} >NL</span>
                         </div>
                         <div onClick={() => setShowMenu(false)}>
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M1 19L19 1M1 1L19 19" stroke="white" stroke-width="2" stroke-linecap="round" />
+                                <path d="M1 19L19 1M1 1L19 19" stroke="white" strokeWidth="2" strokeLinecap="round" />
                             </svg>
                         </div>
                     </div>
 
                     {/* <span className="absolute right-[10vw] top-[18%] ">{rightSideEffectIcon}</span> */}
                     {/* <span className="absolute left-[10vw] top-[18%] rotate-[-90deg] ">{rightSideEffectIcon}</span> */}
-                    <div className='flex flex-col items-center justify-center h-[65vh]'>
+                    <div className='flex flex-col items-center justify-center min-h-[80%]'>
                         <nav className="flex item-center flex-col justify-center w-full text-center">
                             <div onClick={() => setShowMenu(false)} className={`${navMobileClasses}`}>
-                                <Link id="nav-item" className='relative underline-title text-[2.5rem]' href="/#about">{t("nav_about")}</Link>
+                                <Link id="nav-item" className='relative w-full h-full inline-block' href="/#about">
+                                    <span className="underline-title relative text-[2rem]">
+                                        {t("nav_about")}
+                                    </span>
+                                </Link>
                             </div>
                             <div onClick={() => setShowMenu(false)} className={`${navMobileClasses}`}>
-                                <Link id="nav-item" className='relative underline-title text-[2.5rem]' href="/#projects">{t("nav_projects")}</Link>
+                                <Link id="nav-item" className='relative w-full h-full inline-block' href="/#projects">
+                                    <span className="underline-title relative text-[2rem]">
+                                        {t("nav_projects")}
+                                    </span>
+                                </Link>
                             </div>
                             <div onClick={() => setShowMenu(false)} className={`${navMobileClasses}`}>
-                                <Link id="nav-item" className='relative underline-title text-[2.5rem]' href="/#contact">{t("nav_contact")}</Link>
+                                <Link id="nav-item" className='relative w-full h-full inline-block' href="/#contact">
+                                    <span className="underline-title relative text-[2rem]">
+                                        {t("nav_contact")}
+                                    </span>
+                                </Link>
+                            </div>
+                            {/* <div onClick={() => setShowMenu(false)} className={`${navMobileClasses} !border-y-grey-300 !bg-grey-600`}>
+                                <Link id="nav-item" className='relative w-full h-full inline-block' href={locale === "nl" ? envir.RESUME_NL : envir.RESUME_EN}>
+                                    <span className="underline-title relative text-[2.5rem]">
+                                        <span className='text-[1.4rem]'>📄 </span>{t("nav_resume")}
+                                    </span>
+                                </Link>
+                            </div> */}
+                            <div className="my-5 mt-7 w-full inline-block">
+                                <a
+                                    href={locale === "nl" ? envir.RESUME_NL : envir.RESUME_EN}
+                                    target='_blank'
+                                    rel='noopener noreferrer'
+                                    id="nav-resume"
+                                    className='!text-[1.5rem] !py-3 !px-10 w-full'>
+                                    {t("nav_resume")}
+                                </a>
                             </div>
 
                             <div className="flex flex-row items-center justify-center mt-8">
@@ -75,7 +103,7 @@ export default function Header() {
                 </div>
         }
         {/* DESKTOP */}
-        <header className='container mx-auto wrapper h-[65px] flex items-center justify-between'>
+        <header className='container container-sm mx-auto wrapper h-[65px] flex items-center justify-between'>
             <Link href="/" className='flex items-center hover:opacity-70'>
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="12.8571" height="12.8571" rx="6.42857" fill="white" />
@@ -90,10 +118,10 @@ export default function Header() {
             </span>
             <div className='flex items-center max-lg:hidden'>
                 <nav className='relative'>
-                    <Link id="nav-item" href="/#about">{t("nav_about")}</Link>
-                    <Link id="nav-item" href="/#projects">{t("nav_projects")}</Link>
-                    <Link id="nav-item" href="/#contact">{t("nav_contact")}</Link>
-                    <a href={locale === "nl" ? envir.RESUME_NL : envir.RESUME_EN} id="nav-resume">{t("nav_resume")}</a>
+                    <Link id="nav-item" href="/#about" className='font-secondary'>{t("nav_about")}</Link>
+                    <Link id="nav-item" href="/#projects" className='font-secondary'>{t("nav_projects")}</Link>
+                    <Link id="nav-item" href="/#contact" className='font-secondary'>{t("nav_contact")}</Link>
+                    <a href={locale === "nl" ? envir.RESUME_NL : envir.RESUME_EN} target='_blank' rel='noopener noreferrer' id="nav-resume">{t("nav_resume")}</a>
                 </nav>
                 <div className='flex items-center ml-4'>
                     <span className={`cursor-pointer`} onClick={(e) => changeLang('en')}>EN</span>

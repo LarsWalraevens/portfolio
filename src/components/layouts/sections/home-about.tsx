@@ -21,7 +21,7 @@ export default function HomeAboutSection() {
     const { t } = useTranslation('common');
     const router = useRouter();
     const { locale } = router;
-    const optionTitleClass = (number: number) => `font-secondary flex items-center mb-2 cursor-pointer transition ${number === activeSection.key ? "font-semibold text-white-100" : " text-grey-100 ml-4 hover:scale-95 "}`
+    const optionTitleClass = (number: number) => `font-secondary flex items-center mb-2 cursor-pointer transition ${number === activeSection.key ? "font-semibold text-white-100" : " text-grey-100 opacity-50 hover:opacity-100 ml-4 hover:ml-0"}`
     const optionsData: Array<AboutSectionProps> = [
         {
             key: 1,
@@ -51,7 +51,7 @@ export default function HomeAboutSection() {
             {/* MOBILE */}
             <div className="hidden container container-sm wrapper mx-auto max-lg:block">
                 <Title className="mb-4">{t("section_about_title")}</Title>
-                <div className="bg-black-100 rounded-full flex items-center justify-between text-grey-100 mx-[-5px]">
+                <div className="bg-black-100 rounded-full flex items-center justify-between text-grey-100 mx-[-5px] no-select">
                     {
                         optionsData.map((section: AboutSectionProps, i: number) => <Fragment key={i}>
                             <div
@@ -86,14 +86,14 @@ export default function HomeAboutSection() {
                             {
                                 optionsData.map((section: AboutSectionProps, i: number) => <Fragment key={i}>
                                     <div onClick={() => setActiveSection(section)} className={optionTitleClass(section.key)}>
-                                        <span className="font-secondary text-[22px] mr-2 mt-[-2px]">{section.number}</span>{section.title}
+                                        <span className="font-secondary text-[1.4rem] mr-2 mt-[-2px]">{section.number}</span>{section.title}
                                     </div>
                                 </Fragment>)
                             }
                         </div>
                         <div className="mt-5">
                             <p className="mb-3 text-grey-100">📄 {t("section_about_resume_description")}</p>
-                            <a href={locale === "nl" ? envir.RESUME_NL : envir.RESUME_EN} className="btn-special ml-0">{t("main_my_resume")}</a>
+                            <a href={locale === "nl" ? envir.RESUME_NL : envir.RESUME_EN} rel='noopener noreferrer' target="_blank" className="btn-special ml-0">{t("main_my_resume")}</a>
                         </div>
                     </div>
                     <div className="my-4 mb-5 relative">
@@ -106,11 +106,11 @@ export default function HomeAboutSection() {
                     <div className="ml-7 mr-5 max-w-[70%]">
                         <div>
                             <h4 className="font-secondary font-semibold uppercase flex items-center">
-                                <span className="opacity-50 mr-3 text-[45px] font-secondary font-bold mb-1">{activeSection.number}</span>
+                                <span className="opacity-50 mr-3 text-[2.7rem] font-secondary font-bold mb-1">{activeSection.number}</span>
                                 <span className="mr-1">
                                     {activeSection.title}
                                 </span>
-                                <span className="text-[18px]">
+                                <span className="text-[1.2rem]">
                                     {activeSection.emoji}
                                 </span>
                             </h4>

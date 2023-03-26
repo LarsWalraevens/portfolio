@@ -49,6 +49,7 @@ export default function ProjectPage() {
                                 <div className="max-h-[400px] mb-5 relative min-w-[100px] min-h-[70px] ">
                                     <Image
                                         layout="fill" objectFit="contain"
+                                        sizes='contain'
                                         quality={100}
                                         alt={projectData.code + "-header-image"}
                                         src={`/img/${projectData.code}/header.png`}
