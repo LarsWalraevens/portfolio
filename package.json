@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "sitemap": "next-sitemap --config next-sitemap.config.js",
     "start": "next start",
     "lint": "next lint",
     "frontdev": "npx concurrently -k -n NEXTJS,TAILWIND -c blue,yellow,orange \"npm run dev\" \"npx tailwindcss -i ./src/styles/globals.css -o ./src/styles/tailwind-compiled.css --watch\""
@@ -19,6 +20,7 @@
     "eslint-config-next": "13.2.4",
     "immer": "^9.0.21",
     "next": "13.2.4",
+    "next-sitemap": "^4.0.6",
     "next-translate": "^2.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",

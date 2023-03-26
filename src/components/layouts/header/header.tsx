@@ -109,7 +109,7 @@ export default function Header() {
                     <rect width="12.8571" height="12.8571" rx="6.42857" fill="white" />
                     <path d="M5.75403 16.7773C5.87489 16.5356 6.1041 16.3663 6.37067 16.3219L10.5035 15.6331C13.4995 15.1337 15.7811 12.6755 16.056 9.65075L16.3512 6.40444C16.3771 6.11953 16.5485 5.86829 16.8044 5.74035C17.3537 5.46571 18 5.86513 18 6.47924V13.0887C18 15.801 15.8012 17.9997 13.089 17.9997H6.50953C5.88162 17.9997 5.47322 17.3389 5.75403 16.7773Z" fill="white" />
                 </svg>
-                <span className='ml-3 text-xl font-special max-lg:text-[17px]'>Lars Walraevens</span>
+                <span className='ml-3 text-[19px] font-special max-lg:text-[17px]'>Lars Walraevens</span>
             </Link>
             <span className="max-lg:!block hidden" onClick={() => setShowMenu(!showMenu)}>
                 <svg width="25" height="18" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg">
