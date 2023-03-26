@@ -2,13 +2,19 @@ import projects from '@/assets/data/projects.json';
 import Title from "@/components/layouts/title/title";
 import { ProjectDataItem } from "@/components/utils/types/types";
 import useTranslation from "next-translate/useTranslation";
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import ProjectTeaser from "../project/project-teaser";
 
 export default function HomeProjectsSection() {
+    // # CLIENT STATES
+    const [allProjects, setAllProjects] = useState<false | Array<ProjectDataItem>>(false)
+
     // # UTILS
     const { t } = useTranslation('common');
 
+    useEffect(() => {
+        setAllProjects(projects);
+    }, [projects])
 
     return <>
         <section id="projects" className="py-[100px] max-lg:py-20 relative">
@@ -17,8 +23,8 @@ export default function HomeProjectsSection() {
                 <p className="text-grey-100">{t("section_projects_description")}</p>
                 <div className="my-5 flex flex-row items-center justify-start flex-wrap     max-lg:flex-wrap">
                     {
-                        !projects ? null :
-                            (projects.sort((a: ProjectDataItem, b: ProjectDataItem) => a.sort > b.sort ? 1 : -1)).map((project: ProjectDataItem, i: number) => <Fragment key={i}>
+                        !allProjects ? null :
+                            (allProjects.sort((a: ProjectDataItem, b: ProjectDataItem) => a.sort > b.sort ? 1 : -1)).map((project: ProjectDataItem, i: number) => <Fragment key={i}>
                                 <ProjectTeaser data={project} />
                             </Fragment>)
                     }
