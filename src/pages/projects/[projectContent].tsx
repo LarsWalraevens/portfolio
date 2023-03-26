@@ -82,8 +82,8 @@ export default function ProjectPage() {
                             </section>
                             <section id="project-showcase" className='mt-[8vh] mb-[10vh] max-lg:mt-[3vh] max-lg:mb-[10vh] inline-block w-full relative'>
 
-                                <span className="absolute right-[20vw] top-[8%] ">{rightSideEffectIcon}</span>
-                                <span className="absolute left-[20vw] bottom-[8%] rotate-[-90deg] ">{rightSideEffectIcon}</span>
+                                <span className="absolute right-[20vw] top-[5%] ">{rightSideEffectIcon}</span>
+                                <span className="absolute left-[20vw] bottom-[5%] rotate-[-170deg] ">{rightSideEffectIcon}</span>
                                 <div className="container container-sm wrapper mx-auto">
                                     <div className="flex justify-center">
                                         <ImageGallery

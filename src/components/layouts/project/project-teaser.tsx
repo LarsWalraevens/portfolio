@@ -19,7 +19,7 @@ export default function ProjectTeaser(props: ProjectTeaserProps) {
     return <>
         {
             !projectData ? null :
-                <Link href={`/projects/${projectData.code}`} className="relative group w-[49%] max-lg:w-full h-[300px] my-1 mx-1 border-2 border-white-200 rounded-md  
+                <Link href={`/projects/${projectData.code}`} className="relative group w-[49%] max-lg:w-full h-[300px] my-1 mx-1 max-lg:mb-4 border-2 border-white-200 rounded-md  
         hover:border-blue-400 cursor-pointer hover:shadow-white-100/20 
         ">
                     <div className="absolute z-10 flex flex-col bg-black-300 rounded-sm px-3 py-2 border-2 border-grey-600 min-w-[250px] 
