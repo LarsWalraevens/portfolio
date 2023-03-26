@@ -12,7 +12,7 @@ export default function Header() {
 
     // # UTILS
     const { t, lang } = useTranslation('common');
-    const navMobileClasses = `py-3 mb-4 w-full border-grey-500 border-y`
+    const navMobileClasses = `py-3 mb-4 w-full border-grey-500 border-y border-opacity-50 bg-black-200 bg-opacity-50`
 
     const router = useRouter();
     const { locale } = router;
@@ -26,10 +26,10 @@ export default function Header() {
             !showMenu ? null :
                 // MOBILE
                 <div className="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-50 overflow-hidden bg-black-300">
-                    <div className="flex justify-between items-center mx-4 mt-4">
-                        <div className="scale-[130%] ml-[2px] mt-[6px]">{logoIcon}</div>
+                    <div className="flex justify-between items-center mx-4 mt-5">
+                        <div className="scale-[130%] ml-[2px] mt-[-4px]">{logoIcon}</div>
                         <div className='flex items-center' onClick={(e) => changeLang(lang === "nl" ? 'en' : 'nl')}>
-                            <span className={`cursor-pointer text-[18px]`}>EN</span>
+                            <span className={`cursor-pointer text-[20px]`}>EN</span>
                             <span className='mx-2 lang-stripe relative'>
                                 <span id="stripe" className={`absolute ${lang.toUpperCase() === "EN" ? "" : "right-0"}`}>
                                     <svg width="16" height="4" viewBox="0 0 16 4" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -40,12 +40,11 @@ export default function Header() {
                                     <rect width="31" height="3.99999" rx="2" fill="#393939" />
                                 </svg>
                             </span>
-                            <span className={`cursor-pointer text-[18px]`} >NL</span>
+                            <span className={`cursor-pointer text-[20px]`} >NL</span>
                         </div>
                         <div onClick={() => setShowMenu(false)}>
-                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect x="21.7178" y="2.43652" width="27.3614" height="3.35227" rx="1.67614" transform="rotate(135 21.7178 2.43652)" fill="white" />
-                                <rect width="27.3614" height="3.35227" rx="1.67614" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 21.7178 19.3223)" fill="white" />
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 19L19 1M1 1L19 19" stroke="white" stroke-width="2" stroke-linecap="round" />
                             </svg>
                         </div>
                     </div>

@@ -12,6 +12,7 @@ export interface AboutSectionProps {
     key: number;
     number: string;
     title: string;
+    emoji?: string;
 }
 
 export default function HomeAboutSection() {
@@ -25,17 +26,20 @@ export default function HomeAboutSection() {
         {
             key: 1,
             number: "01",
-            title: t("section_about_option_skills")
+            title: t("section_about_option_skills"),
+            emoji: "💪"
         },
         {
             key: 2,
             number: "02",
-            title: t("section_about_option_motivation")
+            title: t("section_about_option_motivation"),
+            emoji: "🤘"
         },
         {
             key: 3,
             number: "03",
-            title: t("section_about_option_others")
+            title: t("section_about_option_others"),
+            emoji: "🤩"
         },
     ]
 
@@ -88,7 +92,7 @@ export default function HomeAboutSection() {
                             }
                         </div>
                         <div className="mt-5">
-                            <p className="mb-3 text-grey-100">{t("section_about_resume_description")}</p>
+                            <p className="mb-3 text-grey-100">📄 {t("section_about_resume_description")}</p>
                             <a href={locale === "nl" ? envir.RESUME_NL : envir.RESUME_EN} className="btn-special ml-0">{t("main_my_resume")}</a>
                         </div>
                     </div>
@@ -99,11 +103,16 @@ export default function HomeAboutSection() {
                         </svg>
                         <div className="border-r-white-100 border-r-2 h-full flex items-center mt-3 mr-[5px]"></div>
                     </div>
-                    <div className="mt-1 ml-7 mr-5 max-w-[70%]">
+                    <div className="ml-7 mr-5 max-w-[70%]">
                         <div>
-                            <h4 className="font-secondary font-semibold uppercase flex items-center mb-2">
+                            <h4 className="font-secondary font-semibold uppercase flex items-center">
                                 <span className="opacity-50 mr-3 text-[45px] font-secondary font-bold mb-1">{activeSection.number}</span>
-                                {activeSection.title}
+                                <span className="mr-1">
+                                    {activeSection.title}
+                                </span>
+                                <span className="text-[18px]">
+                                    {activeSection.emoji}
+                                </span>
                             </h4>
                             {
                                 activeSection.key === 1 ?

@@ -17,7 +17,7 @@ export default function SkillsSection(props: AboutComponentSectionProps) {
                     title={t("main_development")}
                     icon={codeAboutIcon}
                 >
-                    ReactJS, NextJS, Javascript, Typescript, Tailwind, ...
+                    ReactJS, NextJS, Javascript, Typescript, TailwindCSS, Sass, ...
                 </SkillItem>
                 <SkillItem
                     title={t("main_designing")}

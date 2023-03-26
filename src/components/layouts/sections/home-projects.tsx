@@ -1,7 +1,8 @@
+import projects from '@/assets/data/projects.json';
 import Title from "@/components/layouts/title/title";
+import { ProjectDataItem } from "@/components/utils/types/types";
 import useTranslation from "next-translate/useTranslation";
-import autinoom from '@/../public/img/autinoom/1.png';
-import Image from "next/image";
+import { Fragment } from "react";
 import ProjectTeaser from "../project/project-teaser";
 
 export default function HomeProjectsSection() {
@@ -14,9 +15,14 @@ export default function HomeProjectsSection() {
             <div className="container container-sm wrapper mx-auto relative">
                 <Title className="mb-2">{t("section_projects_title")}</Title>
                 <p className="text-grey-100">{t("section_projects_description")}</p>
-                <div className="my-5 flex flex-row items-center justify-center max-lg:flex-wrap">
-                    <ProjectTeaser image={autinoom} name="Autinoom" tags={["tag", "tag"]} />
-                    <ProjectTeaser image={autinoom} name="Autinoom" tags={[]} />
+                <div className="my-5 flex flex-row items-center justify-start flex-wrap     max-lg:flex-wrap">
+                    {
+                        !projects ? null :
+                            (projects.sort((a: ProjectDataItem, b: ProjectDataItem) => a.sort > b.sort ? 1 : -1)).map((project: ProjectDataItem, i: number) => <Fragment key={i}>
+                                <ProjectTeaser data={project} />
+                            </Fragment>)
+                    }
+                    {/* <div className="w-1/2 max-lg:w-full min-h-[80px] flex items-center justify-center text-xl h-full">MORE SOON...</div> */}
                 </div>
                 <div className="flex justify-center pt-5">
                     {endIcon}

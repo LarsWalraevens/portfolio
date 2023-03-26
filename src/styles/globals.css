@@ -6,3 +6,4 @@
 @import 'tailwindcss/utilities';
 @import "tailwind-compiled.css";
 @import "base.css";
+@import "~react-image-gallery/styles/css/image-gallery.css";

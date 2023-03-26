@@ -15,7 +15,6 @@ html,
 body {
     margin: 0px;
     padding: 0px;
-    height: 100%;
     overflow: auto;
     @apply !bg-black-400 !text-white-100;
 }
@@ -85,7 +84,6 @@ b {
     bottom: 16%;
     transform: skewX(45deg);    
     position: absolute;
-
     @apply max-lg:!bottom-[5%]
 }
 
@@ -115,7 +113,8 @@ b {
     @apply !bg-black-100
 }
 
-#hero {
+#hero,
+#project-showcase {
     background: url("/img/bg-dots.png");
     background-position: center left;
     background-size: 180px;
@@ -127,4 +126,57 @@ b {
     background-position: center right;
     background-repeat: no-repeat;
     background-size:  100px;
+}
+
+/* CAROUSEL  */
+.image-gallery {    
+    width: 765px;
+    height: 400px;
+    display: block;
+
+    @apply max-lg:!h-auto
+}
+
+.image-gallery-content {
+  border: 2px solid red;
+  border-radius: 3px;
+  @apply border-grey-400 bg-black-100;
+}
+.image-gallery-content.fullscreen {
+  height: 100vh;
+  border: none;
+}
+.image-gallery-content.fullscreen .image-gallery-content .image-gallery-slide .image-gallery-image,
+.image-gallery-content.fullscreen .image-gallery-image,
+.image-gallery-content.fullscreen .image-gallery-swipe,
+.image-gallery-content.fullscreen .image-gallery-slides,
+.image-gallery-content.fullscreen center {
+  height: 100vh !important;
+  max-height: unset !important;
+}
+.image-gallery-content.fullscreen .image-gallery-wrapper {
+  height: 100vh;
+}
+.image-gallery-content .image-gallery-slide.center {
+  z-index: 1;
+  background-color: var(--color--silver);
+}
+.image-gallery-content .image-gallery-image {
+  -o-object-fit: unset;
+     object-fit: unset;
+  width: auto;
+  height: 400px !important;
+  margin: auto;
+}
+@media only screen and (max-width: 692px) {
+  .image-gallery-content .image-gallery-image {
+    width: auto !important;
+    height: auto !important;
+    -o-object-fit: contain;
+       object-fit: contain;
+  }
+
+  #project-showcase {    
+    background: none;
+  }
 }

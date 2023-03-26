@@ -1,0 +1,94 @@
+[
+    {
+        "code": "sethub",
+        "name": "Sethub",
+        "sort": 1,
+        "tags": [
+            "Nextjs",
+            "TypeScript",
+            "Firebase"
+        ],
+        "description_short": "project_sethub_description",
+        "status": {
+            "isLive": false,
+            "src": "https://trello.com/b/jLV3d98U/sethub"
+        },
+        "showcase": {
+            "format": "images",
+            "amount": 3,
+            "alt": "sethub-video"
+        }
+    },
+    {
+        "code": "sonar_events",
+        "name": "Sonar Events",
+        "sort": 2,
+        "tags": [
+            "Nextjs",
+            "TypeScript",
+            "TailwindCSS"
+        ],
+        "description_short": "project_sonar_description",
+        "status": {
+            "isLive": true,
+            "src": "https://www.sonarevent.com/"
+        },
+        "showcase": {
+            "format": "images",
+            "amount": 3
+        }
+    },
+    {
+        "code": "autinoom",
+        "name": "Autinoom",
+        "sort": 5,
+        "tags": [
+            "Wordpress"
+        ],
+        "description_short": "project_autinoom_description",
+        "status": {
+            "isLive": true,
+            "src": "https://www.autinoom.be/"
+        },
+        "showcase": {
+            "format": "images",
+            "amount": 4
+        }
+    },
+    {
+        "code": "zmadstudios",
+        "name": "ZmadStudios",
+        "sort": 4,
+        "tags": [
+            "VueJS",
+            "Sass"
+        ],
+        "description_short": "project_zmadstudios_description",
+        "status": {
+            "isLive": true,
+            "src": "https://zmadstudios.com/"
+        },
+        "showcase": {
+            "format": "images",
+            "amount": 2
+        }
+    },
+    {
+        "code": "waarisdegrens",
+        "name": "Waar is de grens",
+        "sort": 5,
+        "tags": [
+            "Laravel",
+            "Sass"
+        ],
+        "description_short": "project_waarisdegrens_description",
+        "status": {
+            "isLive": true,
+            "src": "https://waarisdegrens.be/"
+        },
+        "showcase": {
+            "format": "images",
+            "amount": 6
+        }
+    }
+]

@@ -1,5 +1,4 @@
 import useTranslation from "next-translate/useTranslation";
-import { codeAboutIcon, designAboutIcon, hobbiesAboutIcon, mediaAboutIcon } from "./icons-about-section";
 import { AboutComponentSectionProps } from "./skills-section";
 
 export default function OtherSection(props: AboutComponentSectionProps) {
@@ -9,8 +8,13 @@ export default function OtherSection(props: AboutComponentSectionProps) {
     return <>
         <div id="other">
             <div className="mb-5">
-                <p className="text-grey-100">{t("section_about_motivation_description1")}</p>
-                <p className="text-grey-100">{t("section_about_motivation_description2")}</p>
+                <p className="text-grey-100">{t("section_about_other_description1")}</p>
+                <ul className="list-disc ml-4 my-3 text-grey-100">
+                    <li>Zustand (state manager)</li>
+                    <li>react-query (server state manager)</li>
+                    <li>Ant design (UI library)</li>
+                    <li>Immer</li>
+                </ul>
             </div>
             <div className="btn inline-block" onClick={() => props.goNext()}>{t("main_next")}</div>
         </div>

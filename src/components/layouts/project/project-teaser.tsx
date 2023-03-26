@@ -1,31 +1,53 @@
 import { logoIcon } from "@/assets/icons/icons";
+import { ProjectDataItem } from "@/components/utils/types/types";
 import Image from "next/image";
-import { Fragment } from "react";
+import Link from "next/link";
+import { Fragment, useEffect, useState } from "react";
 
 interface ProjectTeaserProps {
-    image: any;
-    name: string;
-    tags: Array<string>;
+    data: ProjectDataItem;
 }
 
 export default function ProjectTeaser(props: ProjectTeaserProps) {
+
+    // # CLIENT STATES
+    const [projectData, setProjectData] = useState<false | ProjectDataItem>(false)
+
+    useEffect(() => {
+        setProjectData(props.data)
+    }, [props.data])
     return <>
-        <div className="relative group w-1/2 max-lg:w-full mx-2 my-2 border-2 border-grey-400 rounded-md cursor-pointer hover:shadow-lg hover:shadow-white-100/20">
-            <div className="absolute flex flex-col bottom-4 right-5 bg-black-300 rounded-sm px-3 py-2 border-2 border-grey-600 min-w-[250px] transition">
-                <h4 className="text-[18px] font-secondary font-normal flex items-center"> <span className="mr-2">{logoIcon}</span> {props.name}</h4>
-                <div className="flex items-center">
-                    {
-                        props.tags.length === 0 ? null :
-                            props.tags.map((tag, i) => <Fragment key={i}>
-                                <div className="inline-block mr-2 font-secondary">
-                                    <span className="font-semibold inline-block font-secondary">#</span>
-                                    {tag}
-                                </div>
-                            </Fragment>)
-                    }
-                </div>
-            </div>
-            <Image src={props.image} alt="autinoom-teaser" className="rounded" />
-        </div>
+        {
+            !projectData ? null :
+                <Link href={`/projects/${projectData.code}`} className="relative group w-[49%] max-lg:w-full h-[300px] my-1 mx-1 border-2 border-white-200 rounded-md  
+        hover:border-blue-400 cursor-pointer hover:shadow-white-100/20 
+        ">
+                    <div className="absolute z-10 flex flex-col bg-black-300 rounded-sm px-3 py-2 border-2 border-grey-600 min-w-[250px] 
+             bottom-4 right-5">
+                        <h4 className="text-[18px] font-secondary font-normal flex items-center"> <span className="mr-2">{logoIcon}</span> {projectData.name}</h4>
+                        <div className="flex items-center">
+                            {
+                                projectData.tags.length === 0 ? null :
+                                    projectData.tags.map((tag, i) => <Fragment key={i}>
+                                        <div className="inline-block mr-2 font-secondary text-[14px] text-grey-100">
+                                            <span className="font-semibold inline-block font-special mr-[2px]">#</span>
+                                            {tag}
+                                        </div>
+                                    </Fragment>)
+                            }
+                        </div>
+                    </div>
+                    <Image
+                        quality={100}
+                        src={`/img/${projectData.code}/teaser.png`}
+                        layout='fill'
+                        priority
+                        alt={`${projectData.name.trim().toLowerCase()}-image`}
+                        className="rounded w-full h-full filter grayscale 
+                group-hover:grayscale-0 blur-[1.5px] group-hover:blur-none 
+                max-lg:grayscale-0 max-lg:blur-none
+                object-cover object-top" />
+                </Link>
+        }
     </>
 }
