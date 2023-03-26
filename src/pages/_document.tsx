@@ -37,7 +37,7 @@ export default function Document() {
         <link rel="shortcut icon" href="favicon.svg" type="image/x-icon" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-title" content="portfolio" />
-        <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+        <link rel="manifest" href="/manifest.json" />
 
         <meta name="robots" content="index, follow" />
         <meta key="googlebot" name="googlebot" content="index,follow" />
@@ -51,7 +51,7 @@ export default function Document() {
         <meta property="og:locale:alternate" content="en_US" />
         <meta property="og:site_name" content="Portfolio - Lars Walraevens" />
         <meta property="og:url" content="https://larswalraevens.be/" />
-        <meta property="og:image" content="%PUBLIC_URL%/og-image.png" />
+        <meta property="og:image" content="/og-image.png" />
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://larswalraevens.be/" />
