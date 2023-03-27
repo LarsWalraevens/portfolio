@@ -12,7 +12,8 @@ export default function Header() {
 
     // # UTILS
     const { t, lang } = useTranslation('common');
-    const navMobileClasses = `py-3 mb-4 w-full border-grey-500 border-y border-opacity-50 bg-black-200 bg-opacity-50 h-full relative`
+    const navMobileClasses = `py-3 mb-4 w-full border-grey-500 border-y border-opacity-50 bg-black-200 bg-opacity-50 h-full relative`;
+    const UnderlineMenuEffect = () => <span className="absolute bottom-[13%] left-[2%] !skew-x-[45deg] z-[-1] w-0 h-2 bg-[#555555] transition-all group-hover:w-full " />;
 
     const router = useRouter();
     const { locale } = router;
@@ -117,14 +118,23 @@ export default function Header() {
                 </svg>
             </span>
             <div className='flex items-center max-lg:hidden'>
-                <nav className='relative'>
-                    <Link id="nav-item" href="/#about" className='font-secondary'>{t("nav_about")}</Link>
-                    <Link id="nav-item" href="/#projects" className='font-secondary'>{t("nav_projects")}</Link>
-                    <Link id="nav-item" href="/#contact" className='font-secondary'>{t("nav_contact")}</Link>
+                <nav className='relative flex flex-row items-center justify-center'>
+                    <Link id="nav-item" href="/#about" className='font-secondary relative group'>
+                        {t("nav_about")}
+                        <UnderlineMenuEffect />
+                    </Link>
+                    <Link id="nav-item" href="/#projects" className='font-secondary relative group'>
+                        {t("nav_projects")}
+                        <UnderlineMenuEffect />
+                    </Link>
+                    <Link id="nav-item" href="/#contact" className='font-secondary relative group'>
+                        {t("nav_contact")}
+                        <UnderlineMenuEffect />
+                    </Link>
                     <a href={locale === "nl" ? envir.RESUME_NL : envir.RESUME_EN} target='_blank' rel='noopener noreferrer' id="nav-resume">{t("nav_resume")}</a>
                 </nav>
                 <div className='flex items-center ml-4'>
-                    <span className={`cursor-pointer`} onClick={(e) => changeLang('en')}>EN</span>
+                    <span className={`cursor-pointer ${locale === "nl" ? 'hover:opacity-60' : 'pointer-events-none !cursor-default'}`} onClick={(e) => changeLang('en')}>EN</span>
                     <span className='mx-2 lang-stripe relative'>
                         <span id="stripe" className={`absolute ${lang.toUpperCase() === "EN" ? "" : "right-0"}`}>
                             <svg width="16" height="4" viewBox="0 0 16 4" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -135,7 +145,7 @@ export default function Header() {
                             <rect width="31" height="3.99999" rx="2" fill="#393939" />
                         </svg>
                     </span>
-                    <span className={`cursor-pointer`} onClick={(e) => changeLang('nl')} >NL</span>
+                    <span className={`cursor-pointer ${locale === "nl" ? 'pointer-events-none !cursor-default' : 'hover:opacity-60'}`} onClick={(e) => changeLang('nl')} >NL</span>
                 </div>
             </div>
         </header>

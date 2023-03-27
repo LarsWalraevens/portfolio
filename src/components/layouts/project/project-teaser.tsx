@@ -45,7 +45,7 @@ export default function ProjectTeaser(props: ProjectTeaserProps) {
                         height={100}
                         priority
                         alt={`${projectData.name.trim().toLowerCase()}-image`}
-                        className="rounded w-full h-full filter grayscale 
+                        className="rounded w-full h-full filter grayscale transition
                 group-hover:grayscale-0 blur-[1.5px] group-hover:blur-none 
                 max-lg:grayscale-0 max-lg:blur-none
                 object-cover object-top" />

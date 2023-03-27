@@ -21,7 +21,7 @@ export default function HomeAboutSection() {
     const { t } = useTranslation('common');
     const router = useRouter();
     const { locale } = router;
-    const optionTitleClass = (number: number) => `font-secondary flex items-center mb-2 cursor-pointer transition ${number === activeSection.key ? "font-semibold text-white-100" : " text-grey-100 opacity-50 hover:opacity-100 ml-4 hover:ml-0"}`
+    const optionTitleClass = (number: number) => `font-secondary transition-all flex items-center mb-2 cursor-pointer transition ${number === activeSection.key ? "font-semibold text-white-100 " : " text-grey-100 opacity-50 hover:opacity-100 ml-4 hover:ml-0"}`
     const optionsData: Array<AboutSectionProps> = [
         {
             key: 1,
@@ -39,7 +39,7 @@ export default function HomeAboutSection() {
             key: 3,
             number: "03",
             title: t("section_about_option_others"),
-            emoji: "🤩"
+            emoji: "💻"
         },
     ]
 
@@ -79,7 +79,7 @@ export default function HomeAboutSection() {
             <span className="absolute right-[10vw] top-[6vh] max-lg:hidden">{rightSideEffectIcon}</span>
             {/* DESKTOP */}
             <div className="container container-sm wrapper mx-auto max-lg:hidden relative">
-                <div className="flex flex-row align-start">
+                <div className="flex flex-row align-start min-h-[330px]">
                     <div className="mr-10">
                         <Title className="mb-4">{t("section_about_title")}</Title>
                         <div className="flex flex-col">
@@ -103,7 +103,7 @@ export default function HomeAboutSection() {
                         </svg>
                         <div className="border-r-white-100 border-r-2 h-full flex items-center mt-3 mr-[5px]"></div>
                     </div>
-                    <div className="ml-7 mr-5 max-w-[70%]">
+                    <div className="ml-7 mr-5 max-w-[70%] ">
                         <div>
                             <h4 className="font-secondary font-semibold uppercase flex items-center">
                                 <span className="opacity-50 mr-3 text-[2.7rem] font-secondary font-bold mb-1">{activeSection.number}</span>

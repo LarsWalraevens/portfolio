@@ -1,5 +1,6 @@
 export interface ProjectDataItem {
     code: string;
+    isPublic: boolean;
     name: string;
     sort: number;
     tags: Array<string>;

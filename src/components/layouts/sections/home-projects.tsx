@@ -24,7 +24,7 @@ export default function HomeProjectsSection() {
                 <div className="my-5 flex flex-row items-center justify-start flex-wrap     max-lg:flex-wrap">
                     {
                         !allProjects ? null :
-                            (allProjects.sort((a: ProjectDataItem, b: ProjectDataItem) => a.sort > b.sort ? 1 : -1)).map((project: ProjectDataItem, i: number) => <Fragment key={i}>
+                            (allProjects.sort((a: ProjectDataItem, b: ProjectDataItem) => a.sort > b.sort ? 1 : -1)).map((project: ProjectDataItem, i: number) => !project.isPublic ? null : <Fragment key={i}>
                                 <ProjectTeaser data={project} />
                             </Fragment>)
                     }

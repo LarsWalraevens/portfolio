@@ -19,8 +19,7 @@ body {
     @apply !bg-black-400 !text-white-100;
 }
 
-a {
-    
+a {    
     @apply !text-white-100 hover:!no-underline focus:!no-underline active:!no-underline;
 }
 
@@ -35,8 +34,32 @@ body {
 
 
 nav a {
-    @apply mx-3 text-[18px] hover:opacity-70;
+    @apply mx-3 text-[18px] relative z-10;
 }
+
+/* nav #nav-item:hover::after {
+    height: 10px !important;
+    content:" " !important;
+    padding-left: 30px !important;
+    z-index: -1 !important;
+    background-color: #555555 !important;
+    left: 5% !important;
+    bottom: 16% !important;
+    transform: skewX(45deg) !important;
+    position: absolute !important;
+    @apply max-lg:!bottom-[5%] !transition-transform;
+}
+*/
+/* nav #nav-item:hover {
+    transform: scale(1.1);
+    position: relative;
+} */
+
+nav #nav-item {    
+    z-index: 100;
+    position: relative;
+    @apply hover:!text-white-200;    
+} 
 
 
 nav #nav-resume,
@@ -179,4 +202,9 @@ b {
   #project-showcase {    
     background: none;
   }
+}
+
+#nprogress .bar {
+    /* @apply bg-white-100; */
+    @apply bg-blue-400;
 }

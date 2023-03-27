@@ -40,7 +40,7 @@ export default function HomeHeroSection() {
 
     return <>
         <section id="hero" className="max-md:!bg-none">
-            <div className="container-sm container wrapper mx-auto h-[70vh] min-h-[600px] max-lg:min-h-[50vh] max-lg:h-auto flex flex-row justify-between max-lg:flex-col max-lg:justify-center relative ">
+            <div className="container-sm container wrapper mx-auto h-[65vh] min-h-[600px] max-lg:min-h-[50vh] max-lg:h-auto flex flex-row justify-between max-lg:flex-col max-lg:justify-center relative ">
 
                 <span className="absolute right-[4vw] top-[5vh] hidden max-md:inline-block">{rightSideEffectIcon}</span>
                 <div className='flex items-start flex-col justify-center mt-[-30px] max-md:!mt-[-50px]'>
@@ -69,7 +69,7 @@ export default function HomeHeroSection() {
                 </div>
                 <div className='flex items-end relative max-lg:hidden'>
                     <div className="absolute left-[-110px] z-10">
-                        <Image alt="lars-walraevens-picture" quality={100} src={picture} className='h-' />
+                        <Image alt="lars-walraevens-picture" quality={100} src={picture} />
                     </div>
                     <div id="hero-image-bg" className="relative">
                         <div className='absolute right-5 bottom-[53%] flex flex-col items-center'>

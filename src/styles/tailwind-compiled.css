@@ -553,6 +553,10 @@ video {
   }
 }
 
+.pointer-events-none{
+  pointer-events: none;
+}
+
 .static{
   position: static;
 }
@@ -653,12 +657,48 @@ video {
   top: 6vh;
 }
 
+.-bottom-1{
+  bottom: -0.25rem;
+}
+
+.bottom-1{
+  bottom: 0.25rem;
+}
+
+.bottom-\[-5\%\]{
+  bottom: -5%;
+}
+
+.bottom-\[15\%\]{
+  bottom: 15%;
+}
+
+.left-\[5\%\]{
+  left: 5%;
+}
+
+.bottom-\[12\%\]{
+  bottom: 12%;
+}
+
+.bottom-\[13\%\]{
+  bottom: 13%;
+}
+
+.left-\[2\%\]{
+  left: 2%;
+}
+
 .z-10{
   z-index: 10;
 }
 
 .z-50{
   z-index: 50;
+}
+
+.z-\[-1\]{
+  z-index: -1;
 }
 
 .mx-1{
@@ -844,6 +884,10 @@ video {
   margin-top: 8vh;
 }
 
+.mt-4{
+  margin-top: 1rem;
+}
+
 .inline-block{
   display: inline-block;
 }
@@ -888,6 +932,38 @@ video {
   height: 100vh;
 }
 
+.h-\[500px\]{
+  height: 500px;
+}
+
+.h-\[800px\]{
+  height: 800px;
+}
+
+.h-\[600px\]{
+  height: 600px;
+}
+
+.h-\[60vh\]{
+  height: 60vh;
+}
+
+.h-\[65vh\]{
+  height: 65vh;
+}
+
+.h-\[0vh\]{
+  height: 0vh;
+}
+
+.h-1{
+  height: 0.25rem;
+}
+
+.h-2{
+  height: 0.5rem;
+}
+
 .max-h-\[400px\]{
   max-height: 400px;
 }
@@ -910,6 +986,46 @@ video {
 
 .min-h-\[80px\]{
   min-height: 80px;
+}
+
+.min-h-\[900px\]{
+  min-height: 900px;
+}
+
+.min-h-\[500px\]{
+  min-height: 500px;
+}
+
+.min-h-\[300px\]{
+  min-height: 300px;
+}
+
+.min-h-\[400px\]{
+  min-height: 400px;
+}
+
+.min-h-\[350px\]{
+  min-height: 350px;
+}
+
+.min-h-\[320px\]{
+  min-height: 320px;
+}
+
+.min-h-\[325px\]{
+  min-height: 325px;
+}
+
+.min-h-\[550px\]{
+  min-height: 550px;
+}
+
+.min-h-\[60vh\]{
+  min-height: 60vh;
+}
+
+.min-h-\[330px\]{
+  min-height: 330px;
 }
 
 .w-1\/2{
@@ -948,6 +1064,27 @@ video {
   width: 100%;
 }
 
+.w-\[20px\]{
+  width: 20px;
+}
+
+.w-\[500px\]{
+  width: 500px;
+}
+
+.w-\[600px\]{
+  width: 600px;
+}
+
+.w-0{
+  width: 0px;
+}
+
+.w-max{
+  width: -moz-max-content;
+  width: max-content;
+}
+
 .min-w-\[100px\]{
   min-width: 100px;
 }
@@ -972,6 +1109,10 @@ video {
   max-width: 800px;
 }
 
+.max-w-\[900px\]{
+  max-width: 900px;
+}
+
 .rotate-\[-170deg\]{
   --tw-rotate: -170deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -985,6 +1126,11 @@ video {
 .rotate-\[135deg\]{
   --tw-rotate: 135deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.\!skew-x-\[45deg\]{
+  --tw-skew-x: 45deg !important;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
 }
 
 .scale-\[130\%\]{
@@ -1013,8 +1159,22 @@ video {
   animation: spin 1s linear infinite;
 }
 
+@keyframes pulse{
+  50%{
+    opacity: .5;
+  }
+}
+
+.animate-pulse{
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
 .cursor-pointer{
   cursor: pointer;
+}
+
+.\!cursor-default{
+  cursor: default !important;
 }
 
 .list-disc{
@@ -1157,6 +1317,16 @@ video {
 .bg-white-100{
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-blue-400{
+  --tw-bg-opacity: 1;
+  background-color: rgb(60 138 229 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#555555\]{
+  --tw-bg-opacity: 1;
+  background-color: rgb(85 85 85 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-50{
@@ -1418,6 +1588,16 @@ video {
   transition-duration: 150ms;
 }
 
+.transition-all{
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.delay-1000{
+  transition-delay: 1000ms;
+}
+
 .hover\:ml-0:hover{
   margin-left: 0px;
 }
@@ -1433,6 +1613,10 @@ video {
   border-color: rgb(60 138 229 / var(--tw-border-opacity));
 }
 
+.hover\:underline:hover{
+  text-decoration-line: underline;
+}
+
 .hover\:opacity-100:hover{
   opacity: 1;
 }
@@ -1445,9 +1629,21 @@ video {
   opacity: 0.75;
 }
 
+.hover\:opacity-50:hover{
+  opacity: 0.5;
+}
+
+.hover\:opacity-60:hover{
+  opacity: 0.6;
+}
+
 .hover\:shadow-white-100\/20:hover{
   --tw-shadow-color: rgb(255 255 255 / 0.2);
   --tw-shadow: var(--tw-shadow-colored);
+}
+
+.group:hover .group-hover\:w-full{
+  width: 100%;
 }
 
 .group:hover .group-hover\:blur-none{

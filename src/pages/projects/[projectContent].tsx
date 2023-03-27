@@ -19,7 +19,7 @@ export default function ProjectPage() {
     const { query } = router
     const projectCode = query.projectContent!.toString()
     const { t } = useTranslation('common');
-    const getProject = (name: string) => projects.filter((item, i) => item.code === name);
+    const getProject = (name: string) => projects.filter((item, i) => item.code === name && item.isPublic);
 
     useEffect(() => {
         setProjectData(projectCode ? getProject(projectCode).length === 0 ? null : getProject(projectCode)[0] : null)
@@ -56,7 +56,7 @@ export default function ProjectPage() {
                                     />
                                 </div>
                                 <div className="flex justify-center w-full">
-                                    <p className="text-grey-100 text-center mb-3 max-w-[800px]">{t(projectData.description_short)}</p>
+                                    <p className="text-grey-100 text-center mb-3 max-w-[900px]">{t(projectData.description_short)}</p>
                                 </div>
                                 <div className="flex items-center justify-center flex-wrap mb-5">
                                     {

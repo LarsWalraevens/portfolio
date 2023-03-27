@@ -32,7 +32,7 @@ export default function ProjectLayout(props: ProjectLayoutProps) {
                 {t("main_back")}
             </Link>
             {
-                props.data === null ? <NotFound /> :
+                props.data === null ? <div className="min-h-[60vh]"><NotFound /></div> :
                     !props.data ? <div className="flex mt-5 justify-center">
                         <div role="status">
                             <svg aria-hidden="true" className="inline w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-400" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
