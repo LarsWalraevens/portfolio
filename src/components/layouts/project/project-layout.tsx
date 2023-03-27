@@ -23,8 +23,7 @@ export default function ProjectLayout(props: ProjectLayoutProps) {
                     handleSeoTags("title", `Lars Walraevens - ${props.data.name}`)
             }
             {
-                !props.data ? handleSeoTags("description", t("seo_description")) :
-                    handleSeoTags("description", `${props.data.description_short}`)
+                handleSeoTags("description", t("seo_description"))
             }
         </Head>
         <div className="min-h-[50vh] mt-10 max-lg:mt-5">

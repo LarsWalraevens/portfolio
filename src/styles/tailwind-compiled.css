@@ -876,25 +876,16 @@ video {
   height: 70vh;
 }
 
+.h-\[90vh\]{
+  height: 90vh;
+}
+
 .h-full{
   height: 100%;
 }
 
 .h-screen{
   height: 100vh;
-}
-
-.h-fit{
-  height: -moz-fit-content;
-  height: fit-content;
-}
-
-.h-\[95vh\]{
-  height: 95vh;
-}
-
-.h-\[90vh\]{
-  height: 90vh;
 }
 
 .max-h-\[400px\]{
@@ -1315,6 +1306,10 @@ video {
   font-size: 15px;
 }
 
+.text-\[19px\]{
+  font-size: 19px;
+}
+
 .text-\[1rem\]{
   font-size: 1rem;
 }
@@ -1341,10 +1336,6 @@ video {
 
 .text-xl{
   font-size: 1.25rem;
-}
-
-.text-\[19px\]{
-  font-size: 19px;
 }
 
 .font-bold{
