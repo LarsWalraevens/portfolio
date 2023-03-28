@@ -1,26 +1,28 @@
-import Link from "next/link";
-import { heroCodeIcon, heroGamingIcon, heroHeadsetIcon, heroLaptopIcon, heroLineIcon, heroLogoIcon, heroMarkerIcon, heroWeightIcon, rightSideEffectIcon } from '@/assets/icons/icons.jsx'
+import { heroCodeIcon, heroGamingIcon, heroHeadsetIcon, heroLineIcon, heroLogoIcon, heroMarkerIcon, heroWeightIcon, rightSideEffectIcon } from '@/assets/icons/icons.jsx';
 import picture from '@/assets/img/picture.png';
-import Image from 'next/image';
-import useTranslation from 'next-translate/useTranslation';
-import { endIcon } from "./home-projects";
 import Tippy from '@tippyjs/react';
+import useTranslation from 'next-translate/useTranslation';
+import Image from 'next/image';
+import Link from "next/link";
 import 'tippy.js/dist/tippy.css';
-
-
+import { endIcon } from "./home-projects";
+import { AttentionSeeker } from 'react-awesome-reveal';
 interface HeroTooltipProps {
     text: string;
     children: any;
 }
 
-export default function HomeHeroSection() {
+export interface HomeSectionProps {
+}
+
+export default function HomeHeroSection(props: HomeSectionProps) {
 
     // # UTILS
     const { t } = useTranslation('common');
     const HeroTooltip = (props: HeroTooltipProps) =>
         <div className="mb-4 hover:scale-110">
             <Tippy
-                content={<span className="text-[0.7rem] pb-2">{props.text}</span>}
+                content={<span className="text-[0.8rem] pb-2">{props.text}</span>}
                 placement="left"
             >
                 <span className='mb-2 cursor-pointer relative'>{props.children}</span>
@@ -41,9 +43,8 @@ export default function HomeHeroSection() {
     return <>
         <section id="hero" className="max-md:!bg-none">
             <div className="container-sm container wrapper mx-auto h-[65vh] min-h-[600px] max-lg:min-h-[50vh] max-lg:h-auto flex flex-row justify-between max-lg:flex-col max-lg:justify-center relative ">
-
                 <span className="absolute right-[4vw] top-[5vh] hidden max-md:inline-block">{rightSideEffectIcon}</span>
-                <div className='flex items-start flex-col justify-center mt-[-30px] max-md:!mt-[-50px]'>
+                <div className='flex items-start flex-col justify-center mt-[-30px] max-md:!mt-[-50px] h-full'>
                     <h1 className='w-[730px] max-lg:w-[100%] max-lg:text-[30px] max-lg:leading-tight !z-100 font-special relative flex flex-wrap items-center'>
                         <div className="text-[3.1rem] max-lg:text-[30px] font-special">{t("hero_lars_is")}&nbsp;</div>
                         <div id="underline" className="text-[3.1rem] max-lg:text-[30px] font-special">{t("main_frontend_developer")}&nbsp;</div>
@@ -67,7 +68,7 @@ export default function HomeHeroSection() {
 
                     </div>
                 </div>
-                <div className='flex items-end relative max-lg:hidden'>
+                <div className='flex items-end relative h-full max-lg:hidden'>
                     <div className="absolute left-[-110px] z-10">
                         <Image alt="lars-walraevens-picture" quality={100} src={picture} />
                     </div>
@@ -75,26 +76,35 @@ export default function HomeHeroSection() {
                         <div className='absolute right-5 bottom-[53%] flex flex-col items-center'>
                             <span className='mb-2'>{heroLogoIcon}</span>
                             <span className='mb-2'>{heroLineIcon}</span>
-                            <HeroTooltip
-                                text={t("hero_tooltip_music")}
-                            >
-                                <span className="relative">{heroHeadsetIcon}</span>
-                            </HeroTooltip>
-                            <HeroTooltip
-                                text={t("hero_tooltip_gaming")}
-                            >
-                                <span className="relative">{heroGamingIcon}</span>
-                            </HeroTooltip>
-                            <HeroTooltip
-                                text={t("hero_tooltip_code")}
-                            >
-                                <span className="relative">{heroCodeIcon}</span>
-                            </HeroTooltip>
-                            <HeroTooltip
-                                text={t("hero_tooltip_weight")}
-                            >
-                                <span className="relative">{heroWeightIcon}</span>
-                            </HeroTooltip>
+                            <AttentionSeeker effect='pulse' delay={2000}>
+                                <HeroTooltip
+                                    text={t("hero_tooltip_music")}
+                                >
+                                    <span className="relative ">{heroHeadsetIcon}</span>
+                                </HeroTooltip>
+
+                            </AttentionSeeker>
+                            <AttentionSeeker effect='pulse' delay={2200}>
+                                <HeroTooltip
+                                    text={t("hero_tooltip_gaming")}
+                                >
+                                    <span className="relative">{heroGamingIcon}</span>
+                                </HeroTooltip>
+                            </AttentionSeeker>
+                            <AttentionSeeker effect='pulse' delay={2400}>
+                                <HeroTooltip
+                                    text={t("hero_tooltip_code")}
+                                >
+                                    <span className="relative">{heroCodeIcon}</span>
+                                </HeroTooltip>
+                            </AttentionSeeker>
+                            <AttentionSeeker effect='pulse' delay={2600}>
+                                <HeroTooltip
+                                    text={t("hero_tooltip_weight")}
+                                >
+                                    <span className="relative">{heroWeightIcon}</span>
+                                </HeroTooltip>
+                            </AttentionSeeker>
                         </div>
                         {heroPictureBg}
                     </div>

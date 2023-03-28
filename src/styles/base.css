@@ -107,7 +107,7 @@ b {
     bottom: 16%;
     transform: skewX(45deg);    
     position: absolute;
-    @apply max-lg:!bottom-[5%]
+    @apply max-lg:!bottom-[5%];
 }
 
 .underline-title::after {

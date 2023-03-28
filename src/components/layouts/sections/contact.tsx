@@ -1,10 +1,10 @@
+import envir from '@/assets/data/envir.json';
+import { githubIcon, linkedInIcon, mailIcon } from "@/assets/icons/icons";
 import useTranslation from "next-translate/useTranslation";
 import Title from "../title/title";
-import Link from "next/link";
-import { githubIcon, linkedInIcon, mailIcon } from "@/assets/icons/icons";
-import envir from '@/assets/data/envir.json';
+import { HomeSectionProps } from "./home-hero";
 
-export default function ContactSection() {
+export default function ContactSection(props: HomeSectionProps) {
     const { t } = useTranslation('common');
     return <>
         <section id="contact" className="bg-black-300 py-[50px] border-y border-y-black-200 relative max-lg:!bg-none max-lg:py-10">

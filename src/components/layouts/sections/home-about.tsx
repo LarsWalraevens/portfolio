@@ -1,12 +1,13 @@
+import envir from '@/assets/data/envir.json';
+import { rightSideEffectIcon } from "@/assets/icons/icons";
 import Title from "@/components/layouts/title/title";
 import useTranslation from "next-translate/useTranslation";
+import { useRouter } from "next/router";
 import { Fragment, useState } from "react";
-import SkillsSection from './about-sections/skills-section';
 import MotivationSection from "./about-sections/motivation-section";
 import OtherSection from "./about-sections/other-section";
-import { rightSideEffectIcon } from "@/assets/icons/icons";
-import envir from '@/assets/data/envir.json';
-import { useRouter } from "next/router";
+import SkillsSection from './about-sections/skills-section';
+import { HomeSectionProps } from './home-hero';
 
 export interface AboutSectionProps {
     key: number;
@@ -15,8 +16,7 @@ export interface AboutSectionProps {
     emoji?: string;
 }
 
-export default function HomeAboutSection() {
-
+export default function HomeAboutSection(props: HomeSectionProps) {
     // # UTILS
     const { t } = useTranslation('common');
     const router = useRouter();
@@ -86,7 +86,7 @@ export default function HomeAboutSection() {
                             {
                                 optionsData.map((section: AboutSectionProps, i: number) => <Fragment key={i}>
                                     <div onClick={() => setActiveSection(section)} className={optionTitleClass(section.key)}>
-                                        <span className="font-secondary text-[1.4rem] mr-2 mt-[-2px]">{section.number}</span>{section.title}
+                                        <span className="font-secondary text-[1.4rem] mr-2 mt-[-2px] ">{section.number}</span>{section.title}
                                     </div>
                                 </Fragment>)
                             }

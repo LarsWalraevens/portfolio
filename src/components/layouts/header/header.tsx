@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import envir from '@/assets/data/envir.json';
 import { useState } from 'react';
-import { githubIcon, linkedInIcon, logoIcon, mailIcon, rightSideEffectIcon } from '@/assets/icons/icons';
+import { githubIcon, linkedInIcon, logoIcon, mailIcon } from '@/assets/icons/icons';
 
 export default function Header() {
 
@@ -13,7 +13,7 @@ export default function Header() {
     // # UTILS
     const { t, lang } = useTranslation('common');
     const navMobileClasses = `py-3 mb-4 w-full border-grey-500 border-y border-opacity-50 bg-black-200 bg-opacity-50 h-full relative`;
-    const UnderlineMenuEffect = () => <span className="absolute bottom-[13%] left-[2%] !skew-x-[45deg] z-[-1] w-0 h-2 bg-[#555555] transition-all group-hover:w-full " />;
+    const UnderlineMenuEffect = () => <span className="absolute bottom-[13%] left-[2%] !skew-x-[45deg] z-[-1] w-0 h-2 bg-[#3f3f3f] transition-all group-hover:w-full " />;
 
     const router = useRouter();
     const { locale } = router;
@@ -74,13 +74,6 @@ export default function Header() {
                                     </span>
                                 </Link>
                             </div>
-                            {/* <div onClick={() => setShowMenu(false)} className={`${navMobileClasses} !border-y-grey-300 !bg-grey-600`}>
-                                <Link id="nav-item" className='relative w-full h-full inline-block' href={locale === "nl" ? envir.RESUME_NL : envir.RESUME_EN}>
-                                    <span className="underline-title relative text-[2.5rem]">
-                                        <span className='text-[1.4rem]'>📄 </span>{t("nav_resume")}
-                                    </span>
-                                </Link>
-                            </div> */}
                             <div className="my-5 mt-7 w-full inline-block">
                                 <a
                                     href={locale === "nl" ? envir.RESUME_NL : envir.RESUME_EN}

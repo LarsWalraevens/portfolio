@@ -1,26 +1,26 @@
-import Image from "next/image";
-import typescript from '@/../public/img/typescript.png';
-import react from '@/../public/img/react.png';
-import nextjs from '@/../public/img/nextjs.png';
-import tailwind from '@/../public/img/tailwind.png';
 import javascript from '@/../public/img/javascript.png';
 import jquery from '@/../public/img/jquery.png';
+import nextjs from '@/../public/img/nextjs.png';
+import react from '@/../public/img/react.png';
+import tailwind from '@/../public/img/tailwind.png';
+import typescript from '@/../public/img/typescript.png';
 import useTranslation from "next-translate/useTranslation";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation, Autoplay } from "swiper";
+import Image from "next/image";
+import { Autoplay, Navigation, Pagination } from "swiper";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { HomeSectionProps } from "./home-hero";
 
-export default function HomeToolsSection() {
+export default function HomeToolsSection(props: HomeSectionProps) {
     const { t } = useTranslation('common');
 
     return <>
         <section id="tools" className="bg-black-300 py-[25px] border-y border-y-black-200 relative">
             <div className="container container-sm wrapper mx-auto relative">
                 <div className="flex items-center justify-around max-lg:hidden">
-
                     <Image quality={100} src={react} className='mx-4' alt="react-logo" />
                     <Image quality={100} src={nextjs} className='mx-4' alt="nextjs-logo" />
                     <Image quality={100} src={javascript} className='mx-4' alt="javascript-logo" />

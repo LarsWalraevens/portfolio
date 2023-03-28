@@ -1,5 +1,4 @@
 import useTranslation from "next-translate/useTranslation";
-import { codeAboutIcon, designAboutIcon, hobbiesAboutIcon, mediaAboutIcon } from "./icons-about-section";
 import { AboutComponentSectionProps } from "./skills-section";
 
 export default function MotivationSection(props: AboutComponentSectionProps) {
