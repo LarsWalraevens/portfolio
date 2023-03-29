@@ -20,23 +20,23 @@ export default function ProjectTeaser(props: ProjectTeaserProps) {
         {
             !projectData ? null :
                 <Link href={`/projects/${projectData.code}`} className="relative group 
-                w-full max-lg:w-full h-[500px] max-lg:h-[300px] mb-5 max-lg:mb-4 border-[3px] border-white-200 rounded-md  cursor-pointer hover:border-blue-400">
-                    <div className="absolute z-10 flex flex-col bg-black-300 px-3 py-2 border-2 border-grey-600 min-w-[250px] rounded-md
-             bottom-4 right-5">
+                w-full max-lg:w-full overflow-hidden h-[440px] max-lg:h-[300px] mb-5 max-lg:mb-4 border-[3px] border-white-200 rounded-md  cursor-pointer hover:border-blue-400">
+                    <div className="absolute z-10 flex flex-col bg-black-300 px-3 py-2 border-2 border-grey-600 min-w-[250px] rounded
+             top-4 right-4 max-lg:right-2 max-lg:bottom-2 max-lg:top-[unset] opacity-[82%]">
                         <h4 className="text-[1.1rem] font-secondary font-normal flex items-center relative">
                             {/* <span className="mr-2">{logoIcon}</span> */}
-                            <span className="relative font-semibold">
-                                <span className="absolute bottom-[13%] left-[2%] !skew-x-[45deg] z-[-1] w-0 h-2 bg-[#3f3f3f] transition-all group-hover:w-full " />
+                            <span className="relative font-semibold !opacity-1">
+                                <span className="absolute bottom-[13%] left-[2%] !skew-x-[45deg] z-[-1] w-0 h-2 bg-[#4e4e4e] transition-all group-hover:w-full !opacity-1" />
                                 {projectData.name}
                             </span>
                         </h4>
-                        <hr className="my-1 border-grey-500" />
+                        <hr className="my-1 border-grey-600" />
                         <div className="flex items-center">
                             {
                                 projectData.tags.length === 0 ? null :
                                     projectData.tags.map((tag, i) => <Fragment key={i}>
-                                        <div className="inline-block mr-2 font-secondary text-[0.9rem] text-grey-100">
-                                            <span className="font-semibold inline-block font-special mr-[2px]">#</span>
+                                        <div className="inline-block mr-2 font-secondary text-[0.9rem] text-grey-100 !opacity-1">
+                                            <span className="font-semibold inline-block font-special mr-[2px] !opacity-1">#</span>
                                             {tag}
                                         </div>
                                     </Fragment>)
@@ -51,10 +51,16 @@ export default function ProjectTeaser(props: ProjectTeaserProps) {
                         height={100}
                         priority
                         alt={`${projectData.name.trim().toLowerCase()}-image`}
+                        // className="w-full h-auto object-cover transition-transform group-hover:duration-[3500ms] group-hover:delay-[700ms] delay-300 duration-[1300ms] 
+                        // transform translate-y-0 group-hover:translate-y-[-23%] 
+                        // filter grayscale group-hover:grayscale-0 blur-[1.5px] group-hover:blur-none max-lg:grayscale-0 max-lg:blur-none
+                        // " 
                         className="w-full h-full filter grayscale transition
                 group-hover:grayscale-0 blur-[1.5px] group-hover:blur-none 
                 max-lg:grayscale-0 max-lg:blur-none
-                object-cover object-top" />
+                object-cover object-top"
+
+                    />
                 </Link>
         }
     </>

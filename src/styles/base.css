@@ -98,12 +98,12 @@ b {
 .underline-title::after {
     height: 15px;
     content:" ";
-    width: 90%;
+    width: 95%;
     padding-left: 30px;
     z-index: -1;
     /* background-color: #6d6d6d; */
     background-color: #555555;
-    left: 5%;
+    left: 1%;
     bottom: 16%;
     transform: skewX(45deg);    
     position: absolute;

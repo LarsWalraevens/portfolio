@@ -107,7 +107,7 @@ export default function HomeAboutSection(props: HomeSectionProps) {
                         <div>
                             <h4 className="font-secondary font-semibold uppercase flex items-center">
                                 <span className="opacity-50 mr-3 text-[2.7rem] font-secondary font-bold mb-1">{activeSection.number}</span>
-                                <span className="mr-1">
+                                <span className="mr-1 font-bold">
                                     {activeSection.title}
                                 </span>
                                 <span className="text-[1.2rem]">

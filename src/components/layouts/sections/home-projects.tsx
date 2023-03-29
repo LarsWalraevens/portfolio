@@ -31,7 +31,7 @@ export default function HomeProjectsSection(props: HomeSectionProps) {
                     }
                     {/* <div className="w-1/2 max-lg:w-full min-h-[80px] flex items-center justify-center text-xl h-full">MORE SOON...</div> */}
                 </div>
-                <div className="flex justify-center pt-3">
+                <div className="flex justify-center pt-1">
                     {endIcon}
                 </div>
             </div>
@@ -39,8 +39,8 @@ export default function HomeProjectsSection(props: HomeSectionProps) {
     </>
 }
 
-export const endIcon = <svg width="11" height="55" viewBox="0 0 11 55" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="6" width="30" height="1.99999" rx="0.999997" transform="rotate(90 6 0)" fill="white" />
-    <rect x="10.0433" y="45.2363" width="12.2431" height="1.74901" rx="0.874505" transform="rotate(135 10.0433 45.2363)" fill="white" />
-    <rect width="12.2431" height="1.74901" rx="0.874505" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 10.0433 52.792)" fill="white" />
+const endIcon = <svg width="15" height="97" viewBox="0 0 15 97" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="9" width="70" height="1.99998" rx="0.999992" transform="rotate(90 9 0)" fill="white" />
+    <rect x="15" y="83.6279" width="17.4556" height="2.49366" rx="1.24683" transform="rotate(135 15 83.6279)" fill="white" />
+    <rect width="17.4556" height="2.49366" rx="1.24683" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 15 94.4004)" fill="white" />
 </svg>;
