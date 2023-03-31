@@ -29,78 +29,76 @@ export default function Header() {
         {
             !showMenu ? null :
                 // MOBILE
-                <Slide duration={300} direction='right'>
-                    <div className="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-1000 overflow-hidden bg-black-300">
-                        <div className="flex justify-between items-center mx-4 mt-5">
-                            <div className="scale-[130%] ml-[4px] mt-[-3px] w-[30px]">{logoIcon}</div>
-                            <div className='flex items-center no-select' onClick={(e) => changeLang(lang === "nl" ? 'en' : 'nl')}>
-                                <span className={`cursor-pointer text-[1.2rem]`}>EN</span>
-                                <span className='mx-2 lang-stripe relative'>
-                                    <span id="stripe" className={`absolute ${lang.toUpperCase() === "EN" ? "" : "right-0"}`}>
-                                        <svg width="16" height="4" viewBox="0 0 16 4" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <rect width="16" height="4" rx="2" fill="white" />
-                                        </svg>
-                                    </span>
-                                    <svg width="31" height="4" viewBox="0 0 31 4" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <rect width="31" height="3.99999" rx="2" fill="#393939" />
+                <div className="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-50 overflow-hidden bg-black-300">
+                    <div className="flex justify-between items-center mx-4 mt-5">
+                        <div className="scale-[130%] ml-[4px] mt-[-3px] w-[30px]">{logoIcon}</div>
+                        <div className='flex items-center no-select' onClick={(e) => changeLang(lang === "nl" ? 'en' : 'nl')}>
+                            <span className={`cursor-pointer text-[1.2rem]`}>EN</span>
+                            <span className='mx-2 lang-stripe relative'>
+                                <span id="stripe" className={`absolute ${lang.toUpperCase() === "EN" ? "" : "right-0"}`}>
+                                    <svg width="16" height="4" viewBox="0 0 16 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect width="16" height="4" rx="2" fill="white" />
                                     </svg>
                                 </span>
-                                <span className={`cursor-pointer text-[1.2rem]`} >NL</span>
-                            </div>
-                            <div onClick={() => setShowMenu(false)}>
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M1 19L19 1M1 1L19 19" stroke="white" strokeWidth="2" strokeLinecap="round" />
+                                <svg width="31" height="4" viewBox="0 0 31 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="31" height="3.99999" rx="2" fill="#393939" />
                                 </svg>
-                            </div>
+                            </span>
+                            <span className={`cursor-pointer text-[1.2rem]`} >NL</span>
                         </div>
-
-                        {/* <span className="absolute right-[10vw] top-[18%] ">{rightSideEffectIcon}</span> */}
-                        {/* <span className="absolute left-[10vw] top-[18%] rotate-[-90deg] ">{rightSideEffectIcon}</span> */}
-                        <div className='flex flex-col items-center justify-center min-h-[80%]'>
-                            <nav className="flex item-center flex-col justify-center w-full text-center">
-                                <div onClick={() => setShowMenu(false)} className={`${navMobileClasses}`}>
-                                    <Link id="nav-item" className='relative w-full h-full inline-block' href="/#about" passHref>
-                                        <span className="underline-title relative text-[2rem]">
-                                            {t("nav_about")}
-                                        </span>
-                                    </Link>
-                                </div>
-                                <div onClick={() => setShowMenu(false)} className={`${navMobileClasses}`}>
-                                    <Link id="nav-item" className='relative w-full h-full inline-block' href="/#projects" passHref>
-                                        <span className="underline-title relative text-[2rem]">
-                                            {t("nav_projects")}
-                                        </span>
-                                    </Link>
-                                </div>
-                                <div onClick={() => setShowMenu(false)} className={`${navMobileClasses}`}>
-                                    <Link id="nav-item" className='relative w-full h-full inline-block' href="/#contact" passHref>
-                                        <span className="underline-title relative text-[2rem]">
-                                            {t("nav_contact")}
-                                        </span>
-                                    </Link>
-                                </div>
-                                <div className="my-5 mt-7 w-full inline-block">
-                                    <a
-                                        href={locale === "nl" ? envir.RESUME_NL : envir.RESUME_EN}
-                                        target='_blank'
-                                        rel='noopener noreferrer'
-                                        id="nav-resume"
-                                        className='!text-[1.5rem] !py-3 !px-10 w-full'>
-                                        {t("nav_resume")}
-                                    </a>
-                                </div>
-
-                                <div className="flex flex-row items-center justify-center mt-8">
-                                    <a href={`mailto:${envir.EMAIL}`} className="mx-3 hover:scale-110 cursor-pointer">{mailIcon}</a>
-                                    <a href={envir.URL_LINKEDIN} target="_blank" rel="noreferrer noopener" title="linkedIn" className="mx-3 hover:scale-110 cursor-pointer">{linkedInIcon}</a>
-                                    <a href={envir.URL_GITHUB} target="_blank" rel="noreferrer noopener" title="GitHub" className="mx-3 hover:scale-110 cursor-pointer">{githubIcon}</a>
-                                </div>
-                            </nav>
-
-
+                        <div onClick={() => setShowMenu(false)}>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 19L19 1M1 1L19 19" stroke="white" strokeWidth="2" strokeLinecap="round" />
+                            </svg>
                         </div>
                     </div>
-                </Slide>
+
+                    {/* <span className="absolute right-[10vw] top-[18%] ">{rightSideEffectIcon}</span> */}
+                    {/* <span className="absolute left-[10vw] top-[18%] rotate-[-90deg] ">{rightSideEffectIcon}</span> */}
+                    <div className='flex flex-col items-center justify-center min-h-[80%]'>
+                        <nav className="flex item-center flex-col justify-center w-full text-center">
+                            <div onClick={() => setShowMenu(false)} className={`${navMobileClasses}`}>
+                                <Link id="nav-item" className='relative w-full h-full inline-block' href="/#about" passHref>
+                                    <span className="underline-title relative text-[2rem]">
+                                        {t("nav_about")}
+                                    </span>
+                                </Link>
+                            </div>
+                            <div onClick={() => setShowMenu(false)} className={`${navMobileClasses}`}>
+                                <Link id="nav-item" className='relative w-full h-full inline-block' href="/#projects" passHref>
+                                    <span className="underline-title relative text-[2rem]">
+                                        {t("nav_projects")}
+                                    </span>
+                                </Link>
+                            </div>
+                            <div onClick={() => setShowMenu(false)} className={`${navMobileClasses}`}>
+                                <Link id="nav-item" className='relative w-full h-full inline-block' href="/#contact" passHref>
+                                    <span className="underline-title relative text-[2rem]">
+                                        {t("nav_contact")}
+                                    </span>
+                                </Link>
+                            </div>
+                            <div className="my-5 mt-7 w-full inline-block">
+                                <a
+                                    href={locale === "nl" ? envir.RESUME_NL : envir.RESUME_EN}
+                                    target='_blank'
+                                    rel='noopener noreferrer'
+                                    id="nav-resume"
+                                    className='!text-[1.5rem] !py-3 !px-10 w-full'>
+                                    {t("nav_resume")}
+                                </a>
+                            </div>
+
+                            <div className="flex flex-row items-center justify-center mt-8">
+                                <a href={`mailto:${envir.EMAIL}`} className="mx-3 hover:scale-110 cursor-pointer">{mailIcon}</a>
+                                <a href={envir.URL_LINKEDIN} target="_blank" rel="noreferrer noopener" title="linkedIn" className="mx-3 hover:scale-110 cursor-pointer">{linkedInIcon}</a>
+                                <a href={envir.URL_GITHUB} target="_blank" rel="noreferrer noopener" title="GitHub" className="mx-3 hover:scale-110 cursor-pointer">{githubIcon}</a>
+                            </div>
+                        </nav>
+
+
+                    </div>
+                </div>
         }
         {/* DESKTOP */}
         <Slide duration={appStore.fadeConditional(600)} delay={appStore.fadeConditional(200)} direction='down' triggerOnce>

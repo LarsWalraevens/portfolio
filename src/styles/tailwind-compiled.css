@@ -863,6 +863,10 @@ video {
   margin-top: 8vh;
 }
 
+.ml-\[5px\]{
+  margin-left: 5px;
+}
+
 .block{
   display: block;
 }
