@@ -28,7 +28,8 @@
     "react-dom": "18.2.0",
     "react-image-gallery": "^1.2.11",
     "swiper": "^9.1.1",
-    "typescript": "5.0.2"
+    "typescript": "5.0.2",
+    "zustand": "^4.3.6"
   },
   "devDependencies": {
     "@types/nprogress": "^0.2.0",

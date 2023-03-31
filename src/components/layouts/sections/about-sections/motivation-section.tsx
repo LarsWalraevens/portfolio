@@ -1,5 +1,6 @@
 import useTranslation from "next-translate/useTranslation";
 import { AboutComponentSectionProps } from "./skills-section";
+import { Bounce, Fade, Slide } from "react-awesome-reveal";
 
 export default function MotivationSection(props: AboutComponentSectionProps) {
     // # UTILS
