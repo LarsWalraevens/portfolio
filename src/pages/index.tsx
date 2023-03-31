@@ -26,23 +26,14 @@ export default function Home() {
       <div className="h-full">
         <main>
           <HomeHeroSection />
-          <div className="max-lg:hidden block">
-            <Fade duration={appStore.fadeConditional(300)} delay={appStore.fadeConditional(800)} triggerOnce>
-              <div>
-                <HomeAboutSection />
-                <HomeToolsSection />
-                <HomeProjectsSection />
-                <ContactSection />
-              </div>
-            </Fade>
-          </div>
-          <div className="max-lg:block hidden">
-            <HomeAboutSection />
-            <HomeToolsSection />
-            <HomeProjectsSection />
-            <ContactSection />
-
-          </div>
+          <Fade duration={appStore.fadeConditional(300)} delay={appStore.fadeConditional(800)} triggerOnce>
+            <div>
+              <HomeAboutSection />
+              <HomeToolsSection />
+              <HomeProjectsSection />
+              <ContactSection />
+            </div>
+          </Fade>
         </main>
       </div>
     </>
