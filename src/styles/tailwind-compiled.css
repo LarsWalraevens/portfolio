@@ -863,14 +863,6 @@ video {
   margin-top: 8vh;
 }
 
-.ml-\[5px\]{
-  margin-left: 5px;
-}
-
-.block{
-  display: block;
-}
-
 .inline-block{
   display: inline-block;
 }
@@ -921,6 +913,14 @@ video {
 
 .h-screen{
   height: 100vh;
+}
+
+.h-\[420px\]{
+  height: 420px;
+}
+
+.h-\[430px\]{
+  height: 430px;
 }
 
 .max-h-\[400px\]{
@@ -1155,6 +1155,11 @@ video {
   border-right-width: 2px;
 }
 
+.border-black-200{
+  --tw-border-opacity: 1;
+  border-color: rgb(38 37 37 / var(--tw-border-opacity));
+}
+
 .border-grey-500{
   --tw-border-opacity: 1;
   border-color: rgb(84 84 84 / var(--tw-border-opacity));
@@ -1170,11 +1175,6 @@ video {
   border-color: rgb(226 226 226 / var(--tw-border-opacity));
 }
 
-.border-black-200{
-  --tw-border-opacity: 1;
-  border-color: rgb(38 37 37 / var(--tw-border-opacity));
-}
-
 .border-y-black-200{
   --tw-border-opacity: 1;
   border-top-color: rgb(38 37 37 / var(--tw-border-opacity));
@@ -1188,11 +1188,6 @@ video {
 
 .border-opacity-50{
   --tw-border-opacity: 0.5;
-}
-
-.bg-\[\#3f3f3f\]{
-  --tw-bg-opacity: 1;
-  background-color: rgb(63 63 63 / var(--tw-bg-opacity));
 }
 
 .bg-\[\#4e4e4e\]{
@@ -1395,6 +1390,18 @@ video {
   font-size: 1.25rem;
 }
 
+.text-\[3\.6rem\]{
+  font-size: 3.6rem;
+}
+
+.text-\[3\.4rem\]{
+  font-size: 3.4rem;
+}
+
+.text-\[3\.3rem\]{
+  font-size: 3.3rem;
+}
+
 .font-bold{
   font-weight: 700;
 }
@@ -1457,10 +1464,6 @@ video {
   opacity: 82%;
 }
 
-.opacity-0{
-  opacity: 0;
-}
-
 .blur-\[1\.5px\]{
   --tw-blur: blur(1.5px);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
@@ -1495,38 +1498,12 @@ video {
   transition-duration: 150ms;
 }
 
-.transition-opacity{
-  transition-property: opacity;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-
 .delay-300{
   transition-delay: 300ms;
 }
 
-.delay-\[500ms\]{
-  transition-delay: 500ms;
-}
-
 .duration-\[1300ms\]{
   transition-duration: 1300ms;
-}
-
-.duration-500{
-  transition-duration: 500ms;
-}
-
-.\!duration-\[1000ms\]{
-  transition-duration: 1000ms !important;
-}
-
-.\!duration-1000{
-  transition-duration: 1000ms !important;
-}
-
-.ease-in-out{
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .hover\:ml-0:hover{
@@ -1558,6 +1535,10 @@ video {
 
 .hover\:opacity-75:hover{
   opacity: 0.75;
+}
+
+.hover\:\!opacity-100:hover{
+  opacity: 1 !important;
 }
 
 .group:hover .group-hover\:w-full{

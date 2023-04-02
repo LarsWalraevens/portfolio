@@ -52,15 +52,15 @@ export default function HomeHeroSection(props: HomeSectionProps) {
                 </span>
                 <Fade duration={appStore.fadeConditional(1000)} delay={appStore.fadeConditional(800)} triggerOnce>
                     <div className={`flex items-start flex-col justify-center mt-[-30px] max-md:!mt-[-50px] h-full`}>
-                        <h1 className='w-[730px] max-lg:w-[100%] max-lg:text-[30px] max-lg:leading-tight !z-100 font-special relative flex flex-wrap items-center'>
-                            <div className="text-[3.1rem] max-lg:text-[30px] font-special">{t("hero_lars_is")}&nbsp;</div>
-                            <div id="underline" className="text-[3.1rem] max-lg:text-[30px] font-special">{t("main_frontend_developer")}&nbsp;</div>
-                            <span className="text-[3.1rem] max-lg:text-[30px] font-special mr-3">{t("hero_located_in")} </span>
-                            <div className="text-[3.1rem] max-lg:text-[30px] font-special flex items-center">
+                        <h1 className='w-[730px] max-lg:w-[100%] max-lg:text-[30px] max-lg:leading-tight !z-100 font-secondary font-medium relative flex flex-wrap items-center'>
+                            <div className="text-[3.3rem] max-lg:text-[30px] font-secondary font-medium">{t("hero_lars_is")}&nbsp;</div>
+                            <div id="underline" className="text-[3.3rem] max-lg:text-[30px] font-secondary font-medium">{t("main_frontend_developer")}&nbsp;</div>
+                            <span className="text-[3.3rem] max-lg:text-[30px] font-secondary font-medium mr-3">{t("hero_located_in")} </span>
+                            <div className="text-[3.3rem] max-lg:text-[30px] font-secondary font-medium flex items-center">
                                 <span className="inline-block max-lg:scale-[80%] vertical-align mr-2">{heroMarkerIcon} </span>
                                 {`${t("hero_location_country")},`}&nbsp;
                             </div>
-                            <span className="text-[3.1rem] max-lg:text-[30px] font-special mr-2">{t("hero_location_city")} </span>
+                            <span className="text-[3.3rem] max-lg:text-[30px] font-secondary font-medium mr-2">{t("hero_location_city")} </span>
                         </h1>
                         <div className="flex items-center mt-5">
                             <Link href="/#about" className='btn mr-3'>{t("nav_about")}</Link>

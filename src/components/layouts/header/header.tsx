@@ -131,8 +131,8 @@ export default function Header() {
                         </Link>
                         <a href={locale === "nl" ? envir.RESUME_NL : envir.RESUME_EN} target='_blank' rel='noopener noreferrer' id="nav-resume">{t("nav_resume")}</a>
                     </nav>
-                    <div className='flex items-center ml-4'>
-                        <span className={`cursor-pointer ${locale === "nl" ? 'hover:opacity-60' : 'pointer-events-none !cursor-default'}`} onClick={(e) => changeLang('en')}>EN</span>
+                    <div className='flex items-center ml-4 cursor-pointer' onClick={(e) => changeLang(lang === "nl" ? 'en' : 'nl')}>
+                        <span className={`${locale === "nl" ? 'hover:opacity-60' : 'pointer-events-none !cursor-default'}`}>EN</span>
                         <span className='mx-2 lang-stripe relative'>
                             <span id="stripe" className={`absolute ${lang.toUpperCase() === "EN" ? "" : "right-0"}`}>
                                 <svg width="16" height="4" viewBox="0 0 16 4" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -143,7 +143,7 @@ export default function Header() {
                                 <rect width="31" height="3.99999" rx="2" fill="#393939" />
                             </svg>
                         </span>
-                        <span className={`cursor-pointer ${locale === "nl" ? 'pointer-events-none !cursor-default' : 'hover:opacity-60'}`} onClick={(e) => changeLang('nl')} >NL</span>
+                        <span className={`${locale === "nl" ? 'pointer-events-none !cursor-default' : 'hover:opacity-60'}`}>NL</span>
                     </div>
                 </div>
             </header>

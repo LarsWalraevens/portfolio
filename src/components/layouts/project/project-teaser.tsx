@@ -25,9 +25,9 @@ export default function ProjectTeaser(props: ProjectTeaserProps) {
             !projectData ? null : <Link href={`/projects/${projectData.code}`}
                 onClick={() => appStore.setDisabledFade(true)}
                 className="relative group 
-                w-full max-lg:w-full overflow-hidden h-[440px] max-lg:h-[300px] mb-5 max-lg:mb-4 border-[3px] border-white-200 rounded-md  cursor-pointer hover:border-blue-400">
+                w-full max-lg:w-full overflow-hidden h-[430px] max-lg:h-[300px] mb-5 max-lg:mb-4 border-[3px] border-white-200 rounded-md  cursor-pointer hover:border-blue-400">
                 <div className="absolute z-10 flex flex-col bg-black-300 px-3 py-2 border-2 border-black-200 min-w-[250px] rounded
-             top-4 right-4 max-lg:right-2 max-lg:bottom-2 max-lg:top-[unset] opacity-[82%]">
+             top-4 right-4 max-lg:right-2 max-lg:bottom-2 max-lg:top-[unset] opacity-[82%] hover:!opacity-100">
                     <h4 className="text-[1.1rem] font-secondary font-normal flex items-center relative">
                         {/* <span className="mr-2">{logoIcon}</span> */}
                         <span className="relative font-semibold !opacity-1">
