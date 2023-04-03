@@ -34,6 +34,8 @@ export default function Document() {
         </Script>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <link rel="icon" type="image/png" href="favicon.png" />
         <link rel="shortcut icon" href="favicon.svg" type="image/x-icon" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-title" content="portfolio" />
@@ -46,16 +48,15 @@ export default function Document() {
         <meta name="keywords" content="lars walraevens, portfolio lars walraevens, portfolio, lars walraevens portfolio, webdeveloper, web developer, Lars Walraevens" />
 
         <meta property="og:type" content="website" />
-        <meta property="og:type" content="website" />
         <meta property="og:locale" content="nl_BE" />
         <meta property="og:locale:alternate" content="en_US" />
-        <meta property="og:site_name" content="Portfolio - Lars Walraevens" />
+        <meta property="og:site_name" content="Lars Walraevens - Portfolio" />
         <meta property="og:url" content="https://larswalraevens.be/" />
         <meta property="og:image" content="/og-image.png" />
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://larswalraevens.be/" />
-        <meta property="twitter:image" content="/og-image.png"></meta>
+        <meta property="twitter:image" content="/og-image.png" />
 
         {/* THEME STUFF */}
         <meta name="theme-color" content="#131313" />

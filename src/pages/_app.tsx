@@ -37,7 +37,7 @@ export default function App({ Component, pageProps }: AppProps) {
     if (appStore.disabledFade === false) {
       setTimeout(() => {
         $("#load-overlay").hide();
-      }, 30);
+      }, 70);
 
     } else {
       $("#load-overlay").hide();
