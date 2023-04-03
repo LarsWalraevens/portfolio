@@ -7,7 +7,10 @@ import { useAppStore } from '@/components/utils/appStore';
 import { handleSeoTags } from '@/components/utils/myMethods';
 import useTranslation from 'next-translate/useTranslation';
 import Head from 'next/head';
+import { useEffect } from 'react';
 import { Fade } from 'react-awesome-reveal';
+import { useRouter } from "next/router";
+import { animateScroll } from "react-scroll";
 
 export default function Home() {
   // # STORE
@@ -15,6 +18,25 @@ export default function Home() {
 
   // # UTILS
   const { t } = useTranslation('common');
+  const router = useRouter();
+
+  useEffect(() => {
+    if (router.asPath !== router.route) {
+      setTimeout(() => {
+        const element = document.getElementById(router.asPath.replace("/#", ""));
+
+        if (!element) { return }
+        const yOffset = -10;
+        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+        animateScroll.scrollTo(y, {
+          duration: 0
+        });
+
+      }, 70);
+    }
+  }, [router.asPath]);
+
 
   return (
     <>

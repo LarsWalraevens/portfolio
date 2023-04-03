@@ -28,6 +28,7 @@
     "react-awesome-reveal": "^4.2.3",
     "react-dom": "18.2.0",
     "react-image-gallery": "^1.2.11",
+    "react-scroll": "^1.8.9",
     "swiper": "^9.1.1",
     "typescript": "5.0.2",
     "zustand": "^4.3.6"
@@ -36,6 +37,7 @@
     "@types/jquery": "^3.5.16",
     "@types/nprogress": "^0.2.0",
     "@types/react-image-gallery": "^1.2.0",
+    "@types/react-scroll": "^1.8.6",
     "autoprefixer": "^10.4.14",
     "next-translate-plugin": "^2.0.2",
     "postcss": "^8.4.21",

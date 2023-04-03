@@ -23,6 +23,7 @@ export default function ProjectTeaser(props: ProjectTeaserProps) {
     return <>
         {
             !projectData ? null : <Link href={`/projects/${projectData.code}`}
+                id={`project-${projectData.code}`}
                 onClick={() => appStore.setDisabledFade(true)}
                 className="relative group 
                 w-full max-lg:w-full overflow-hidden h-[430px] max-lg:h-[300px] mb-5 max-lg:mb-4 border-[3px] border-white-200 rounded-md  cursor-pointer hover:border-blue-400">

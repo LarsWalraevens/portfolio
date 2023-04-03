@@ -27,7 +27,7 @@ export default function ProjectLayout(props: ProjectLayoutProps) {
             }
         </Head>
         <div className="min-h-[50vh] mt-10 max-lg:mt-5">
-            <Link href="/#projects" className="flex justify-start items-center text-[1.5rem] font-secondary uppercase container container-sm wrapper mx-auto hover:opacity-75">
+            <Link href={props.data ? `/#project-${props.data.code}` : "/#projects"} className="flex justify-start items-center text-[1.5rem] font-secondary uppercase container container-sm wrapper mx-auto hover:opacity-75">
                 <span className="mr-3 scale-[140%] rotate-[135deg]">{logoIcon}</span>
                 {t("main_back")}
             </Link>
