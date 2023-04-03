@@ -7,8 +7,7 @@ import { useAppStore } from '@/components/utils/appStore';
 import { handleSeoTags } from '@/components/utils/myMethods';
 import useTranslation from 'next-translate/useTranslation';
 import Head from 'next/head';
-import { useRef } from 'react';
-import { Fade, Slide } from 'react-awesome-reveal';
+import { Fade } from 'react-awesome-reveal';
 
 export default function Home() {
   // # STORE

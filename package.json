@@ -19,6 +19,7 @@
     "eslint": "8.36.0",
     "eslint-config-next": "13.2.4",
     "immer": "^9.0.21",
+    "jquery": "^3.6.4",
     "next": "13.2.4",
     "next-sitemap": "^4.0.6",
     "next-translate": "^2.0.2",
@@ -32,6 +33,7 @@
     "zustand": "^4.3.6"
   },
   "devDependencies": {
+    "@types/jquery": "^3.5.16",
     "@types/nprogress": "^0.2.0",
     "@types/react-image-gallery": "^1.2.0",
     "autoprefixer": "^10.4.14",
