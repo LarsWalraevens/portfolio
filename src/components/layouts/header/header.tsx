@@ -55,7 +55,7 @@ export default function Header() {
 
                     {/* <span className="absolute right-[10vw] top-[18%] ">{rightSideEffectIcon}</span> */}
                     {/* <span className="absolute left-[10vw] top-[18%] rotate-[-90deg] ">{rightSideEffectIcon}</span> */}
-                    <div className='flex flex-col items-center justify-center min-h-[80%]'>
+                    <div className='flex flex-col items-center justify-center h-[80%] max-lg:min-h-[600px]'>
                         <nav className="flex item-center flex-col justify-center w-full text-center">
                             <div onClick={() => setShowMenu(false)} className={`${navMobileClasses}`}>
                                 <Link id="nav-item" className='relative w-full h-full inline-block' href="/#about" passHref>

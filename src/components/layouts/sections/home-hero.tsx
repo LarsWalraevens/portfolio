@@ -44,20 +44,20 @@ export default function HomeHeroSection(props: HomeSectionProps) {
 
     return <>
         <section id="hero" className="max-md:!bg-none">
-            <div className="container-sm container wrapper mx-auto h-[65vh] min-h-[600px] max-lg:min-h-[50vh] max-lg:h-auto flex flex-row justify-between max-lg:flex-col max-lg:justify-center relative ">
+            <div className="container-sm container wrapper mx-auto h-[65vh] min-h-[600px] max-lg:min-h-[430px] max-lg:h-auto flex flex-row justify-between max-lg:flex-col max-lg:justify-center relative ">
                 <span className="absolute right-[4vw] top-[5vh] hidden max-md:inline-block">
                     <Fade duration={appStore.fadeConditional(500)} delay={appStore.fadeConditional(800)} triggerOnce direction='right'>
                         {rightSideEffectIcon}
                     </Fade>
                 </span>
-                <Fade duration={appStore.fadeConditional(1000)} delay={appStore.fadeConditional(800)} triggerOnce>
+                <Fade duration={appStore.fadeConditional(1000)} delay={appStore.fadeConditional(300)} triggerOnce>
                     <div className={`flex items-start flex-col justify-center mt-[-30px] max-md:!mt-[-50px] h-full`}>
                         <h1 className='w-[730px] max-lg:w-[100%] max-lg:text-[30px] max-lg:leading-tight !z-100 font-secondary font-medium relative flex flex-wrap items-center'>
                             <div className="text-[3.3rem] max-lg:text-[30px] font-secondary font-medium">{t("hero_lars_is")}&nbsp;</div>
                             <div id="underline" className="text-[3.3rem] max-lg:text-[30px] font-secondary font-medium">{t("main_frontend_developer")}&nbsp;</div>
                             <span className="text-[3.3rem] max-lg:text-[30px] font-secondary font-medium mr-3">{t("hero_located_in")} </span>
                             <div className="text-[3.3rem] max-lg:text-[30px] font-secondary font-medium flex items-center">
-                                <span className="inline-block max-lg:scale-[80%] vertical-align mr-2">{heroMarkerIcon} </span>
+                                <span className="inline-block scale-[103%] max-lg:scale-[82%] vertical-align mr-2">{heroMarkerIcon} </span>
                                 {`${t("hero_location_country")},`}&nbsp;
                             </div>
                             <span className="text-[3.3rem] max-lg:text-[30px] font-secondary font-medium mr-2">{t("hero_location_city")} </span>
@@ -76,21 +76,21 @@ export default function HomeHeroSection(props: HomeSectionProps) {
                         </div>
                     </div>
                 </Fade>
-                <Fade duration={appStore.fadeConditional(800)} delay={appStore.fadeConditional(1400)} direction='right' triggerOnce>
+                <Fade duration={appStore.fadeConditional(600)} delay={appStore.fadeConditional(900)} direction='right' triggerOnce>
                     <div className='flex items-end relative h-full max-lg:hidden'>
                         <div className="absolute left-[-110px] z-10">
                             <Image alt="lars-walraevens-picture" quality={100} src={picture} />
                         </div>
                         <div id="hero-image-bg" className="relative">
                             <div className='absolute right-5 bottom-[53%] flex flex-col items-center'>
-                                <Fade duration={appStore.fadeConditional(500)} delay={appStore.fadeConditional(2200)} triggerOnce>
+                                <Fade duration={appStore.fadeConditional(500)} delay={appStore.fadeConditional(1700)} triggerOnce>
                                     <div className="flex items-center justify-center flex-col">
                                         <span className='mb-2'>{heroLogoIcon}</span>
                                         <span className='mb-2'>{heroLineIcon}</span>
                                     </div>
 
                                 </Fade>
-                                <Bounce duration={appStore.fadeConditional(500)} delay={appStore.fadeConditional(2700)} triggerOnce>
+                                <Bounce duration={appStore.fadeConditional(500)} delay={appStore.fadeConditional(2200)} triggerOnce>
                                     <HeroTooltip
                                         text={t("hero_tooltip_music")}
                                     >
@@ -98,21 +98,21 @@ export default function HomeHeroSection(props: HomeSectionProps) {
                                     </HeroTooltip>
 
                                 </Bounce>
-                                <Bounce duration={appStore.fadeConditional(500)} delay={appStore.fadeConditional(3200)} triggerOnce>
+                                <Bounce duration={appStore.fadeConditional(500)} delay={appStore.fadeConditional(2600)} triggerOnce>
                                     <HeroTooltip
                                         text={t("hero_tooltip_gaming")}
                                     >
                                         <span className="relative">{heroGamingIcon}</span>
                                     </HeroTooltip>
                                 </Bounce>
-                                <Bounce duration={appStore.fadeConditional(500)} delay={appStore.fadeConditional(3700)} triggerOnce>
+                                <Bounce duration={appStore.fadeConditional(500)} delay={appStore.fadeConditional(3000)} triggerOnce>
                                     <HeroTooltip
                                         text={t("hero_tooltip_code")}
                                     >
                                         <span className="relative">{heroCodeIcon}</span>
                                     </HeroTooltip>
                                 </Bounce>
-                                <Bounce duration={appStore.fadeConditional(500)} delay={appStore.fadeConditional(4200)} triggerOnce>
+                                <Bounce duration={appStore.fadeConditional(500)} delay={appStore.fadeConditional(3400)} triggerOnce>
                                     <HeroTooltip
                                         text={t("hero_tooltip_weight")}
                                     >

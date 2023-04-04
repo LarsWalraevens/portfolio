@@ -18,6 +18,6 @@ export const useAppStore = create<AppStore>((set) => ({
         }))
     },
     fadeConditional(val: number) {
-        return this.disabledFade ? 0 : val * 1.5 + 400;
+        return this.disabledFade ? 0 : val * 1.2 + 400;
     }
 }));

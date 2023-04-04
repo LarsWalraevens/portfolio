@@ -47,7 +47,7 @@ export default function Home() {
       <div className="h-full">
         <main>
           <HomeHeroSection />
-          <Fade duration={appStore.fadeConditional(300)} delay={appStore.fadeConditional(800)} triggerOnce>
+          <Fade duration={appStore.fadeConditional(300)} delay={appStore.fadeConditional(300)} triggerOnce>
             <div>
               <HomeAboutSection />
               <HomeToolsSection />

@@ -27,7 +27,8 @@
         "isPublic": true,
         "tags": [
             "ReactJS",
-            "Sass"
+            "Sass",
+            "jQuery"
         ],
         "description_short": "project_wisepeople_description",
         "status": {
