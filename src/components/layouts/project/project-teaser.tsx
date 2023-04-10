@@ -1,11 +1,9 @@
-import { logoIcon } from "@/assets/icons/icons";
 import { useAppStore } from "@/components/utils/appStore";
 import { ProjectDataItem } from "@/components/utils/types/types";
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment, useEffect, useState } from "react";
-import { Slide } from "react-awesome-reveal";
-
+import useTranslation from "next-translate/useTranslation";
 interface ProjectTeaserProps {
     data: ProjectDataItem;
 }
@@ -16,6 +14,9 @@ export default function ProjectTeaser(props: ProjectTeaserProps) {
 
     // # CLIENT STATES
     const [projectData, setProjectData] = useState<false | ProjectDataItem>(false); // fix: nextjs render not equal to dom render - so put in state and use useEffect 
+
+    // # UTILS
+    const { t } = useTranslation("common")
 
     useEffect(() => {
         setProjectData(props.data)
@@ -36,7 +37,7 @@ export default function ProjectTeaser(props: ProjectTeaserProps) {
                             {projectData.name}
                         </span>
                     </h4>
-                    <hr className="my-1 border-grey-600" />
+                    <hr className="my-1 border-grey-600 max-lg:hidden" />
                     <div className="flex items-center">
                         {
                             projectData.tags.length === 0 ? null :
@@ -47,6 +48,10 @@ export default function ProjectTeaser(props: ProjectTeaserProps) {
                                     </div>
                                 </Fragment>)
                         }
+                    </div>
+                    <hr className="my-1 border-grey-600 max-lg:block hidden" />
+                    <div className="underline hidden max-lg:inline-block text-grey-100 text-[14px]">
+                        {t("main_see_more")}
                     </div>
                 </div>
                 <Image
