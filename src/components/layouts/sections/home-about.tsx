@@ -107,7 +107,7 @@ export default function HomeAboutSection(props: HomeSectionProps) {
                             <rect x="1.23669" y="0.000976562" width="12.2431" height="1.74901" rx="0.874505" transform="rotate(45 1.23669 0.000976562)" fill="white" />
                             <rect width="12.2431" height="1.74901" rx="0.874505" transform="matrix(-0.707107 0.707107 0.707107 0.707107 8.79248 0.000976562)" fill="white" />
                         </svg>
-                        <div className="border-r-white-100 border-r-2 h-full flex items-center mt-3 mr-[5px]"></div>
+                        <div className="border-r-[#A4A4A4] border-r-2 h-full flex items-center mt-3 mr-[5px]"></div>
                     </div>
                     <div className="ml-7 mr-5 max-w-[70%] ">
                         <div>

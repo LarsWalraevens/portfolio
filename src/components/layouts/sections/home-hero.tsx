@@ -30,16 +30,18 @@ export default function HomeHeroSection(props: HomeSectionProps) {
                 <span className='mb-2 cursor-pointer relative'>{props.children}</span>
             </Tippy >
         </div>
-    const heroPictureBg = <svg width="228" height="481" viewBox="0 0 228 481" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M224 481L224 3.99999L228 14.1294L228 481L224 481Z" fill="#E2E2E2" />
-        <rect x="219" width="481" height="219" transform="rotate(90 219 0)" fill="url(#paint0_linear_1239_1943)" />
+    const heroPictureBg = <svg width="226" height="481" viewBox="0 0 226 481" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M223 481L223 4L226 14.4178L226 481L223 481Z" fill="#E2E2E2" fill-opacity="0.7" />
+        <rect x="219" width="481" height="219" transform="rotate(90 219 0)" fill="url(#paint0_linear_904_420)" />
         <defs>
-            <linearGradient id="paint0_linear_1239_1943" x1="459.5" y1="0" x2="459.5" y2="219" gradientUnits="userSpaceOnUse">
-                <stop stopColor="#E2E2E2" />
-                <stop offset="1" stopColor="white" stopOpacity="0" />
+            <linearGradient id="paint0_linear_904_420" x1="459.5" y1="0" x2="459.5" y2="219" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#E2E2E2" />
+                <stop offset="1" stop-color="white" stop-opacity="0" />
             </linearGradient>
         </defs>
-    </svg>;
+    </svg>
+
+        ;
 
 
     return <>
@@ -82,11 +84,11 @@ export default function HomeHeroSection(props: HomeSectionProps) {
                             <Image alt="lars-walraevens-picture" quality={100} src={picture} />
                         </div>
                         <div id="hero-image-bg" className="relative">
-                            <div className='absolute right-5 bottom-[53%] flex flex-col items-center'>
+                            <div className='absolute right-5 bottom-[51.5%] flex flex-col items-center'>
                                 <Fade duration={appStore.fadeConditional(500)} delay={appStore.fadeConditional(1700)} triggerOnce>
                                     <div className="flex items-center justify-center flex-col">
                                         <span className='mb-2'>{heroLogoIcon}</span>
-                                        <span className='mb-2'>{heroLineIcon}</span>
+                                        <span className='mb-3 mt-1 opacity-40'>{heroLineIcon}</span>
                                     </div>
 
                                 </Fade>
