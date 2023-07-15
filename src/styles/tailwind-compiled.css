@@ -557,10 +557,6 @@ video {
   pointer-events: none;
 }
 
-.visible{
-  visibility: visible;
-}
-
 .static{
   position: static;
 }
@@ -597,8 +593,8 @@ video {
   bottom: 5%;
 }
 
-.bottom-\[53\%\]{
-  bottom: 53%;
+.bottom-\[51\.5\%\]{
+  bottom: 51.5%;
 }
 
 .left-0{
@@ -671,18 +667,6 @@ video {
 
 .top-\[6vh\]{
   top: 6vh;
-}
-
-.bottom-\[51\%\]{
-  bottom: 51%;
-}
-
-.bottom-\[52\%\]{
-  bottom: 52%;
-}
-
-.bottom-\[51\.5\%\]{
-  bottom: 51.5%;
 }
 
 .z-10{
@@ -835,6 +819,10 @@ video {
   margin-right: 5px;
 }
 
+.mt-1{
+  margin-top: 0.25rem;
+}
+
 .mt-10{
   margin-top: 2.5rem;
 }
@@ -877,10 +865,6 @@ video {
 
 .mt-\[8vh\]{
   margin-top: 8vh;
-}
-
-.mt-1{
-  margin-top: 0.25rem;
 }
 
 .inline-block{
@@ -1070,12 +1054,6 @@ video {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-.scale-75{
-  --tw-scale-x: .75;
-  --tw-scale-y: .75;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
 .transform{
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
@@ -1203,11 +1181,6 @@ video {
   --tw-border-opacity: 1;
   border-top-color: rgb(38 37 37 / var(--tw-border-opacity));
   border-bottom-color: rgb(38 37 37 / var(--tw-border-opacity));
-}
-
-.border-r-white-100{
-  --tw-border-opacity: 1;
-  border-right-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 
 .border-r-\[\#A4A4A4\]{
@@ -1482,32 +1455,16 @@ video {
   text-decoration-line: underline;
 }
 
+.opacity-40{
+  opacity: 0.4;
+}
+
 .opacity-50{
   opacity: 0.5;
 }
 
 .opacity-\[82\%\]{
   opacity: 82%;
-}
-
-.opacity-75{
-  opacity: 0.75;
-}
-
-.opacity-25{
-  opacity: 0.25;
-}
-
-.opacity-30{
-  opacity: 0.3;
-}
-
-.opacity-40{
-  opacity: 0.4;
-}
-
-.opacity-70{
-  opacity: 0.7;
 }
 
 .blur-\[1\.5px\]{
@@ -1750,6 +1707,14 @@ video {
 
   .max-lg\:text-\[30px\]{
     font-size: 30px;
+  }
+
+  .max-lg\:text-\[50px\]{
+    font-size: 50px;
+  }
+
+  .max-lg\:text-\[34px\]{
+    font-size: 34px;
   }
 
   .max-lg\:leading-tight{
