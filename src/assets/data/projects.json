@@ -90,7 +90,7 @@
         "description_short": "project_zmadstudios_description",
         "status": {
             "isLive": true,
-            "src": "https://zmadstudios.com/"
+            "src": "https://zmadstudios.vercel.app/"
         },
         "showcase": {
             "format": "images",
