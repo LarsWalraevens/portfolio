@@ -81,7 +81,7 @@ export default function HomeAboutSection(props: HomeSectionProps) {
                 </div>
 
             </div>
-            <span className="absolute right-[10vw] top-[6vh] max-lg:hidden">{rightSideEffectIcon}</span>
+            <span className="absolute right-[10vw] top-[6vh] max-lg:hidden ">{rightSideEffectIcon}</span>
             {/* DESKTOP */}
 
             <div className="container container-sm wrapper mx-auto max-lg:hidden relative">
@@ -102,7 +102,7 @@ export default function HomeAboutSection(props: HomeSectionProps) {
                             <a href={locale === "nl" ? envir.RESUME_NL : envir.RESUME_EN} rel='noopener noreferrer' target="_blank" className="btn-special ml-0">{t("main_my_resume")}</a>
                         </div>
                     </div>
-                    <div className="my-4 mb-5 relative">
+                    <div className="my-4 mb-5 relative opacity-0">
                         <svg width="11" height="10" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect x="1.23669" y="0.000976562" width="12.2431" height="1.74901" rx="0.874505" transform="rotate(45 1.23669 0.000976562)" fill="white" />
                             <rect width="12.2431" height="1.74901" rx="0.874505" transform="matrix(-0.707107 0.707107 0.707107 0.707107 8.79248 0.000976562)" fill="white" />

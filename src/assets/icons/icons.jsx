@@ -7,8 +7,8 @@ export const heroLogoIcon = <svg width="18" height="18" viewBox="0 0 18 18" fill
     <path d="M5.58301 16.2787C5.70027 16.0442 5.92267 15.8799 6.1813 15.8368L10.1912 15.1685C13.098 14.6841 15.3116 12.299 15.5784 9.36425L15.8648 6.21455C15.8899 5.93811 16.0563 5.69435 16.3046 5.57022C16.8375 5.30375 17.4645 5.69128 17.4645 6.28711V12.6999C17.4645 15.3315 15.3312 17.4648 12.6997 17.4648H6.31603C5.7068 17.4648 5.31056 16.8236 5.58301 16.2787Z" fill="#131313" fillOpacity="0.8" />
 </svg>;
 
-export const heroLineIcon = <svg width="2" height="40" viewBox="0 0 2 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="1" width="40" height="1" rx="1" transform="rotate(90 2 0)" fill="#393939" />
+export const heroLineIcon = <svg width="2" height="30" viewBox="0 0 2 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="1" width="30" height="1" rx="1" transform="rotate(90 2 0)" fill="#393939" />
 </svg>;
 
 export const heroHeadsetIcon = <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">

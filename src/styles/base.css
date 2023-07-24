@@ -114,7 +114,7 @@ b {
   }
 
 #hero #underline::after {
-    /* @apply bg-gradient-to-r from-black-200 via-[#a5a506] to-[#aa143a] background-animate opacity-80 */
+    @apply bg-gradient-to-r from-black-200 via-[#a5a506] to-[#aa143a] background-animate opacity-80
 }
 
 #underline::after,

@@ -14,7 +14,8 @@ export default function OtherSection(props: AboutComponentSectionProps) {
                     <li>Zustand (state manager)</li>
                     <li>react-query (server state manager)</li>
                     <li>Ant design (UI library)</li>
-                    <li>Immer</li>
+                    <li>react-toastify (alerts)</li>
+                    <li>Immer (tool)</li>
                 </ul>
             </div>
             <div className="btn inline-block" onClick={() => props.goNext()}>{t("main_next")}</div>

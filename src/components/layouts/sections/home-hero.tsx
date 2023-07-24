@@ -84,7 +84,7 @@ export default function HomeHeroSection(props: HomeSectionProps) {
                             <Image alt="lars-walraevens-picture" quality={100} src={picture} />
                         </div>
                         <div id="hero-image-bg" className="relative">
-                            <div className='absolute right-5 bottom-[51.5%] flex flex-col items-center'>
+                            <div className='absolute right-5 bottom-[53.5%] flex flex-col items-center'>
                                 <Fade duration={appStore.fadeConditional(500)} delay={appStore.fadeConditional(1700)} triggerOnce>
                                     <div className="flex items-center justify-center flex-col">
                                         <span className='mb-2'>{heroLogoIcon}</span>
