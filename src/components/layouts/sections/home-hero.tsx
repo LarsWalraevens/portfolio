@@ -56,7 +56,8 @@ export default function HomeHeroSection(props: HomeSectionProps) {
                     <div className={`flex items-start flex-col justify-center mt-[-30px] max-md:!mt-[-50px] h-full`}>
                         <h1 className='w-[730px] max-lg:w-[100%] max-lg:text-[34px] max-lg:leading-tight !z-100 font-secondary font-medium relative flex flex-wrap items-center'>
                             <div className="text-[3.3rem] max-lg:text-[34px] font-secondary font-medium">{t("hero_lars_is")}&nbsp;</div>
-                            <div id="underline" className="text-[3.3rem] max-lg:text-[34px] font-secondary font-medium">{t("main_frontend_developer")}&nbsp;</div>
+                            <div className="text-[3.3rem] max-lg:text-[34px] font-secondary font-bold bg-gradient-to-r from-blue-400 via-[#a5a506] to-[#aa143a] text-[transparent] bg-clip-text animate-gradient-custom">{t("main_frontend_developer")}&nbsp;</div>
+                            {/* <div id="underline" className="text-[3.3rem] max-lg:text-[34px] font-secondary font-medium">{t("main_frontend_developer")}&nbsp;</div> */}
                             <span className="text-[3.3rem] max-lg:text-[34px] font-secondary font-medium mr-3">{t("hero_located_in")} </span>
                             <div className="text-[3.3rem] max-lg:text-[34px] font-secondary font-medium flex items-center">
                                 <span className="inline-block scale-[103%] max-lg:scale-[82%] vertical-align mr-2">{heroMarkerIcon} </span>
