@@ -1,4 +1,4 @@
-import { heroCodeIcon, heroGamingIcon, heroHeadsetIcon, heroLineIcon, heroLogoIcon, heroMarkerIcon, heroWeightIcon, rightSideEffectIcon } from '@/assets/icons/icons.jsx';
+import { heroCodeIcon, heroGamingIcon, heroHeadsetIcon, heroLineIcon, heroLogoIcon, heroMarkerIcon, heroWeightIcon, hoverIcon, rightSideEffectIcon } from '@/assets/icons/icons.jsx';
 import picture from '@/assets/img/picture.png';
 import Tippy from '@tippyjs/react';
 import useTranslation from 'next-translate/useTranslation';
@@ -56,14 +56,14 @@ export default function HomeHeroSection(props: HomeSectionProps) {
                     <div className={`flex items-start flex-col justify-center mt-[-30px] max-md:!mt-[-50px] h-full`}>
                         <h1 className='w-[730px] max-lg:w-[100%] max-lg:text-[34px] max-lg:leading-tight !z-100 font-secondary font-medium relative flex flex-wrap items-center'>
                             <div className="text-[3.3rem] max-lg:text-[34px] font-secondary font-medium">{t("hero_lars_is")}&nbsp;</div>
-                            <div className="text-[3.3rem] max-lg:text-[34px] font-secondary font-bold bg-gradient-to-r from-blue-400 via-[#a5a506] to-[#aa143a] text-[transparent] bg-clip-text animate-gradient-custom">{t("main_frontend_developer")}&nbsp;</div>
+                            <div className="text-[3.3rem] max-lg:text-[34px] font-secondary font-bold text-[transparent] bg-clip-text animate-wave-gradient mr-2">Front-end developer </div>
                             {/* <div id="underline" className="text-[3.3rem] max-lg:text-[34px] font-secondary font-medium">{t("main_frontend_developer")}&nbsp;</div> */}
-                            <span className="text-[3.3rem] max-lg:text-[34px] font-secondary font-medium mr-3">{t("hero_located_in")} </span>
+                            <span className="text-[3.3rem] max-lg:text-[34px] font-secondary font-medium lg:mr-4 mr-2">{t("hero_located_in")}</span>
                             <div className="text-[3.3rem] max-lg:text-[34px] font-secondary font-medium flex items-center">
-                                <span className="inline-block scale-[103%] max-lg:scale-[82%] vertical-align mr-2">{heroMarkerIcon} </span>
+                                <span className="inline-block scale-[115%] max-lg:scale-[82%] vertical-align mr-2 lg:mr-3">{heroMarkerIcon} </span>
                                 {`${t("hero_location_country")},`}&nbsp;
                             </div>
-                            <span className="text-[3.3rem] max-lg:text-[34px] font-secondary font-medium mr-2">{t("hero_location_city")} </span>
+                            <span className="text-[3.3rem] max-lg:text-[34px] font-secondary font-medium mr-2 !z-[1000] relative">{t("hero_location_city")} </span>
                         </h1>
                         <div className="flex items-center mt-5">
                             <Link href="/#about" className='btn mr-3'>{t("nav_about")}</Link>
@@ -81,15 +81,18 @@ export default function HomeHeroSection(props: HomeSectionProps) {
                 </Fade>
                 <Fade duration={appStore.fadeConditional(600)} delay={appStore.fadeConditional(900)} direction='right' triggerOnce>
                     <div className='flex items-end relative h-full max-lg:hidden'>
-                        <div className="absolute left-[-110px] z-10">
+                        <div className="absolute left-[-120px] z-10 max-[1280px]:left-[-60px]">
                             <Image alt="lars-walraevens-picture" quality={100} src={picture} />
                         </div>
-                        <div id="hero-image-bg" className="relative">
-                            <div className='absolute right-5 bottom-[53.5%] flex flex-col items-center'>
+                        <div id="hero-image-bg" className="relative max-[1280px]:opacity-0">
+                            <div className='absolute right-[20px] bottom-[51.2%] flex flex-col items-center '>
                                 <Fade duration={appStore.fadeConditional(500)} delay={appStore.fadeConditional(1700)} triggerOnce>
                                     <div className="flex items-center justify-center flex-col">
-                                        <span className='mb-2'>{heroLogoIcon}</span>
-                                        <span className='mb-3 mt-1 opacity-40'>{heroLineIcon}</span>
+                                        {/* <span className='mb-2 '>{heroLogoIcon}</span> */}
+                                        <span className='flex uppercase flex-row items-center text-black-100'>
+                                            <span style={{ writingMode: 'vertical-rl' }} className="font-secondary text-sm">Hover</span>
+                                        </span>
+                                        <span className='mb-[10px] mt-[10px] opacity-40'>{heroLineIcon}</span>
                                     </div>
 
                                 </Fade>
@@ -97,7 +100,7 @@ export default function HomeHeroSection(props: HomeSectionProps) {
                                     <HeroTooltip
                                         text={t("hero_tooltip_music")}
                                     >
-                                        <span className="relative ">{heroHeadsetIcon}</span>
+                                        <span className="relative opacity-80 hover:opacity-100">{heroHeadsetIcon}</span>
                                     </HeroTooltip>
 
                                 </Bounce>
@@ -105,25 +108,27 @@ export default function HomeHeroSection(props: HomeSectionProps) {
                                     <HeroTooltip
                                         text={t("hero_tooltip_gaming")}
                                     >
-                                        <span className="relative">{heroGamingIcon}</span>
+                                        <span className="relative opacity-80 hover:opacity-100">{heroGamingIcon}</span>
                                     </HeroTooltip>
                                 </Bounce>
                                 <Bounce duration={appStore.fadeConditional(500)} delay={appStore.fadeConditional(3000)} triggerOnce>
                                     <HeroTooltip
                                         text={t("hero_tooltip_code")}
                                     >
-                                        <span className="relative">{heroCodeIcon}</span>
+                                        <span className="relative opacity-80 hover:opacity-100">{heroCodeIcon}</span>
                                     </HeroTooltip>
                                 </Bounce>
                                 <Bounce duration={appStore.fadeConditional(500)} delay={appStore.fadeConditional(3400)} triggerOnce>
                                     <HeroTooltip
                                         text={t("hero_tooltip_weight")}
                                     >
-                                        <span className="relative">{heroWeightIcon}</span>
+                                        <span className="relative opacity-80 hover:opacity-100">{heroWeightIcon}</span>
                                     </HeroTooltip>
                                 </Bounce>
                             </div>
-                            {heroPictureBg}
+                            <div className="max-[1280px]:opacity-0">
+                                {heroPictureBg}
+                            </div>
                         </div>
                     </div>
                 </Fade>

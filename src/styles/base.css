@@ -246,22 +246,21 @@ b {
     opacity: 1;
   }
 }
+@keyframes waveGradient {
+    0% {
+        background-position: 0% 50%;
+    }
 
-.animate-gradient-custom {
-  background-size: 300%;
-  -webkit-animation: animatedgradient 5s ease infinite alternate;
-  -moz-animation: animatedgradient 5s ease infinite alternate;
-  animation: animatedgradient 5s ease infinite alternate;
+    100% {
+        background-position: 140% 50%;
+    }
 }
 
-@keyframes animatedgradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+.animate-wave-gradient {
+    background-image: linear-gradient(to right, #aa143a, #3C8AE5, #a5a506, #aa143a) !important;
+    background-size: 350% auto;
+    animation: waveGradient 5s linear infinite;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
