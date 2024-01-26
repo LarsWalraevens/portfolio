@@ -63,7 +63,7 @@ export default function HomeHeroSection(props: HomeSectionProps) {
                                 <span className="inline-block scale-[115%] max-lg:scale-[82%] vertical-align mr-2 lg:mr-3">{heroMarkerIcon} </span>
                                 {`${t("hero_location_country")},`}&nbsp;
                             </div>
-                            <span className="text-[3.3rem] max-lg:text-[34px] font-secondary font-medium mr-2 !z-[1000] relative">{t("hero_location_city")} </span>
+                            <span className="text-[3.3rem] max-lg:text-[34px] font-secondary font-medium mr-2 !z-100 relative">{t("hero_location_city")} </span>
                         </h1>
                         <div className="flex items-center mt-5">
                             <Link href="/#about" className='btn mr-3'>{t("nav_about")}</Link>
