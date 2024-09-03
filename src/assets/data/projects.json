@@ -16,7 +16,7 @@
         },
         "showcase": {
             "format": "images",
-            "amount": 3,
+            "amount": 4,
             "alt": "sethub-video"
         }
     },
@@ -38,6 +38,26 @@
         "showcase": {
             "format": "images",
             "amount": 5
+        }
+    },
+    {
+        "code": "api-docs",
+        "name": "API docs template",
+        "sort": 4,
+        "isPublic": true,
+        "tags": [
+            "Nextjs",
+            "TailwindCSS",
+            "TypeScript"
+        ],
+        "description_short": "project_apidocs_description",
+        "status": {
+            "isLive": true,
+            "src": "https://api-docs-template.vercel.app/"
+        },
+        "showcase": {
+            "format": "images",
+            "amount": 2
         }
     },
     {
@@ -64,7 +84,7 @@
         "code": "autinoom",
         "name": "Autinoom",
         "isPublic": true,
-        "sort": 4,
+        "sort": 5,
         "tags": [
             "Wordpress"
         ],
@@ -79,10 +99,31 @@
         }
     },
     {
+        "code": "chronic-diary",
+        "name": "Chronic diary",
+        "isPublic": true,
+        "sort": 7,
+        "tags": [
+            "NextJS",
+            "Serverless",
+            "PostgreSQL",
+            "shadcn/ui"
+        ],
+        "description_short": "project_chronic_diary_description",
+        "status": {
+            "isLive": true,
+            "src": "https://diary.larswalraevens.be/"
+        },
+        "showcase": {
+            "format": "images",
+            "amount": 3
+        }
+    },
+    {
         "code": "zmadstudios",
         "name": "ZmadStudios",
         "isPublic": true,
-        "sort": 6,
+        "sort": 7,
         "tags": [
             "VueJS",
             "Sass"

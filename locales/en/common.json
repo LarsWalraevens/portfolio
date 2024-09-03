@@ -49,6 +49,8 @@
     "section_about_other_description1": "Sometimes you find these <b>nice tools/packages</b> that you just love using while developing. Therefore I think it's cool if I would share them with you. PS: for more, check my Github stars!",
     "main_status_development": "In development",
     "project_wisepeople_description": "At WiSE People, I help with front-end development of a platform that provides job applicants with transparent information about the application process, working environment and much more. It also helps businesses get feedback on their application process and creates opportunities for improvements and data analysis.",
+    "project_apidocs_description": "I had to create an API documentation site at some point and thought to myself, why not make it open-source. So that's what I did so that other people could use it too. It uses a JSON data structure to render content & navigation. Plus has some useful components.",
+    "project_chronic_diary_description": "I struggle with chronic symptoms. This is a diary (web app) that I created to track different chronic symptoms I was feeling during the day. The platform is developed with a mobile-first approach.",
     "newitem": "test",
     "---": "---"
 }

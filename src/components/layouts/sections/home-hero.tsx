@@ -39,9 +39,7 @@ export default function HomeHeroSection(props: HomeSectionProps) {
                 <stop offset="1" stop-color="white" stop-opacity="0" />
             </linearGradient>
         </defs>
-    </svg>
-
-        ;
+    </svg>;
 
 
     return <>
@@ -80,16 +78,16 @@ export default function HomeHeroSection(props: HomeSectionProps) {
                     </div>
                 </Fade>
                 <Fade duration={appStore.fadeConditional(600)} delay={appStore.fadeConditional(900)} direction='right' triggerOnce>
-                    <div className='flex items-end relative h-full max-lg:hidden'>
-                        <span
-                            style={{ background: "radial-gradient(50% 50% at 50% 50%, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 100%)" }}
-                            className="absolute bottom-2 left-[-130px] max-[1280px]:left-[-60px] w-[130%] h-3/4 rotate-[20deg]"
-                        />
-                        <div className="absolute left-[-120px] bottom-[-10px] max-[1280px]:left-[-60px]">
+                    <div className='flex items-end relative h-full max-lg:hidden' >
+                        <div className="absolute right-12 bottom-[-10px] max-[1280px]:right-[-20px]" style={{ width: 320 }}>
+                            <span
+                                style={{ background: "radial-gradient(50% 50% at 50% 50%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%)" }}
+                                className="absolute max-[1280px]:hidden bottom-2 left-[-17%] w-[130%] h-[35%] rotate-[20deg] z-[-1]"
+                            />
                             <Image alt="lars-walraevens-picture" quality={100} src={picture} />
                         </div>
-                        <div id="hero-image-bg" className="relative max-[1280px]:opacity-0">
-                            <div className='absolute z-10 right-2 bottom-[40%] flex flex-col items-center '>
+                        <div className="max-[1280px]:opacity-0">
+                            <div className='absolute z-10 right-0 bottom-[12%] flex flex-col items-center '>
                                 <Fade duration={appStore.fadeConditional(500)} delay={appStore.fadeConditional(1700)} triggerOnce>
                                     <div className="flex items-center justify-center flex-col">
                                         {/* <span className='mb-2 '>{heroLogoIcon}</span> */}
@@ -129,9 +127,6 @@ export default function HomeHeroSection(props: HomeSectionProps) {
                                         <span className="relative opacity-80 hover:opacity-100">{heroWeightIcon}</span>
                                     </HeroTooltip>
                                 </Bounce>
-                            </div>
-                            <div className="opacity-0">
-                                {heroPictureBg}
                             </div>
                         </div>
                     </div>
