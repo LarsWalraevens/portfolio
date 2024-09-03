@@ -58,7 +58,6 @@ nav a {
 nav #nav-item {    
     z-index: 100;
     position: relative;
-    @apply hover:!text-white-200;    
 } 
 
 

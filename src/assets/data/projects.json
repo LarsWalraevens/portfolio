@@ -2,7 +2,7 @@
     {
         "code": "sethub",
         "name": "Sethub",
-        "sort": 3,
+        "sort": 2,
         "isPublic": true,
         "tags": [
             "Nextjs",
@@ -27,8 +27,8 @@
         "isPublic": true,
         "tags": [
             "Nextjs",
-            "Sass",
-            "jQuery"
+            "TailwindCSS",
+            "TypeScript"
         ],
         "description_short": "project_wisepeople_description",
         "status": {
@@ -44,7 +44,7 @@
         "code": "sonar_events",
         "name": "Sonar Events",
         "isPublic": true,
-        "sort": 4,
+        "sort": 3,
         "tags": [
             "Nextjs",
             "TypeScript",
@@ -101,7 +101,7 @@
         "code": "waarisdegrens",
         "name": "Waar is de grens",
         "isPublic": true,
-        "sort": 2,
+        "sort": 5,
         "tags": [
             "Laravel",
             "Mobile-first",

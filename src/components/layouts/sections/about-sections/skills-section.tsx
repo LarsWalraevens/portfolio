@@ -12,7 +12,7 @@ export default function SkillsSection(props: AboutComponentSectionProps) {
 
     return <>
         <div id="skills">
-            <p className="text-grey-100">{t("section_about_skills_description")}</p>
+            <p className="text-grey-100" dangerouslySetInnerHTML={{ __html: t("section_about_skills_description") }}></p>
             <div className="mt-4 mb-6">
                 <SkillItem
                     title={t("main_development")}

@@ -81,15 +81,19 @@ export default function HomeHeroSection(props: HomeSectionProps) {
                 </Fade>
                 <Fade duration={appStore.fadeConditional(600)} delay={appStore.fadeConditional(900)} direction='right' triggerOnce>
                     <div className='flex items-end relative h-full max-lg:hidden'>
-                        <div className="absolute left-[-120px] z-10 max-[1280px]:left-[-60px]">
+                        <span
+                            style={{ background: "radial-gradient(50% 50% at 50% 50%, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 100%)" }}
+                            className="absolute bottom-2 left-[-130px] max-[1280px]:left-[-60px] w-[130%] h-3/4 rotate-[20deg]"
+                        />
+                        <div className="absolute left-[-120px] bottom-[-10px] max-[1280px]:left-[-60px]">
                             <Image alt="lars-walraevens-picture" quality={100} src={picture} />
                         </div>
                         <div id="hero-image-bg" className="relative max-[1280px]:opacity-0">
-                            <div className='absolute right-[20px] bottom-[51.2%] flex flex-col items-center '>
+                            <div className='absolute z-10 right-2 bottom-[40%] flex flex-col items-center '>
                                 <Fade duration={appStore.fadeConditional(500)} delay={appStore.fadeConditional(1700)} triggerOnce>
                                     <div className="flex items-center justify-center flex-col">
                                         {/* <span className='mb-2 '>{heroLogoIcon}</span> */}
-                                        <span className='flex uppercase flex-row items-center text-black-100'>
+                                        <span className='flex uppercase flex-row items-center text-white-100'>
                                             <span style={{ writingMode: 'vertical-rl' }} className="font-secondary text-sm">Hover</span>
                                         </span>
                                         <span className='mb-[10px] mt-[10px] opacity-40'>{heroLineIcon}</span>
@@ -126,7 +130,7 @@ export default function HomeHeroSection(props: HomeSectionProps) {
                                     </HeroTooltip>
                                 </Bounce>
                             </div>
-                            <div className="max-[1280px]:opacity-0">
+                            <div className="opacity-0">
                                 {heroPictureBg}
                             </div>
                         </div>

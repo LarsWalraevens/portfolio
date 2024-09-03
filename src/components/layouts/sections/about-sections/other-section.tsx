@@ -1,6 +1,5 @@
 import useTranslation from "next-translate/useTranslation";
 import { AboutComponentSectionProps } from "./skills-section";
-import { Bounce, Fade, Slide } from "react-awesome-reveal";
 
 export default function OtherSection(props: AboutComponentSectionProps) {
     // # UTILS
@@ -11,11 +10,10 @@ export default function OtherSection(props: AboutComponentSectionProps) {
             <div className="mb-6">
                 <p className="text-grey-100" dangerouslySetInnerHTML={{ __html: t("section_about_other_description1") }}></p>
                 <ul className="list-disc ml-4 my-3 text-grey-100">
-                    <li>Zustand (state manager)</li>
-                    <li>react-query (server state manager)</li>
-                    <li>Ant design (UI library)</li>
-                    <li>react-toastify (alerts)</li>
-                    <li>Immer (tool)</li>
+                    <li>Zustand / Jotai (state managers)</li>
+                    <li>react-query</li>
+                    <li>shadcn/ui</li>
+                    <li>Ant design</li>
                 </ul>
             </div>
             <div className="btn inline-block" onClick={() => props.goNext()}>{t("main_next")}</div>

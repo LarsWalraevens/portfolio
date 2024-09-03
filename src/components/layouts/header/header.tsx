@@ -17,7 +17,7 @@ export default function Header() {
     // # UTILS
     const { t, lang } = useTranslation('common');
     const navMobileClasses = `py-3 mb-4 w-full border-grey-500 border-y border-opacity-50 bg-black-200 bg-opacity-50 h-full relative`;
-    const UnderlineMenuEffect = () => <span className="absolute bottom-[13%] left-[2%] !skew-x-[45deg] z-[-1] w-0 h-2 bg-[#4e4e4e] transition-all group-hover:w-full " />;
+    const UnderlineMenuEffect = () => <span className="absolute bottom-[13%] left-[2%] !skew-x-[45deg] z-[-1] w-0 h-2 bg-[#6a6a6a] transition-all group-hover:w-full " />;
 
     const router = useRouter();
     const { locale } = router;
