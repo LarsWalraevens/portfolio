@@ -1,6 +1,5 @@
 import useTranslation from "next-translate/useTranslation";
 import { codeAboutIcon, designAboutIcon, hobbiesAboutIcon, mediaAboutIcon } from "./icons-about-section";
-import { Bounce, Fade, Slide } from "react-awesome-reveal";
 
 export interface AboutComponentSectionProps {
     goNext: () => void;

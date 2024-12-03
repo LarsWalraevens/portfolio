@@ -1,5 +1,4 @@
 import envir from '@/assets/data/envir.json';
-import { rightSideEffectIcon } from "@/assets/icons/icons";
 import Title from "@/components/layouts/title/title";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
@@ -8,8 +7,6 @@ import MotivationSection from "./about-sections/motivation-section";
 import OtherSection from "./about-sections/other-section";
 import SkillsSection from './about-sections/skills-section';
 import { HomeSectionProps } from './home-hero';
-import { Fade } from 'react-awesome-reveal';
-import { useAppStore } from '@/components/utils/appStore';
 
 export interface AboutSectionProps {
     key: number;
@@ -19,9 +16,6 @@ export interface AboutSectionProps {
 }
 
 export default function HomeAboutSection(props: HomeSectionProps) {
-    // # STORE
-    const appStore = useAppStore();
-
     // # UTILS
     const { t } = useTranslation('common');
     const router = useRouter();
@@ -81,9 +75,7 @@ export default function HomeAboutSection(props: HomeSectionProps) {
                 </div>
 
             </div>
-            <span className="absolute right-[10vw] top-[6vh] max-lg:hidden ">{rightSideEffectIcon}</span>
             {/* DESKTOP */}
-
             <div className="container container-sm wrapper mx-auto max-lg:hidden relative">
                 <div className="flex flex-row align-start min-h-[330px]">
                     <div className="mr-10">

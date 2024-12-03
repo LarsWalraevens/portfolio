@@ -1,9 +1,9 @@
 import { useAppStore } from "@/components/utils/appStore";
 import { ProjectDataItem } from "@/components/utils/types/types";
+import useTranslation from "next-translate/useTranslation";
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment, useEffect, useState } from "react";
-import useTranslation from "next-translate/useTranslation";
 interface ProjectTeaserProps {
     data: ProjectDataItem;
 }

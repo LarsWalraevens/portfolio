@@ -29,9 +29,9 @@
         "sort": 2,
         "isPublic": true,
         "tags": [
-            "Nextjs",
+            "NextJS",
             "TailwindCSS",
-            "TypeScript"
+            "Typescript"
         ],
         "description_short": "project_wisepeople_description",
         "status": {
@@ -46,12 +46,12 @@
     {
         "code": "api-docs",
         "name": "API docs template",
-        "sort": 4,
+        "sort": 5,
         "isPublic": true,
         "tags": [
-            "Nextjs",
+            "NextJS",
             "TailwindCSS",
-            "TypeScript"
+            "Typescript"
         ],
         "description_short": "project_apidocs_description",
         "status": {
@@ -69,8 +69,8 @@
         "isPublic": true,
         "sort": 3,
         "tags": [
-            "Nextjs",
-            "TypeScript",
+            "NextJS",
+            "Typescript",
             "TailwindCSS"
         ],
         "description_short": "project_sonar_description",
@@ -87,7 +87,7 @@
         "code": "autinoom",
         "name": "Autinoom",
         "isPublic": true,
-        "sort": 5,
+        "sort": 6,
         "tags": [
             "Wordpress"
         ],
@@ -105,7 +105,7 @@
         "code": "chronic-diary",
         "name": "Chronic diary",
         "isPublic": true,
-        "sort": 7,
+        "sort": 4,
         "tags": [
             "NextJS",
             "Serverless",
@@ -125,7 +125,7 @@
     {
         "code": "zmadstudios",
         "name": "ZmadStudios",
-        "isPublic": true,
+        "isPublic": false,
         "sort": 7,
         "tags": [
             "VueJS",

@@ -1,11 +1,11 @@
+import envir from '@/assets/data/envir.json';
+import { githubIcon, linkedInIcon, logoIcon, mailIcon } from '@/assets/icons/icons';
+import { useAppStore } from '@/components/utils/appStore';
 import useTranslation from 'next-translate/useTranslation';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import envir from '@/assets/data/envir.json';
 import { useState } from 'react';
-import { githubIcon, linkedInIcon, logoIcon, mailIcon } from '@/assets/icons/icons';
-import { Bounce, Fade, Slide } from 'react-awesome-reveal';
-import { useAppStore } from '@/components/utils/appStore';
+import { Slide } from 'react-awesome-reveal';
 
 export default function Header() {
     // # STORE

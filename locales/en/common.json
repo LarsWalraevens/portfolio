@@ -18,7 +18,7 @@
     "section_about_option_skills": "My skills",
     "section_about_option_motivation": "My motivation",
     "section_about_option_others": "Others",
-    "section_about_skills_description": "Mostly I like learning by doing, this is personally the best way to improve my skills. I'm eager to learn new things and technologies so I often try to find out new and fun stuff. <b>My current preferred frontend stack is Nextjs, TypeScript and Tailwind.</b>",
+    "section_about_skills_description": "Mostly I like learning by doing, this is personally the best way to improve my skills. I'm eager to learn new things and technologies so I often try to find out new and fun stuff. <b>My current preferred frontend stack is NextJS, Typescript and Tailwind.</b>",
     "section_about_motivation_description1": "One of my favorite things about front-end development is the ability <b>to bring beautiful designs to life</b>. Seeing a well-crafted design or cool features is like a call to action for me - I can't wait to jump in and start building. As a front-end webdeveloper, I am passionate about <b>writing maintainable code and continuously improving my skills</b>.",
     "section_about_motivation_description2": "In my projects I like to pay attention to the UX and UI aspects of a website. Hence, I look for a pleasant user experience for visitors.",
     "section_about_skills_hobbies": "Developing, fitness, gaming, flying my drone, ...",
@@ -49,8 +49,8 @@
     "section_about_other_description1": "Sometimes you find these <b>nice tools/packages</b> that you just love using while developing. Therefore I think it's cool if I would share them with you. PS: for more, check my Github stars!",
     "main_status_development": "In development",
     "project_wisepeople_description": "At WiSE People, I help with front-end development of a platform that provides job applicants with transparent information about the application process, working environment and much more. It also helps businesses get feedback on their application process and creates opportunities for improvements and data analysis.",
-    "project_apidocs_description": "I had to create an API documentation site at some point and thought to myself, why not make it open-source. So that's what I did so that other people could use it too. It uses a JSON data structure to render content & navigation. Plus has some useful components.",
-    "project_chronic_diary_description": "I struggle with chronic symptoms. This is a diary (web app) that I created to track different chronic symptoms I was feeling during the day. The platform is developed with a mobile-first approach.",
+    "project_apidocs_description": "I had to create an API documentation site at some point and thought to myself, why not make it open-source. So that's what I did so that other people could use it too. It uses a JSON data structure to render content & navigation. Plus it also has some useful components.",
+    "project_chronic_diary_description": "I struggle with chronic symptoms. Thats why I created a diary (web app) to track different chronic symptoms I was feeling during the day. The platform is developed with a mobile-first approach.",
     "newitem": "test",
     "---": "---"
 }
