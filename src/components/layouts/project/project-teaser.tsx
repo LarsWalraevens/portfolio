@@ -41,7 +41,7 @@ export default function ProjectTeaser(props: ProjectTeaserProps) {
                     <div className="flex items-center">
                         {
                             projectData.tags.length === 0 ? null :
-                                projectData.tags.map((tag, i) => <Fragment key={i}>
+                                projectData.tags.filter((x: any, i: number) => i <= 3).map((tag, i) => <Fragment key={i}>
                                     <div className="inline-block mr-2 font-secondary text-[0.9rem] text-grey-100 !opacity-1">
                                         <span className="font-semibold inline-block font-special mr-[2px] !opacity-1">#</span>
                                         {tag}

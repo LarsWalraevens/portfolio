@@ -2,28 +2,31 @@
     {
         "code": "sethub",
         "name": "Sethub",
-        "sort": 2,
+        "sort": 1,
         "isPublic": true,
         "tags": [
             "Nextjs",
             "TypeScript",
-            "Express"
+            "Express",
+            "MySQL",
+            "Firebase",
+            "TailwindCSS"
         ],
         "description_short": "project_sethub_description",
         "status": {
-            "isLive": false,
-            "src": "https://trello.com/b/jLV3d98U/sethub"
+            "isLive": true,
+            "src": "https://sethub.app"
         },
         "showcase": {
             "format": "images",
-            "amount": 4,
+            "amount": 8,
             "alt": "sethub-video"
         }
     },
     {
         "code": "wisepeople",
         "name": "WiSE People",
-        "sort": 1,
+        "sort": 2,
         "isPublic": true,
         "tags": [
             "Nextjs",
