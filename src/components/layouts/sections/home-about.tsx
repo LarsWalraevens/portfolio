@@ -46,7 +46,7 @@ export default function HomeAboutSection(props: HomeSectionProps) {
     const [activeSection, setActiveSection] = useState<AboutSectionProps>(optionsData[0]);
 
     return <>
-        <section id="about" className="bg-black-300 py-[80px] max-lg:py-[50px] pb-[100px] border-y border-y-black-200 relative">
+        <section id="about" className="bg-black-300 py-[80px] z-10 max-lg:py-[50px] pb-[100px] border-y border-y-black-200 relative">
             {/* MOBILE */}
             <div className="hidden container container-sm wrapper mx-auto max-lg:block">
                 <Title className="mb-4">{t("section_about_title")}</Title>
