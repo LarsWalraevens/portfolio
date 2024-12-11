@@ -40,7 +40,7 @@ export default function HomeHeroSection(props: HomeSectionProps) {
                     </Fade>
                 </span>
                 <Fade duration={appStore.fadeConditional(1000)} delay={appStore.fadeConditional(300)} triggerOnce>
-                    <div className={`flex items-start flex-col justify-center mt-[-30px] max-md:!mt-[-50px] h-full`}>
+                    <div className={`flex items-start flex-col justify-center mt-[-20px] max-md:!mt-[-50px] h-full`}>
                         <h1 className='w-[730px] max-lg:w-[100%] max-lg:text-[34px] max-lg:leading-tight !z-100 font-secondary font-medium relative flex flex-wrap items-center'>
                             <div className="text-[3.3rem] max-lg:text-[34px] font-secondary font-medium">{t("hero_lars_is")}&nbsp;</div>
                             <div className="text-[3.3rem] max-lg:text-[34px] font-secondary font-bold text-[transparent] bg-clip-text animate-wave-gradient mr-2">Front-end developer </div>
@@ -68,7 +68,7 @@ export default function HomeHeroSection(props: HomeSectionProps) {
                 </Fade>
                 <Fade duration={appStore.fadeConditional(600)} delay={appStore.fadeConditional(900)} direction='right' triggerOnce>
                     <div className='flex items-end relative h-full max-lg:hidden' >
-                        <div className="absolute z-[1] right-12 bottom-[-10px] max-[1280px]:right-[-20px]" style={{ width: 320 }}>
+                        <div className="absolute z-[1] right-12 bottom-[-10px] max-[1280px]:right-[-20px]" style={{ width: 310 }}>
                             <span
                                 style={{ background: "radial-gradient(50% 50% at 50% 50%, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%)" }}
                                 className="absolute z-[-1] max-[1280px]:hidden bottom-2 left-[-17%] w-[130%] h-[35%] rotate-[20deg]"
