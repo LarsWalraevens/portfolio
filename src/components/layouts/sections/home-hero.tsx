@@ -33,7 +33,7 @@ export default function HomeHeroSection(props: HomeSectionProps) {
 
     return <>
         <section id="hero" className="max-md:!bg-none">
-            <div className="container-sm container wrapper mx-auto h-[65vh] min-h-[600px] max-lg:min-h-[430px] max-lg:h-auto flex flex-row justify-between max-lg:flex-col max-lg:justify-center relative ">
+            <div className="container-sm container wrapper mx-auto h-[65vh] max-h-[650px] min-h-[600px] max-lg:min-h-[430px] max-lg:h-auto flex flex-row justify-between max-lg:flex-col max-lg:justify-center relative ">
                 <span className="absolute right-[4vw] top-[5vh] hidden max-md:inline-block">
                     <Fade duration={appStore.fadeConditional(500)} delay={appStore.fadeConditional(300)} triggerOnce direction='right'>
                         {rightSideEffectIcon}
