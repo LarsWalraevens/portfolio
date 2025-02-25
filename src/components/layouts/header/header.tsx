@@ -104,11 +104,14 @@ export default function Header() {
         <Slide duration={appStore.fadeConditional(600)} delay={appStore.fadeConditional(200)} direction='down' triggerOnce>
             <header className='container container-sm mx-auto wrapper h-[65px] flex items-center justify-between'>
                 <Link href="/" className='flex items-center hover:opacity-70'>
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="12.8571" height="12.8571" rx="6.42857" fill="white" />
-                        <path d="M5.75403 16.7773C5.87489 16.5356 6.1041 16.3663 6.37067 16.3219L10.5035 15.6331C13.4995 15.1337 15.7811 12.6755 16.056 9.65075L16.3512 6.40444C16.3771 6.11953 16.5485 5.86829 16.8044 5.74035C17.3537 5.46571 18 5.86513 18 6.47924V13.0887C18 15.801 15.8012 17.9997 13.089 17.9997H6.50953C5.88162 17.9997 5.47322 17.3389 5.75403 16.7773Z" fill="white" />
-                    </svg>
-                    <span className='ml-3 text-[19px] font-special max-lg:text-[17px]'>Lars Walraevens</span>
+                    <span className="mr-1 scale-[140%]">
+                        {logoIcon}
+                    </span>
+                    {/* <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="14.2857" height="14.2857" rx="7.14286" fill="white" />
+                        <path d="M6.35294 18.2773C6.47379 17.9956 6.70301 17.7663 6.96957 17.6819L11.1023 16.9331C14.0993 16.3337 16.3811 13.7755 16.656 10.75075L16.9512 7.50444C16.9771 7.21953 17.1485 6.96829 17.4044 6.84035C18.0537 6.56571 19 7.06513 19 7.87924V14.4887C19 17.201 16.8012 19.3997 14.289 19.3997H6.70953C6.08162 19.3997 5.67322 18.1389 6.35294 17.2773Z" fill="white" />
+                    </svg> */}
+                    <span className='ml-3 text-[20px] font-special max-lg:text-[17px]'>Lars Walraevens</span>
                 </Link>
                 <span className="max-lg:!block hidden" onClick={() => setShowMenu(!showMenu)}>
                     <svg width="25" height="18" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -129,7 +132,7 @@ export default function Header() {
                             {t("nav_contact")}
                             <UnderlineMenuEffect />
                         </Link>
-                        <a href={locale === "nl" ? envir.RESUME_NL : envir.RESUME_EN} target='_blank' rel='noopener noreferrer' id="nav-resume">{t("nav_resume")}</a>
+                        <a href={locale === "nl" ? envir.RESUME_NL : envir.RESUME_EN} target='_blank' rel='noopener noreferrer' id="nav-resume" className='text-base'>{t("nav_resume")}</a>
                     </nav>
                     <div className='flex items-center ml-4 cursor-pointer' onClick={(e) => changeLang(lang === "nl" ? 'en' : 'nl')}>
                         <span className={`${locale === "nl" ? 'hover:opacity-60' : 'pointer-events-none !cursor-default'}`}>EN</span>

@@ -7,7 +7,7 @@ import { HomeSectionProps } from "./home-hero";
 export default function ContactSection(props: HomeSectionProps) {
     const { t } = useTranslation('common');
     return <>
-        <section id="contact" className="bg-black-300 py-[50px] border-y border-y-black-200 relative max-lg:!bg-none max-lg:py-10">
+        <section id="contact" className="bg-black-300 py-[50px] border-t border-t-black-200 relative max-lg:!bg-none max-lg:py-10">
             <div className="container container-sm wrapper mx-auto relative">
                 <div className="flex align-start justify-between max-lg:flex-col">
                     <div className="max-w-[700px]">

@@ -4,6 +4,10 @@
     font-size: 1rem;
 }
 
+p {
+  font-size: 18px;
+}
+
 .font-secondary {    
     font-family: "Titillium Web", sans-serif !important;
 }
@@ -63,7 +67,7 @@ nav #nav-item {
 
 nav #nav-resume,
 .btn-special {
-    @apply text-sm border-white-100 border rounded-full px-3 py-1 ml-4 hover:opacity-100;
+    @apply border-white-100 border rounded-full px-3 py-1 ml-4 hover:opacity-100;
     
 }
 nav #nav-resume:hover,
@@ -72,7 +76,7 @@ nav #nav-resume:hover,
 }
 
 .btn {
-    @apply !border-white-100 !rounded !px-7 !py-2 !border-2 !uppercase !text-white-100 min-w-[130px] text-center text-[15px] cursor-pointer select-none;
+    @apply !border-white-100 !rounded !px-7 !py-2 !border-2 !uppercase !text-white-100 min-w-[130px] text-center text-base cursor-pointer select-none;
 }
 
 .btn:hover {
@@ -90,7 +94,7 @@ nav #nav-resume:hover,
 }
 
 b {
-    @apply !text-white-100
+    @apply !text-white-100 text-medium
 }
 
 

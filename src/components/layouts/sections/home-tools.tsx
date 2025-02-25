@@ -30,7 +30,7 @@ export default function HomeToolsSection(props: HomeSectionProps) {
                 </div>
                 <div
                     className="lg:hidden relative mt-[-10px]">
-                    <span className="uppercase text-grey-400 hidden font-secondary text-[0.8rem] font-semibold max-lg:w-full text-center max-lg:mb-3 max-lg:sticky max-lg:inline-block">{t("section_tools_title")}</span>
+                    <span className="uppercase italic hidden font-secondary text-base font-semibold max-lg:w-full text-center max-lg:mb-3 max-lg:sticky max-lg:inline-block">{t("section_tools_title")}</span>
                     <Swiper
                         slidesPerView={3}
                         spaceBetween={30}

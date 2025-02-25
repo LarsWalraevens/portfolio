@@ -55,7 +55,7 @@ export default function HomeAboutSection(props: HomeSectionProps) {
                         optionsData.map((section: AboutSectionProps, i: number) => <Fragment key={i}>
                             <div
                                 onClick={() => setActiveSection(section)}
-                                className={`${activeSection.key === section.key ? 'bg-white-100 py-3  rounded-full  h-100 text-black-300 font-semibold' : ''} text-center w-1/3 text-[15px] px-2 font-secondary`}
+                                className={`${activeSection.key === section.key ? 'bg-white-100 py-2.5 rounded-full h-100 text-black-300 font-semibold' : ''} text-center w-1/3 px-2 font-secondary`}
                             >
                                 {section.title}
                             </div>
@@ -83,14 +83,14 @@ export default function HomeAboutSection(props: HomeSectionProps) {
                         <div className="flex flex-col">
                             {
                                 optionsData.map((section: AboutSectionProps, i: number) => <Fragment key={i}>
-                                    <div onClick={() => setActiveSection(section)} className={optionTitleClass(section.key)}>
-                                        <span className="font-secondary text-[1.4rem] mr-2 mt-[-2px] ">{section.number}</span>{section.title}
+                                    <div onClick={() => setActiveSection(section)} style={{ fontSize: 18 }} className={optionTitleClass(section.key)}>
+                                        <span className="font-secondary text-[1.4rem] mr-2 ">{section.number}</span>{section.title}
                                     </div>
                                 </Fragment>)
                             }
                         </div>
                         <div className="mt-5">
-                            <p className="mb-3 text-grey-100">📄 {t("section_about_resume_description")}</p>
+                            <p className="mb-4 text-grey-100">📄 {t("section_about_resume_description")}</p>
                             <a href={locale === "nl" ? envir.RESUME_NL : envir.RESUME_EN} rel='noopener noreferrer' target="_blank" className="btn-special ml-0">{t("main_my_resume")}</a>
                         </div>
                     </div>
@@ -105,10 +105,10 @@ export default function HomeAboutSection(props: HomeSectionProps) {
                         <div>
                             <h4 className="font-secondary font-semibold uppercase flex items-center">
                                 <span className="opacity-50 mr-3 text-[2.7rem] font-secondary font-bold mb-1">{activeSection.number}</span>
-                                <span className="mr-1 font-bold">
+                                <span className="mr-1 font-bold text-[1.3rem] ">
                                     {activeSection.title}
                                 </span>
-                                <span className="text-[1.2rem]">
+                                <span className="text-[1.3rem]">
                                     {activeSection.emoji}
                                 </span>
                             </h4>

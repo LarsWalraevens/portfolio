@@ -81,7 +81,7 @@ export default function HomeHeroSection(props: HomeSectionProps) {
                                     <div className="flex items-center justify-center flex-col">
                                         {/* <span className='mb-2 '>{heroLogoIcon}</span> */}
                                         <span className='flex uppercase flex-row items-center text-white-100'>
-                                            <span style={{ writingMode: 'vertical-rl' }} className="font-secondary text-sm">Hover 👇</span>
+                                            <span style={{ writingMode: 'vertical-rl' }} className="font-secondary text-base">Hover 👇</span>
                                             <span style={{ writingMode: 'vertical-rl' }} className="font-secondary text-sm"></span>
                                         </span>
                                         <span className='mb-[10px] mt-[10px] opacity-40'>{heroLineIcon}</span>

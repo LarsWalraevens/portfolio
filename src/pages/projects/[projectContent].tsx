@@ -46,7 +46,7 @@ export default function ProjectPage() {
                         <main>
                             <h1 className="hidden">{projectData.name}</h1>
                             <section id="project-head" className="container container-sm wrapper mx-auto mb-10 max-lg:mt-5">
-                                <div className="max-h-[400px] mb-5 relative min-w-[100px] min-h-[70px] ">
+                                <div className="max-h-[400px] mb-5 relative min-w-[120px] min-h-[80px] ">
                                     <Image
                                         layout="fill" objectFit="contain"
                                         sizes='contain'
@@ -58,13 +58,13 @@ export default function ProjectPage() {
                                 <div className="flex justify-center w-full">
                                     <p className="text-grey-100 text-center mb-3 max-w-[900px]">{t(projectData.description_short)}</p>
                                 </div>
-                                <div className="flex items-center justify-center flex-wrap mb-5">
+                                <div className="flex items-center justify-center flex-wrap mb-6 gap-3">
                                     {
                                         (projectData.tags).map((tag: string, i: number) => {
                                             return <Fragment key={i}>
-                                                <div className="mr-3">
-                                                    <span className="font-semibold mr-[2px]">#</span>
-                                                    <span className="font-secondary">{tag}</span>
+                                                <div>
+                                                    <span className="text-medium font-semibold mr-[2px]">#</span>
+                                                    <span className="text-medium font-secondary">{tag}</span>
                                                 </div>
                                             </Fragment>
                                         })
@@ -82,7 +82,6 @@ export default function ProjectPage() {
                                 }
                             </section>
                             <section id="project-showcase" className='mt-[8vh] mb-[10vh] max-lg:mt-[3vh] max-lg:mb-[10vh] inline-block w-full relative'>
-
                                 <span className="absolute right-[20vw] top-[5%] ">{rightSideEffectIcon}</span>
                                 <span className="absolute left-[20vw] bottom-[5%] rotate-[-170deg] ">{rightSideEffectIcon}</span>
                                 <div className="container container-sm wrapper mx-auto">
