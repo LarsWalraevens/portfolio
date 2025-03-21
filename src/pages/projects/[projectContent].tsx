@@ -7,12 +7,12 @@ import useTranslation from "next-translate/useTranslation";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
-import ImageGallery from 'react-image-gallery';
+import ImageGallery, { ReactImageGalleryItem } from 'react-image-gallery';
 
 export default function ProjectPage() {
     // # CLIENT STATES
     const [projectData, setProjectData] = useState<false | null | ProjectDataItem>(false);
-    const [projectImages, setProjectImages] = useState<Array<any>>([])
+    const [projectImages, setProjectImages] = useState<Array<ReactImageGalleryItem>>([])
 
     // # UTILS
     const router = useRouter();
@@ -82,15 +82,28 @@ export default function ProjectPage() {
                                 }
                             </section>
                             <section id="project-showcase" className='mt-[8vh] mb-[10vh] max-lg:mt-[3vh] max-lg:mb-[10vh] inline-block w-full relative'>
-                                <span className="absolute right-[20vw] top-[5%] ">{rightSideEffectIcon}</span>
-                                <span className="absolute left-[20vw] bottom-[5%] rotate-[-170deg] ">{rightSideEffectIcon}</span>
+                                {
+                                    projectData.showcase.format === "images" && <>
+                                        <span className="absolute right-[20vw] top-[5%] ">{rightSideEffectIcon}</span>
+                                        <span className="absolute left-[20vw] bottom-[5%] rotate-[-170deg] ">{rightSideEffectIcon}</span>
+                                    </>
+                                }
                                 <div className="container container-sm wrapper mx-auto">
                                     <div className="flex justify-center">
-                                        <ImageGallery
-                                            items={projectImages}
-                                            autoPlay={true}
-                                            slideInterval={5000}
-                                        />
+                                        {
+                                            projectData.showcase.format === "images" ?
+                                                <ImageGallery
+                                                    items={projectImages}
+                                                    autoPlay={true}
+                                                    slideInterval={5000}
+                                                /> :
+                                                projectData.showcase.format === "video" ?
+                                                    <iframe
+                                                        src={projectData.showcase.src}
+                                                        className='w-full h-full max-w-full aspect-video min-h-[400px] max-lg:h-auto'
+                                                    /> :
+                                                    null
+                                        }
                                     </div>
                                 </div>
                             </section>

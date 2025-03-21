@@ -51,6 +51,7 @@
     "project_wisepeople_description": "At WiSE People, I help with front-end development of a platform that provides job applicants with transparent information about the application process, working environment and much more. It also helps businesses get feedback on their application process and creates opportunities for improvements and data analysis.",
     "project_apidocs_description": "I had to create an API documentation site at some point and thought to myself, why not make it open-source. So that's what I did so that other people could use it too. It uses a JSON data structure to render content & navigation. Plus it also has some useful components.",
     "project_chronic_diary_description": "I struggle with chronic symptoms. Thats why I created a diary (web app) to track different chronic symptoms I was feeling during the day. The platform is developed with a mobile-first approach.",
+    "project_drone_mallorca_description": "When I'm on vacation, I like to fly my drone to make cinematic videos. This is a video montage of one of my favorite places I visited - Mallorca. I absolutely love how it turned out.",
     "newitem": "test",
     "---": "---"
 }

@@ -27,7 +27,7 @@
     "main_media": "Media",
     "main_hobbies": "Hobby's",
     "main_next": "Volgende",
-    "section_about_resume_description": "Geïnteresseerd in mijn cv?",
+    "section_about_resume_description": "Benieuwd naar mijn cv?",
     "section_tools_title": "Wat ik graag gebruik",
     "main_my_resume": "Mijn cv",
     "section_projects_title": "Projecten",
@@ -50,5 +50,8 @@
     "project_chronic_diary_description": "Ik heb vaak last van chronische symptomen. Dit is een dagboek (web app) die ik heb gemaakt om de verschillende chronische symptomen beter bij te houden tijdens de dag. Het platform is ontwikkeld met een mobile-first aanpak.",
     "project_apidocs_description": "Ik moest ooit eens een API-documentatiesite maken en dacht, waarom maak ik het niet open-source? Dus dat is wat ik deed zodat andere mensen het konden gebruiken.",
     "main_status_development": "In ontwikkeling",
-    "project_wisepeople_description": "Bij WiSE People werk ik mee aan de front-end ontwikkeling van het platform dat sollicitanten transparante informatie geeft over het sollicitatieproces, de werkomgeving en nog veel meer. Ook helpt het bedrijven om feedback te krijgen over hun sollicitatieproces en creëert kansen voor verbeteringen en data analyse. Het gebruikt een JSON data structuur dat de content & navigatie doet renderen. Het heeft ook handige componentent."
+    "project_wisepeople_description": "Bij WiSE People werk ik mee aan de front-end ontwikkeling van het platform dat sollicitanten transparante informatie geeft over het sollicitatieproces, de werkomgeving en nog veel meer. Ook helpt het bedrijven om feedback te krijgen over hun sollicitatieproces en creëert kansen voor verbeteringen en data analyse. Het gebruikt een JSON data structuur dat de content & navigatie doet renderen. Het heeft ook handige componentent.",
+    "project_drone_mallorca_description": "Wanneer ik op vakantie ben, vlieg ik graag met mijn drone om cinematic video's te maken. Dit is een video montage van een van mijn favoriete plekken dat ik bezocht heb - Mallorca.",
+    "newitems": "test"
+    
 }

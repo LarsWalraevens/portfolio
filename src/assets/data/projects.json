@@ -160,5 +160,27 @@
             "format": "images",
             "amount": 6
         }
+    },
+    {
+        "code": "drone-mallorca",
+        "name": "Drone video montage - Mallorca",
+        "isPublic": true,
+        "noHeader": true,
+        "sort": 7,
+        "tags": [
+            "Adobe Premiere",
+            "Drone",
+            "Hobby"
+        ],
+        "description_short": "project_drone_mallorca_description",
+        "status": {
+            "isLive": true,
+            "src": "https://www.youtube.com/watch?v=1k8bh3kS6FU"
+        },
+        "showcase": {
+            "format": "video",
+            "alt":"mallorca-video",
+            "src": "https://www.youtube.com/embed/1k8bh3kS6FU"            
+        }
     }
 ]
