@@ -115,7 +115,7 @@
         "description_short": "project_chronic_diary_description",
         "status": {
             "isLive": true,
-            "src": "https://diary.larswalraevens.be/"
+            "src": "https://chronic-diary.larswalraevens.be/"
         },
         "showcase": {
             "format": "images",
