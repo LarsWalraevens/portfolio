@@ -76,7 +76,7 @@ nav #nav-resume:hover,
 }
 
 .btn {
-    @apply !border-white-100 !rounded !px-7 !py-2 !border-2 !uppercase !text-white-100 min-w-[130px] text-center text-base cursor-pointer select-none;
+    @apply !border-white-100 !rounded !font-secondary !px-7 !py-2 !border-2 !uppercase !text-white-100 min-w-[130px] text-center text-base cursor-pointer select-none;
 }
 
 .btn:hover {

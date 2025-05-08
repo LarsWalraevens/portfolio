@@ -46,7 +46,7 @@ export default function ProjectPage() {
                         <main>
                             <h1 className="hidden">{projectData.name}</h1>
                             <section id="project-head" className="container container-sm wrapper mx-auto mb-10 max-lg:mt-5">
-                                <div className="max-h-[400px] mb-5 relative min-w-[120px] min-h-[80px] ">
+                                <div className="max-h-[400px] mb-7 relative min-w-[120px] min-h-[80px] ">
                                     <Image
                                         layout="fill" objectFit="contain"
                                         sizes='contain'
@@ -56,7 +56,7 @@ export default function ProjectPage() {
                                     />
                                 </div>
                                 <div className="flex justify-center w-full">
-                                    <p className="text-grey-100 text-center mb-3 max-w-[900px]">{t(projectData.description_short)}</p>
+                                    <p className="text-grey-100 text-left mb-3 max-w-[900px]" dangerouslySetInnerHTML={{ __html: t(projectData.description_short) }}></p>
                                 </div>
                                 <div className="flex items-center justify-center flex-wrap mb-6 gap-3">
                                     {

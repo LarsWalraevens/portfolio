@@ -37,12 +37,12 @@ export default function ProjectTeaser(props: ProjectTeaserProps) {
                             {projectData.name}
                         </span>
                     </h4>
-                    <hr className="my-1 border-grey-600 max-lg:hidden" />
-                    <div className="flex items-center">
+                    {/* <hr className="my-1 border-grey-600 max-lg:hidden" /> */}
+                    <div className="flex items-center flex-wrap gap-2 gap-y-1">
                         {
                             projectData.tags.length === 0 ? null :
                                 projectData.tags.filter((x: any, i: number) => i <= 3).map((tag, i) => <Fragment key={i}>
-                                    <div className="inline-block mr-2 font-secondary text-[0.9rem] text-grey-100 !opacity-1">
+                                    <div className="inline-block font-secondary text-[0.9rem] text-grey-100 !opacity-1">
                                         <span className="font-semibold inline-block font-special mr-[2px] !opacity-1">#</span>
                                         {tag}
                                     </div>

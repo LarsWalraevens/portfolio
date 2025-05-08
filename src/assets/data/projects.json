@@ -2,7 +2,7 @@
     {
         "code": "sethub",
         "name": "Sethub",
-        "sort": 1,
+        "sort": 10,
         "isPublic": true,
         "tags": [
             "Nextjs",
@@ -25,8 +25,8 @@
     },
     {
         "code": "wisepeople",
-        "name": "WiSE People",
-        "sort": 2,
+        "name": "myJobbox",
+        "sort": 20,
         "isPublic": true,
         "tags": [
             "NextJS",
@@ -36,7 +36,7 @@
         "description_short": "project_wisepeople_description",
         "status": {
             "isLive": true,
-            "src": "https://wisepeople.be"
+            "src": "https://myjobbox.eu/"
         },
         "showcase": {
             "format": "images",
@@ -46,7 +46,7 @@
     {
         "code": "api-docs",
         "name": "API docs template",
-        "sort": 5,
+        "sort":60,
         "isPublic": true,
         "tags": [
             "NextJS",
@@ -67,7 +67,7 @@
         "code": "sonar_events",
         "name": "Sonar Events",
         "isPublic": true,
-        "sort": 3,
+        "sort": 40,
         "tags": [
             "NextJS",
             "Typescript",
@@ -87,7 +87,7 @@
         "code": "autinoom",
         "name": "Autinoom",
         "isPublic": true,
-        "sort": 6,
+        "sort": 61,
         "tags": [
             "Wordpress"
         ],
@@ -105,7 +105,7 @@
         "code": "chronic-diary",
         "name": "Chronic diary",
         "isPublic": true,
-        "sort": 4,
+        "sort": 50,
         "tags": [
             "NextJS",
             "Serverless",
@@ -126,7 +126,7 @@
         "code": "zmadstudios",
         "name": "ZmadStudios",
         "isPublic": false,
-        "sort": 7,
+        "sort": 70,
         "tags": [
             "VueJS",
             "Sass"
@@ -145,7 +145,7 @@
         "code": "waarisdegrens",
         "name": "Waar is de grens",
         "isPublic": true,
-        "sort": 5,
+        "sort": 50,
         "tags": [
             "Laravel",
             "Mobile-first",
@@ -166,7 +166,7 @@
         "name": "Drone video montage - Mallorca",
         "isPublic": true,
         "noHeader": true,
-        "sort": 7,
+        "sort": 70,
         "tags": [
             "Adobe Premiere",
             "Drone",
@@ -181,6 +181,28 @@
             "format": "video",
             "alt":"mallorca-video",
             "src": "https://www.youtube.com/embed/1k8bh3kS6FU"            
+        }
+    },
+    {
+        "code": "talentguide",
+        "name": "Talentguide - Development plan",
+        "isPublic": true,
+        "noHeader": true,
+        "sort": 30,
+        "tags": [
+            "ReactJS",
+            "PostgreSQL",
+            "Typescript",
+            "TailwindCSS"
+        ],
+        "description_short": "project_talentguide_description",
+        "status": {
+            "isLive": true,
+            "src": "https://www.talentguide.com/"
+        },
+        "showcase": {
+            "format": "images",
+            "amount": 9
         }
     }
 ]

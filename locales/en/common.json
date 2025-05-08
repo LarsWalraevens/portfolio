@@ -5,7 +5,7 @@
     "nav_resume": "My resume",
     "seo_title": "Lars Walraevens - Webdeveloper and designer",
     "seo_description": "Lars Walraevens is a webdeveloper and designer in region Antwerp. Here you can find more information about his expertise in web development and his portfolio",
-    "hero_lars_is": "Lars is a",
+    "hero_lars_is": "I'm a",
     "hero_located_in": "located in",
     "hero_location_country": "Belgium",
     "hero_location_city": "Mechelen",
@@ -52,6 +52,7 @@
     "project_apidocs_description": "I had to create an API documentation site at some point and thought to myself, why not make it open-source. So that's what I did so that other people could use it too. It uses a JSON data structure to render content & navigation. Plus it also has some useful components.",
     "project_chronic_diary_description": "I struggle with chronic symptoms. Thats why I created a diary (web app) to track different chronic symptoms I was feeling during the day. The platform is developed with a mobile-first approach.",
     "project_drone_mallorca_description": "When I'm on vacation, I like to fly my drone to make cinematic videos. This is a video montage of one of my favorite places I visited - Mallorca. I absolutely love how it turned out.",
+    "project_talentguide_description": "I had the opportunity to be temporarily assigned to the Talentguide team as a Full Stack Developer. A core feature I developed was the Personal Development Plan tool. Using identified skill gaps (by comparing a candidate's skills to a job role) we can generate a tailored plan using LLMs. Each plan includes customizable modules with settings like evaluation criteria and learning paths (on-the-job, education, social) etc. Plans are seperately viewable by both candidates and managers in their respective UI. Additionally, I coded module navigation and integrated mailing flows triggered by user actions & automations.",
     "newitem": "test",
     "---": "---"
 }

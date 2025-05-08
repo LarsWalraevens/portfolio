@@ -62,7 +62,7 @@ export default function HomeAboutSection(props: HomeSectionProps) {
                         </Fragment>)
                     }
                 </div>
-                <div className="mx-3 mt-7">
+                <div className="md:mx-3 mt-7">
 
                     {
                         activeSection.key === 1 ?
