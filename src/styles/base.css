@@ -127,8 +127,7 @@ b {
     width: 95%;
     padding-left: 30px;
     z-index: -1;
-    /* background-color: #6d6d6d; */
-    background-color: #555555;
+    background-color: #6d6d6d;
     left: 1%;
     bottom: 16%;
     transform: skewX(45deg);    

@@ -1,4 +1,3 @@
-import envir from '@/assets/data/envir.json';
 import Title from "@/components/layouts/title/title";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
@@ -91,7 +90,7 @@ export default function HomeAboutSection(props: HomeSectionProps) {
                         </div>
                         <div className="mt-5">
                             <p className="mb-4 text-grey-100">📄 {t("section_about_resume_description")}</p>
-                            <a href={locale === "nl" ? envir.RESUME_NL : envir.RESUME_EN} rel='noopener noreferrer' target="_blank" className="btn-special ml-0">{t("main_my_resume")}</a>
+                            <a href={locale === "nl" ? process.env.NEXT_PUBLIC_RESUME_NL : process.env.NEXT_PUBLIC_RESUME_EN} rel='noopener noreferrer' target="_blank" className="btn-special ml-0">{t("main_my_resume")}</a>
                         </div>
                     </div>
                     <div className="my-4 mb-5 relative opacity-0">

@@ -1,4 +1,3 @@
-import envir from '@/assets/data/envir.json';
 import { githubIcon, linkedInIcon, logoIcon, mailIcon } from '@/assets/icons/icons';
 import { useAppStore } from '@/components/utils/appStore';
 import useTranslation from 'next-translate/useTranslation';
@@ -17,7 +16,7 @@ export default function Header() {
     // # UTILS
     const { t, lang } = useTranslation('common');
     const navMobileClasses = `py-3 mb-4 w-full border-grey-500 border-y border-opacity-50 bg-black-200 bg-opacity-50 h-full relative`;
-    const UnderlineMenuEffect = () => <span className="absolute bottom-[13%] left-[2%] !skew-x-[45deg] z-[-1] w-0 h-2 bg-[#6a6a6a] transition-all group-hover:w-full " />;
+    const UnderlineMenuEffect = () => <span className="absolute bottom-[13%] left-[2%] !skew-x-[45deg] z-[-1] w-0 h-2 bg-[#3c8ae5cc] transition-all group-hover:w-full " />;
 
     const router = useRouter();
     const { locale } = router;
@@ -80,7 +79,7 @@ export default function Header() {
                             </div>
                             <div className="my-5 mt-7 w-full inline-block">
                                 <a
-                                    href={locale === "nl" ? envir.RESUME_NL : envir.RESUME_EN}
+                                    href={locale === "nl" ? process.env.NEXT_PUBLIC_RESUME_NL : process.env.NEXT_PUBLIC_RESUME_EN}
                                     target='_blank'
                                     rel='noopener noreferrer'
                                     id="nav-resume"
@@ -90,9 +89,9 @@ export default function Header() {
                             </div>
 
                             <div className="flex flex-row items-center justify-center mt-8">
-                                <a href={`mailto:${envir.EMAIL}`} className="mx-3 hover:scale-110 cursor-pointer">{mailIcon}</a>
-                                <a href={envir.URL_LINKEDIN} target="_blank" rel="noreferrer noopener" title="linkedIn" className="mx-3 hover:scale-110 cursor-pointer">{linkedInIcon}</a>
-                                <a href={envir.URL_GITHUB} target="_blank" rel="noreferrer noopener" title="GitHub" className="mx-3 hover:scale-110 cursor-pointer">{githubIcon}</a>
+                                <a href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`} className="mx-3 hover:scale-110 cursor-pointer">{mailIcon}</a>
+                                <a href={process.env.NEXT_PUBLIC_URL_LINKEDIN} target="_blank" rel="noreferrer noopener" title="linkedIn" className="mx-3 hover:scale-110 cursor-pointer">{linkedInIcon}</a>
+                                <a href={process.env.NEXT_PUBLIC_URL_GITHUB} target="_blank" rel="noreferrer noopener" title="GitHub" className="mx-3 hover:scale-110 cursor-pointer">{githubIcon}</a>
                             </div>
                         </nav>
 
@@ -132,7 +131,7 @@ export default function Header() {
                             {t("nav_contact")}
                             <UnderlineMenuEffect />
                         </Link>
-                        <a href={locale === "nl" ? envir.RESUME_NL : envir.RESUME_EN} target='_blank' rel='noopener noreferrer' id="nav-resume" className='text-base'>{t("nav_resume")}</a>
+                        <a href={locale === "nl" ? process.env.NEXT_PUBLIC_RESUME_NL : process.env.NEXT_PUBLIC_RESUME_EN} target='_blank' rel='noopener noreferrer' id="nav-resume" className='text-base'>{t("nav_resume")}</a>
                     </nav>
                     <div className='flex items-center ml-4 cursor-pointer' onClick={(e) => changeLang(lang === "nl" ? 'en' : 'nl')}>
                         <span className={`${locale === "nl" ? 'hover:opacity-60' : 'pointer-events-none !cursor-default'}`}>EN</span>

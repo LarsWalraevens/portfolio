@@ -70,7 +70,7 @@ export default function HomeHeroSection(props: HomeSectionProps) {
                     <div className='flex items-end relative h-full max-lg:hidden' >
                         <div className="absolute z-[1] right-12 bottom-[-10px] max-[1280px]:right-[-20px]" style={{ width: 310 }}>
                             <span
-                                style={{ background: "radial-gradient(50% 50% at 50% 50%, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%)" }}
+                                style={{ background: "radial-gradient(50% 50% at 50% 50%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%)" }}
                                 className="absolute z-[-1] max-[1280px]:hidden bottom-2 left-[-17%] w-[130%] h-[35%] rotate-[20deg]"
                             />
                             <Image alt="lars-walraevens-picture" className='z-1' quality={100} src={picture} />
