@@ -25,7 +25,7 @@ export default function HomeToolsSection(props: HomeSectionProps) {
                     <Image quality={100} src={tailwind} className='mx-4' alt="tailwind-logo" />
                 </div>
                 <div
-                    className="lg:hidden relative mt-[-10px]">
+                    className="lg:hidden relative ">
                     <span className="uppercase italic hidden font-secondary text-base font-semibold max-lg:w-full text-center max-lg:mb-3 max-lg:sticky max-lg:inline-block">{t("section_tools_title")}</span>
                     <Swiper
                         slidesPerView={3}

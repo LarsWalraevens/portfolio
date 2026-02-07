@@ -27,7 +27,7 @@ export default function ProjectTeaser(props: ProjectTeaserProps) {
                 id={`project-${projectData.code}`}
                 onClick={() => appStore.setDisabledFade(true)}
                 className="relative project-teaser group 
-                w-full max-lg:w-full max-lg:bg-black-300 lg:overflow-hidden flex flex-row max-lg:flex-col gap-x-8 max-lg:border border-white-100/20 items-center justify-center  mb-5 rounded-md cursor-pointer">
+                w-full max-lg:w-full max-lg:bg-black-300 lg:overflow-hidden flex flex-row max-lg:flex-col gap-x-8 max-lg:border max-md:border-x-[0px] border-white-100/20 items-center justify-center  md:rounded-md cursor-pointer">
                
                 <Image
                     quality={100}
@@ -41,7 +41,7 @@ export default function ProjectTeaser(props: ProjectTeaserProps) {
                     // transform translate-y-0 group-hover:translate-y-[-23%] 
                     // filter grayscale group-hover:grayscale-0 blur-[1.5px] group-hover:blur-none max-lg:grayscale-0 max-lg:blur-none
                     // " 
-                    className="w-3/5 max-lg:w-full h-[380px] max-lg:h-[300px] transition rounded object-cover object-top max-lg:rounded-b-none lg:border-4 border-white-200 group-hover:border-blue-400"
+                    className="w-3/5 max-lg:w-full h-[380px] max-lg:h-[300px] transition rounded object-cover object-top max-lg:rounded-b-none max-md:rounded-none lg:border-4 border-white-200 group-hover:border-blue-400"
 
                 />
                      <div className="w-2/5 max-lg:w-full max-lg:px-4 max-lg:py-5 z-10 flex flex-col py-2 min-w-[250px] rounded max-lg:right-2 max-lg:bottom-2 max-lg:top-[unset] ">
