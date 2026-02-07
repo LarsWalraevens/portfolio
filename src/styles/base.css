@@ -20,7 +20,7 @@ body {
     margin: 0px;
     padding: 0px;
     overflow: auto;
-    @apply !bg-black-400 !text-white-100;
+    @apply !bg-black-500 !text-white-100;
 }
 
 a {    

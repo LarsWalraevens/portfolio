@@ -23,7 +23,7 @@ export default function HomeHeroSection(props: HomeSectionProps) {
     const HeroTooltip = (props: HeroTooltipProps) =>
         <div className="mb-4 hover:scale-110">
             <Tippy
-                content={<span className="text-[0.8rem] pb-2">{props.text}</span>}
+                content={<span className="text-sm pb-2">{props.text}</span>}
                 placement="left"
             >
                 <span className='mb-2 cursor-pointer relative'>{props.children}</span>
