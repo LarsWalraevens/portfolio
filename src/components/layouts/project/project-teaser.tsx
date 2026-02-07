@@ -26,34 +26,9 @@ export default function ProjectTeaser(props: ProjectTeaserProps) {
             !projectData ? null : <Link href={`/projects/${projectData.code}`}
                 id={`project-${projectData.code}`}
                 onClick={() => appStore.setDisabledFade(true)}
-                className="relative group 
-                w-full max-lg:w-full overflow-hidden h-[430px] max-lg:h-[300px] mb-5 max-lg:mb-4 border-[3px] border-white-200 rounded-md  cursor-pointer hover:border-blue-400">
-                    <div className="absolute z-10 flex flex-col bg-black-300 px-3 py-2 min-w-[250px] rounded
-             top-4 right-4 max-lg:right-2 max-lg:bottom-2 max-lg:top-[unset] opacity-[72%] group-hover:!opacity-90">
-                    <h4 className="font-secondary font-normal flex items-center relative">
-                        {/* <span className="mr-2">{logoIcon}</span> */}
-                        <span className="relative text-[1.2rem] font-semibold !opacity-1">
-                            <span className="absolute bottom-[13%] left-[2%] !skew-x-[45deg] z-[-1] w-0 h-2 bg-blue-400/80 transition-all group-hover:w-full !opacity-1" />
-                            {projectData.name}
-                        </span>
-                    </h4>
-                    {/* <hr className="my-1 border-grey-600 max-lg:hidden" /> */}
-                    <div className="flex items-center flex-wrap gap-2 gap-y-1">
-                        {
-                            projectData.tags.length === 0 ? null :
-                                projectData.tags.filter((x: any, i: number) => i <= 3).map((tag, i) => <Fragment key={i}>
-                                    <div className="inline-block font-secondary text-[0.9rem] text-grey-100 !opacity-1">
-                                        <span className="font-semibold inline-block font-special mr-[2px] !opacity-1">#</span>
-                                        {tag}
-                                    </div>
-                                </Fragment>)
-                        }
-                    </div>
-                    <hr className="my-1 border-grey-600 max-lg:block hidden" />
-                    <div className="underline hidden max-lg:inline-block text-grey-100 text-[14px]">
-                        {t("main_see_more")}
-                    </div>
-                </div>
+                className="relative project-teaser group 
+                w-full max-lg:w-full max-lg:bg-black-300 lg:overflow-hidden flex flex-row max-lg:flex-col gap-x-8 max-lg:border border-white-100/20 items-center justify-center  mb-5 rounded-md cursor-pointer">
+               
                 <Image
                     quality={100}
                     src={`/img/${projectData.code}/teaser.png`}
@@ -66,12 +41,36 @@ export default function ProjectTeaser(props: ProjectTeaserProps) {
                     // transform translate-y-0 group-hover:translate-y-[-23%] 
                     // filter grayscale group-hover:grayscale-0 blur-[1.5px] group-hover:blur-none max-lg:grayscale-0 max-lg:blur-none
                     // " 
-                    className="w-full h-full filter grayscale transition
-                group-hover:grayscale-0 blur-[1.5px] group-hover:blur-none 
-                max-lg:grayscale-0 max-lg:blur-none
-                object-cover object-top"
+                    className="w-3/5 max-lg:w-full h-[380px] max-lg:h-[300px] transition rounded object-cover object-top max-lg:rounded-b-none lg:border-4 border-white-200 group-hover:border-blue-400"
 
                 />
+                     <div className="w-2/5 max-lg:w-full max-lg:px-4 max-lg:py-5 z-10 flex flex-col py-2 min-w-[250px] rounded max-lg:right-2 max-lg:bottom-2 max-lg:top-[unset] ">
+                    <h4 className="font-secondary font-normal flex items-center relative leading-tight mb-0.5">
+                        {/* <span className="mr-2">{logoIcon}</span> */}
+                        <span className="relative text-2xl font-semibold !opacity-1">
+                            <span className="absolute bottom-[13%] left-[2%] !skew-x-[45deg] z-[-1] w-0 max-lg:w-full h-2 bg-blue-400/80 transition-all group-hover:w-full !opacity-1" />
+                            {projectData.name}
+                        </span>
+                    </h4>
+                    {/* <hr className="my-1 border-grey-600 max-lg:hidden" /> */}
+                    <div className="flex items-center flex-wrap gap-2 gap-y-1 mb-3">
+                        {
+                            projectData.tags.length === 0 ? null :
+                                projectData.tags.filter((x: any, i: number) => i <= 3).map((tag, i) => <Fragment key={i}>
+                                    <div className="inline-block font-secondary text-base text-grey-100 !opacity-1">
+                                        <span className="font-semibold inline-block font-special mr-[2px] !opacity-1">#</span>
+                                        {tag}
+                                    </div>
+                                </Fragment>)
+                        }
+                    </div>
+                    <p className="max-lg:inline-block text-grey-100 text-base mb-3">
+                        {t(projectData.description_short).split(" ").length >20 ? t(projectData.description_short).split(" ").slice(0, 20).join(" ") + "..." : t(projectData.description_short)}
+                    </p>
+                     <div className="underline  inline-block text-grey-100 group-hover:text-white-100 text-base">
+                        {t("main_see_more")}
+                    </div>
+                </div>
             </Link>
         }
     </>

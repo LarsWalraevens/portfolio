@@ -3,8 +3,8 @@
     "nav_projects": "Projecten",
     "nav_contact": "Contact",
     "nav_resume": "Mijn cv",
-    "seo_title": "Lars Walraevens - Webdeveloper en designer",
-    "seo_description": "Lars Walraevens is een webdeveloper en designer uit de regio Antwerpen. Hier vind je meer informatie over zijn expertise in webontwikkeling en zijn portfolio.",
+    "seo_title": "Lars Walraevens - Webdeveloper",
+    "seo_description": "Lars Walraevens is een webdeveloper uit de regio Antwerpen. Hier vind je meer informatie over zijn expertise in webontwikkeling en zijn portfolio.",
     "hero_lars_is": "Ik ben een",
     "hero_located_in": "gevestigd in",
     "hero_location_country": "België",
@@ -53,5 +53,6 @@
     "project_wisepeople_description": "Bij myJobbox werk ik mee aan de front-end ontwikkeling van het platform dat sollicitanten transparante informatie geeft over het sollicitatieproces, de werkomgeving en nog veel meer. Ook helpt het bedrijven om feedback te krijgen over hun sollicitatieproces en creëert kansen voor verbeteringen en data analyse. Het gebruikt een JSON data structuur dat de content & navigatie doet renderen. Het heeft ook handige componentent.",
     "project_drone_mallorca_description": "Wanneer ik op vakantie ben, vlieg ik graag met mijn drone om cinematic video's te maken. Dit is een video montage van een van mijn favoriete plekken dat ik bezocht heb - Mallorca.",
     "project_talentguide_description": "Ik heb de gelegenheid om tijdelijk toe te worden gewezen aan het Talentguide team als Full Stack Developer. Een core feature die ik er heb ontwikkeld was het Personal Development Plan tool. Door gebruik te maken van identificeerde vaardigheden die missen (vaardigheden van een kandidaat te vergelijken met een vacature) kunnen we een op maat gemaakte plan genereren met behulp van LLMs. Elk plan bevat aangepaste modules met instellingen als evaluatiecriteria en leerpaden (praktijkervaring, opleiding, sociaal) enzovoort. Plannen zijn apart zichtbaar voor zowel kandidaten als managers in hun respectievelijke UI. Daarnaast heb ik ook navigatie en mailing flows geïntegreerd die worden getriggerd door gebruikersacties en automatiseringen.",
+        "project_aloxy_description": "Ik kreeg de kans om tijdelijk als frontend-developer bij het Aloxy-team te werken. Ik heb bijgedragen aan een full rewrite van de IoT Hub, waardoor de gebruiksvriendelijkheid enorm is verbeterd. Daarnaast heb ik een nieuwe kernfunctie ontwikkeld, genaamd Monitoring Sets, waarmee je gegroepeerde sensoren kan monitoren met waarschuwingsfunctionaliteit, P&ID-mapping, geografische visualisatie en meer. Ook heb ik geholpen met de migratie van alle bestaande pagina's naar de nieuwe codebase, zodat de overgang soepel verliep.",
     "newitems": "test"    
 }

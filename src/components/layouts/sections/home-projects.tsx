@@ -20,9 +20,9 @@ export default function HomeProjectsSection(props: HomeSectionProps) {
     return <>
         <section id="projects" className="py-[100px] max-lg:py-20 relative">
             <div className="container container-sm wrapper mx-auto relative">
-                <Title className="mb-2">{t("section_projects_title")}</Title>
-                <p className="text-grey-100">{t("section_projects_description")}</p>
-                <div className="mb-5 mt-7 flex flex-row items-center justify-start flex-wrap max-lg:flex-wrap">
+                <Title className="mb-2 text-center [&_span]:text-4xl [&_.logo-icon]:scale-[200%]   [&_.logo-icon]:mr-6">{t("section_projects_title")}</Title>
+                <p className="text-grey-50 text-xl mb-14 text-center">{t("section_projects_description")}</p>
+                <div className="mb-5 flex flex-row items-center justify-start flex-wrap gap-y-10 max-lg:gap-y-4 max-lg:flex-wrap lg:[&_.project-teaser:nth-child(even)>div]:-order-1">
                     {
                         !allProjects ? null :
                             (allProjects.sort((a: ProjectDataItem, b: ProjectDataItem) => a.sort > b.sort ? 1 : -1)).map((project: ProjectDataItem, i: number) => !project.isPublic ? null : <Fragment key={i}>

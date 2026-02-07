@@ -44,6 +44,27 @@
         }
     },
     {
+        "code": "aloxy-hub",
+        "name": "Aloxy",
+        "sort": 25,
+        "isPublic": true,
+        "tags": [
+            "Svelte",
+            "TailwindCSS",
+            "Typescript",
+            "shadcn/ui"
+        ],
+        "description_short": "project_aloxy_description",
+        "status": {
+            "isLive": true,
+            "src": "https://www.aloxy.io/hub"
+        },
+        "showcase": {
+            "format": "images",
+            "amount": 8
+        }
+    },
+    {
         "code": "api-docs",
         "name": "API docs template",
         "sort":80,
@@ -187,7 +208,7 @@
     },
     {
         "code": "talentguide",
-        "name": "Talentguide - Development plan",
+        "name": "Talentguide",
         "isPublic": true,
         "noHeader": true,
         "sort": 20,
