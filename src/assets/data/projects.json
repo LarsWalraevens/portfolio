@@ -2,10 +2,10 @@
     {
         "code": "sethub",
         "name": "Sethub",
-        "sort": 10,
+        "sort": 30,
         "isPublic": true,
         "tags": [
-            "Nextjs",
+            "NextJS",
             "TypeScript",
             "Express",
             "MySQL",
@@ -26,7 +26,7 @@
     {
         "code": "wisepeople",
         "name": "myJobbox",
-        "sort": 20,
+        "sort": 10,
         "isPublic": true,
         "tags": [
             "NextJS",
@@ -46,7 +46,7 @@
     {
         "code": "api-docs",
         "name": "API docs template",
-        "sort":60,
+        "sort":80,
         "isPublic": true,
         "tags": [
             "NextJS",
@@ -104,6 +104,7 @@
     {
         "code": "chronic-diary",
         "name": "Chronic diary",
+        "disabled": true,
         "isPublic": true,
         "sort": 50,
         "tags": [
@@ -165,6 +166,7 @@
         "code": "drone-mallorca",
         "name": "Drone video montage - Mallorca",
         "isPublic": true,
+        "disabled": true,
         "noHeader": true,
         "sort": 70,
         "tags": [
@@ -188,7 +190,7 @@
         "name": "Talentguide - Development plan",
         "isPublic": true,
         "noHeader": true,
-        "sort": 30,
+        "sort": 20,
         "tags": [
             "ReactJS",
             "PostgreSQL",

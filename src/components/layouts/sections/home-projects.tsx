@@ -14,7 +14,7 @@ export default function HomeProjectsSection(props: HomeSectionProps) {
     const { t } = useTranslation('common');
 
     useEffect(() => {
-        setAllProjects(projects);
+        setAllProjects(projects.filter((x)=> !x.disabled));
     }, [projects]);
 
     return <>

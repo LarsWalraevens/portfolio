@@ -10,7 +10,7 @@ export default function ContactSection(props: HomeSectionProps) {
             <div className="container container-sm wrapper mx-auto relative">
                 <div className="flex align-start justify-between max-lg:flex-col">
                     <div className="max-w-[700px]">
-                        <Title className="mb-2">{t("section_contact_title")} 💬</Title>
+                        <Title className="mb-2">{t("section_contact_title")} 🧑‍💻</Title>
                         <p className="text-grey-100 mb-5">{t("section_contact_description")}</p>
                         <a href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`} className="btn inline-block">{t("section_contact_cta")}</a>
                     </div>

@@ -1,4 +1,4 @@
-import { heroCodeIcon, heroGamingIcon, heroHeadsetIcon, heroLineIcon, heroMarkerIcon, heroWeightIcon, rightSideEffectIcon } from '@/assets/icons/icons.jsx';
+import { heroCodeIcon, heroGamingIcon, heroHeadsetIcon, heroLineIcon, heroMarkerIcon, heroDroneIcon, rightSideEffectIcon } from '@/assets/icons/icons.jsx';
 import picture from '@/assets/img/picture.png';
 import { useAppStore } from '@/components/utils/appStore';
 import Tippy from '@tippyjs/react';
@@ -6,7 +6,6 @@ import useTranslation from 'next-translate/useTranslation';
 import Image from 'next/image';
 import Link from "next/link";
 import { Bounce, Fade } from 'react-awesome-reveal';
-import 'tippy.js/dist/tippy.css';
 interface HeroTooltipProps {
     text: string;
     children: any;
@@ -43,7 +42,7 @@ export default function HomeHeroSection(props: HomeSectionProps) {
                     <div className={`flex items-start flex-col justify-center mt-[-20px] max-md:!mt-[-50px] h-full`}>
                         <h1 className='w-[730px] max-lg:w-[100%] max-lg:text-[34px] max-lg:leading-tight !z-100 font-secondary font-medium relative flex flex-wrap items-center'>
                             <div className="text-base max-lg:text-[34px] lg:leading-tight font-secondary lg:!font-Marcellus lg:block lg:w-full">{t("hero_lars_is")}&nbsp;</div>
-                            <div className="text-[5rem] max-lg:text-[34px] font-secondary font-bold text-[transparent] bg-clip-text animate-wave-gradient lg:leading-tight lg:mb-[-10px] mr-2">Front-end developer </div>
+                            <div className="text-[5rem] max-lg:text-[34px] font-secondary font-bold text-[transparent] bg-clip-text animate-wave-gradient lg:leading-tight lg:mb-[-10px] mr-2">Web developer </div>
                             {/* <div id="underline" className="text-[3.3rem] max-lg:text-[34px] font-secondary font-medium">{t("main_frontend_developer")}&nbsp;</div> */}
                             <span className="text-[3.1rem] lg:!font-Marcellus max-lg:text-[34px] font-secondary font-medium lg:mr-4 mr-2">{t("hero_located_in")}</span>
                             <div className="text-[3.1rem] lg:!font-Marcellus max-lg:text-[34px] font-secondary font-medium flex items-center">
@@ -112,9 +111,9 @@ export default function HomeHeroSection(props: HomeSectionProps) {
                                 </Bounce>
                                 <Bounce duration={appStore.fadeConditional(500)} delay={appStore.fadeConditional(3400)} triggerOnce>
                                     <HeroTooltip
-                                        text={t("hero_tooltip_weight")}
+                                        text={t("hero_tooltip_drone")}
                                     >
-                                        <span className="relative opacity-80 hover:opacity-100">{heroWeightIcon}</span>
+                                        <span className="relative opacity-80 hover:opacity-100">{heroDroneIcon}</span>
                                     </HeroTooltip>
                                 </Bounce>
                             </div>

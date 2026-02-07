@@ -19,7 +19,7 @@ export default function ProjectPage() {
     const { query } = router
     const projectCode = query.projectContent!.toString()
     const { t } = useTranslation('common');
-    const getProject = (name: string) => projects.filter((item, i) => item.code === name && item.isPublic);
+    const getProject = (name: string) => projects?.filter((x)=> !x.disabled).filter((item, i) => item.code === name && item.isPublic);
 
     useEffect(() => {
         setProjectData(projectCode ? getProject(projectCode).length === 0 ? null : getProject(projectCode)[0] : null)
@@ -46,9 +46,10 @@ export default function ProjectPage() {
                         <main>
                             <h1 className="hidden">{projectData.name}</h1>
                             <section id="project-head" className="container container-sm wrapper mx-auto mb-10 max-lg:mt-5">
-                                <div className="max-h-[400px] mb-7 relative min-w-[120px] min-h-[80px] ">
+                                <div className="mb-7 relative min-w-[120px] min-h-[80px] ">
                                     <Image
                                         layout="fill" objectFit="contain"
+                                        className="max-w-[260px] mx-auto"
                                         sizes='contain'
                                         quality={100}
                                         alt={projectData.code + "-header-image"}

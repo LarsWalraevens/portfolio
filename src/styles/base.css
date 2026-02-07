@@ -163,7 +163,7 @@ b {
 
 #hero,
 #project-showcase {
-    background: url("/img/bg-dots.png");
+    /* background: url("/img/bg-dots.png"); */
     background-position: center left;
     background-size: 180px;
     background-repeat: no-repeat;
@@ -178,7 +178,7 @@ b {
 
 /* CAROUSEL  */
 .image-gallery {    
-    width: 765px;
+    width: 812px;
     height: 400px;
     display: block;
 
