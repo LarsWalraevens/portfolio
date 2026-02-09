@@ -64,8 +64,11 @@ export default function ProjectTeaser(props: ProjectTeaserProps) {
                                 </Fragment>)
                         }
                     </div>
-                    <p className="max-lg:inline-block text-grey-100 text-base mb-3">
-                        {t(projectData.description_short).split(" ").length >20 ? t(projectData.description_short).split(" ").slice(0, 20).join(" ") + "..." : t(projectData.description_short)}
+                    <p className="max-lg:inline-block text-grey-100 text-base mb-3 max-md:hidden">
+                        {t(projectData.description_short).split(" ").length >45 ? t(projectData.description_short).split(" ").slice(0, 45).join(" ") + "..." : t(projectData.description_short)}
+                    </p>
+                    <p className="max-lg:inline-block text-grey-100 text-base mb-3 max-md:block hidden">
+                        {t(projectData.description_short).split(" ").length >25 ? t(projectData.description_short).split(" ").slice(0, 25).join(" ") + "..." : t(projectData.description_short)}
                     </p>
                      <div className="underline  inline-block text-grey-100 group-hover:text-white-100 text-base">
                         {t("main_see_more")}
