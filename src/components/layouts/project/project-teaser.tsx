@@ -41,13 +41,13 @@ export default function ProjectTeaser(props: ProjectTeaserProps) {
                     // transform translate-y-0 group-hover:translate-y-[-23%] 
                     // filter grayscale group-hover:grayscale-0 blur-[1.5px] group-hover:blur-none max-lg:grayscale-0 max-lg:blur-none
                     // " 
-                    className="w-3/5 max-lg:w-full h-[380px] max-lg:h-[300px] transition rounded object-cover object-top max-lg:rounded-b-none max-md:rounded-none lg:border-4 border-white-200 group-hover:border-blue-400"
+                    className="w-3/5 max-lg:w-full h-[420px] max-lg:h-[300px] transition rounded object-cover object-top max-lg:rounded-b-none max-md:rounded-none lg:border-4 border-white-200 group-hover:border-blue-400"
 
                 />
                      <div className="w-2/5 max-lg:w-full max-lg:px-4 max-lg:py-5 z-10 flex flex-col py-2 min-w-[250px] rounded max-lg:right-2 max-lg:bottom-2 max-lg:top-[unset] ">
                     <h4 className="font-secondary font-normal flex items-center relative leading-tight mb-0.5">
                         {/* <span className="mr-2">{logoIcon}</span> */}
-                        <span className="relative text-2xl font-semibold !opacity-1">
+                        <span className="relative lg:text-3xl text-2xl font-semibold !opacity-1">
                             <span className="absolute bottom-[13%] left-[2%] !skew-x-[45deg] z-[-1] w-0 max-lg:w-full h-2 bg-blue-400/80 transition-all group-hover:w-full !opacity-1" />
                             {projectData.name}
                         </span>

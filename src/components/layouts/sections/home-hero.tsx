@@ -66,7 +66,7 @@ export default function HomeHeroSection(props: HomeSectionProps) {
                     </div>
                 </Fade>
                 <Fade duration={appStore.fadeConditional(600)} delay={appStore.fadeConditional(900)} direction='right' triggerOnce>
-                    <div className='flex items-end relative h-full max-lg:hidden' >
+                    <div className='flex items-end relative h-full max-lg:hidden xl:mr-9' >
                         <div className="absolute z-[1] right-12 bottom-[-10px] max-[1280px]:right-[-20px]" style={{ width: 310 }}>
                             <span
                                 style={{ background: "radial-gradient(50% 50% at 50% 50%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%)" }}

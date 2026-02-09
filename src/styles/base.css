@@ -127,7 +127,7 @@ b {
     width: 95%;
     padding-left: 30px;
     z-index: -1;
-    background-color: #6d6d6d;
+    /* background-color: #6d6d6d; */
     left: 1%;
     bottom: 16%;
     transform: skewX(45deg);    
@@ -142,7 +142,7 @@ b {
 }
 
 .container-sm {
-    @apply !w-[1200px] max-lg:!w-full
+    @apply !w-[1360px] max-lg:!w-full
 }
 
 .swiper-wrapper {
