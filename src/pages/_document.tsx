@@ -45,7 +45,7 @@ export default function Document() {
         <meta key="googlebot" name="googlebot" content="index,follow" />
         <meta name="revisit-after" content="7 days" />
         <meta name="author" content="Lars Walraevens" />
-        <meta name="keywords" content="lars walraevens, portfolio lars walraevens, portfolio, lars walraevens portfolio, webdeveloper, web developer, Lars Walraevens" />
+        <meta name="keywords" content="lars walraevens, portfolio lars walraevens, portfolio, lars walraevens portfolio, webdeveloper, software developer, Lars Walraevens" />
 
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="nl_BE" />

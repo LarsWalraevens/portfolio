@@ -14,6 +14,7 @@ export default function OtherSection(props: AboutComponentSectionProps) {
                     <li className="text-medium">tanstack-query</li>
                     <li className="text-medium">shadcn/ui</li>
                     <li className="text-medium">Zod</li>
+                    <li className="text-medium">Codex</li>
                 </ul>
             </div>
             <div className="btn inline-block" onClick={() => props.goNext()}>{t("main_next")}</div>

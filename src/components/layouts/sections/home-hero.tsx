@@ -42,7 +42,7 @@ export default function HomeHeroSection(props: HomeSectionProps) {
                     <div className={`flex items-start flex-col justify-center mt-[-20px] max-md:!mt-[-50px] h-full`}>
                         <h1 className='w-[730px] max-lg:w-[100%] max-lg:text-[34px] max-lg:leading-tight !z-100 font-secondary font-medium relative flex flex-wrap items-center'>
                             <div className="text-base max-lg:text-[34px] lg:leading-tight font-secondary lg:!font-Marcellus lg:block lg:w-full">{t("hero_lars_is")}&nbsp;</div>
-                            <div className="text-[5rem] max-lg:text-[34px] font-secondary font-bold text-[transparent] bg-clip-text animate-wave-gradient lg:leading-tight lg:mb-[-10px] mr-2">Web developer </div>
+                            <div className="text-[5rem] max-lg:text-[34px] font-secondary font-bold text-[transparent] bg-clip-text animate-wave-gradient lg:leading-tight lg:mb-[-10px] mr-2">Software developer </div>
                             {/* <div id="underline" className="text-[3.3rem] max-lg:text-[34px] font-secondary font-medium">{t("main_frontend_developer")}&nbsp;</div> */}
                             <span className="text-[3.1rem] lg:!font-Marcellus max-lg:text-[34px] font-secondary font-medium lg:mr-4 mr-2">{t("hero_located_in")}</span>
                             <div className="text-[3.1rem] lg:!font-Marcellus max-lg:text-[34px] font-secondary font-medium flex items-center">
