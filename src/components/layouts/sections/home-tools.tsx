@@ -18,7 +18,7 @@ const tools = [
 /** The six tools as chamfered tiles; used inside the About section. */
 export function ToolsGrid() {
     return <ul className="grid grid-cols-3 lg:grid-cols-6 gap-2">
-        {tools.map((tool) => <li key={tool.alt} className="group chamfer chamfer-hover [--chamfer:8px] hover:[--chamfer:16px] h-24 max-sm:h-20 flex items-center justify-center bg-ink px-6 hover:bg-raised">
+        {tools.map((tool) => <li key={tool.alt} className="group chamfer chamfer-hover [--chamfer:8px] hover:[--chamfer:16px] h-24 max-sm:h-20 flex items-center justify-center bg-ink px-3 lg:px-6 hover:bg-raised">
             <Image
                 quality={100}
                 src={tool.src}
@@ -27,7 +27,7 @@ export function ToolsGrid() {
                 // Fixed CSS height (natural height, capped) so the rendered size doesn't depend on
                 // which srcset density the browser picks; these source PNGs are only 1x.
                 style={{ height: Math.min(tool.src.height, 36), width: "auto" }}
-                className="max-w-full object-contain grayscale opacity-60 transition duration-300 group-hover:grayscale-0 group-hover:opacity-100"
+                className="max-w-full object-contain lg:grayscale lg:opacity-60 max-lg:opacity-90 transition duration-300 group-hover:grayscale-0 group-hover:opacity-100"
             />
         </li>)}
     </ul>

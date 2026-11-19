@@ -535,3 +535,62 @@ dialog.mobile-menu::backdrop {
     text-decoration-thickness: 2px;
     text-underline-offset: 5px;
 }
+
+/* Gallery on phones and tablets: no letterbox band, compact ink-backed controls inset from the edges. */
+@media (max-width: 1023px) {
+    .image-gallery-content {
+        background: transparent;
+    }
+
+    .image-gallery-content:not(.fullscreen) .image-gallery-image {
+        height: auto !important;
+        max-height: 70vh;
+    }
+
+    #project-showcase .image-gallery-left-nav,
+    #project-showcase .image-gallery-right-nav {
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(11, 11, 12, 0.8);
+    }
+
+    #project-showcase .image-gallery-left-nav { left: 8px; }
+    #project-showcase .image-gallery-right-nav { right: 8px; }
+
+    .image-gallery-left-nav .image-gallery-svg,
+    .image-gallery-right-nav .image-gallery-svg {
+        width: 16px;
+        height: 28px;
+    }
+
+    #project-showcase .image-gallery-fullscreen-button {
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        bottom: 8px;
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(11, 11, 12, 0.8);
+    }
+}
+
+/* About tabs on mobile: a swipeable row without a visible scrollbar, faded at the edges. */
+@media (max-width: 1023px) {
+    .tab-scroller {
+        scrollbar-width: none;
+        -webkit-mask-image: linear-gradient(to right, transparent 0, #000 16px, #000 calc(100% - 32px), transparent 100%);
+        mask-image: linear-gradient(to right, transparent 0, #000 16px, #000 calc(100% - 32px), transparent 100%);
+    }
+
+    .tab-scroller::-webkit-scrollbar {
+        display: none;
+    }
+}

@@ -29,7 +29,7 @@ export default function ProjectTeaser(props: ProjectTeaserProps) {
         href={`/projects/${project.code}`}
         id={`project-${project.code}`}
         onClick={() => appStore.setDisabledFade(true)}
-        className="group grid lg:grid-cols-12 gap-x-10 gap-y-6 items-center py-[clamp(36px,6vw,80px)] first:pt-0"
+        className="group grid lg:grid-cols-12 gap-x-10 gap-y-4 lg:gap-y-6 items-center py-7 lg:py-[clamp(36px,6vw,80px)] first:pt-0"
     >
         <div className={`lg:col-span-7 ${props.flip ? "lg:order-2" : ""}`}>
             <div className="chamfer chamfer-hover relative overflow-hidden bg-raised aspect-[16/9] [--chamfer:14px] group-hover:[--chamfer:28px]">
@@ -46,22 +46,22 @@ export default function ProjectTeaser(props: ProjectTeaserProps) {
         </div>
 
         <div className={`lg:col-span-5 ${props.flip ? "lg:order-1" : ""}`}>
-            <div className="label text-faint mb-4">
+            <div className="label text-faint mb-2 lg:mb-4">
                 <span className="text-bone">{pad(props.index)}</span> / {pad(props.total)}
             </div>
-            <h3 className="font-display text-[clamp(2.25rem,4vw,3.25rem)] text-bone">
+            <h3 className="font-display text-[clamp(2rem,4vw,3.25rem)] text-bone">
                 <span className="relative inline-block">
                     {project.name}
-                    <span className="absolute left-0 -bottom-1 h-[3px] w-full origin-left scale-x-0 bg-accent transition-transform duration-300 group-hover:scale-x-100" aria-hidden="true" />
+                    <span className="absolute left-0 -bottom-1 h-[3px] w-full origin-left scale-x-0 bg-accent transition-transform duration-300 group-hover:scale-x-100 group-active:scale-x-100" aria-hidden="true" />
                 </span>
             </h3>
             {project.tags.length > 0 &&
-                <ul className="flex flex-wrap gap-2 mt-5">
+                <ul className="flex flex-wrap gap-2 mt-3 lg:mt-5">
                     {project.tags.slice(0, 4).map((tag) => <li key={tag} className="label !text-[0.68rem] text-muted bg-raised px-2.5 py-1.5">{tag}</li>)}
                 </ul>
             }
-            <p className="text-muted mt-5 max-w-[52ch] clamp-3-mobile">{excerpt}</p>
-            <span className="link-arrow label mt-6 text-bone">
+            <p className="text-muted mt-3 lg:mt-5 max-w-[52ch] clamp-3-mobile">{excerpt}</p>
+            <span className="link-arrow label mt-4 lg:mt-6 text-bone">
                 {t("main_see_more")} <span className="arrow" aria-hidden="true">&rarr;</span>
             </span>
         </div>

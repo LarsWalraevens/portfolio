@@ -3,7 +3,7 @@ import Title from "@/components/layouts/title/title";
 import Image from "next/image";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
-import { KeyboardEvent, useEffect, useRef, useState } from "react";
+import { KeyboardEvent, PointerEvent, useEffect, useRef, useState } from "react";
 import MotivationSection from "./about-sections/motivation-section";
 import HobbiesSection from "./about-sections/hobbies-section";
 import OtherSection from "./about-sections/other-section";
@@ -33,6 +33,30 @@ export default function HomeAboutSection(props: HomeSectionProps) {
     const activeSection = optionsData.find((x) => x.key === activeKey) || optionsData[0];
     const goTo = (key: number) => setActiveKey(key);
     const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
+    const scrollerRef = useRef<HTMLDivElement>(null);
+
+    // Mouse/pen drag-to-scroll for the mobile tab row (touch already swipes natively).
+    // A drag longer than a few pixels swallows the click so it doesn't switch tabs.
+    const drag = useRef({ active: false, startX: 0, startLeft: 0, moved: false });
+    const onDragStart = (e: PointerEvent<HTMLDivElement>) => {
+        const el = scrollerRef.current;
+        if (!el || e.pointerType === "touch" || el.scrollWidth <= el.clientWidth) { return }
+        drag.current = { active: true, startX: e.clientX, startLeft: el.scrollLeft, moved: false };
+    };
+    const onDragMove = (e: PointerEvent<HTMLDivElement>) => {
+        const el = scrollerRef.current;
+        if (!el || !drag.current.active) { return }
+        const dx = e.clientX - drag.current.startX;
+        if (!drag.current.moved && Math.abs(dx) > 4) {
+            drag.current.moved = true;
+            el.setPointerCapture(e.pointerId);
+        }
+        if (drag.current.moved) { el.scrollLeft = drag.current.startLeft - dx; }
+    };
+    const onDragEnd = (e: PointerEvent<HTMLDivElement>) => {
+        drag.current.active = false;
+        scrollerRef.current?.hasPointerCapture(e.pointerId) && scrollerRef.current.releasePointerCapture(e.pointerId);
+    };
 
     // Position of the sliding diamond: just left of the active tab's label, vertically centred.
     const [marker, setMarker] = useState({ left: 0, top: 0, ready: false });
@@ -42,6 +66,11 @@ export default function HomeAboutSection(props: HomeSectionProps) {
             const el = tabRefs.current[index];
             if (!el) { return }
             setMarker({ left: el.offsetLeft + 4, top: el.offsetTop + el.offsetHeight / 2, ready: true });
+            // Mobile row: keep the active tab in view (horizontal only, never scrolls the page).
+            const scroller = scrollerRef.current;
+            if (scroller && scroller.scrollWidth > scroller.clientWidth) {
+                scroller.scrollTo({ left: el.offsetLeft - (scroller.clientWidth - el.offsetWidth) / 2, behavior: "smooth" });
+            }
         };
         place();
         // Fonts change the label metrics once they load.
@@ -85,10 +114,21 @@ export default function HomeAboutSection(props: HomeSectionProps) {
     return <section id="about" className="bg-surface py-[clamp(72px,10vw,128px)] [--btn-fill:var(--surface)]">
         <div className="shell grid lg:grid-cols-12 gap-x-8 gap-y-10">
             {/* LEFT: title + tab list */}
-            <div className="lg:col-span-4 lg:row-start-1">
+            <div className="min-w-0 lg:col-span-4 lg:row-start-1">
                 <Title>{t("section_about_title")}</Title>
 
-                <div role="tablist" aria-label={t("section_about_title")} className="relative mt-10 flex flex-wrap gap-x-6 gap-y-1 lg:flex-col lg:gap-2">
+                {/* Mobile: one swipeable row so the panel (the focus) starts right below it. Desktop: vertical list. */}
+                <div
+                    ref={scrollerRef}
+                    onPointerDown={onDragStart}
+                    onPointerMove={onDragMove}
+                    onPointerUp={onDragEnd}
+                    onPointerCancel={onDragEnd}
+                    onClickCapture={(e) => { if (drag.current.moved) { e.preventDefault(); e.stopPropagation(); drag.current.moved = false; } }}
+                    onDragStart={(e) => e.preventDefault()}
+                    className="tab-scroller mt-6 lg:mt-10 max-lg:-mx-[clamp(20px,4vw,48px)] max-lg:overflow-x-auto max-lg:cursor-grab max-lg:active:cursor-grabbing max-lg:select-none"
+                >
+                <div role="tablist" aria-label={t("section_about_title")} className="relative flex lg:flex-col lg:gap-2 max-lg:w-max max-lg:gap-x-5 max-lg:px-[clamp(20px,4vw,48px)]">
                     {/* Sliding marker: the oxblood diamond moves to the active tab. */}
                     <span
                         aria-hidden="true"
@@ -108,27 +148,16 @@ export default function HomeAboutSection(props: HomeSectionProps) {
                             tabIndex={active ? 0 : -1}
                             onClick={() => goTo(section.key)}
                             onKeyDown={(e) => onTabKeyDown(e, i)}
-                            className={`group relative text-left pl-7 py-1.5 font-display tab-word text-[clamp(1.5rem,2.3vw,2.1rem)] transition-[color,transform] duration-300 ease-out
+                            className={`group relative text-left pl-5 lg:pl-7 py-1.5 max-lg:min-h-[44px] max-lg:flex max-lg:items-center max-lg:whitespace-nowrap font-display tab-word text-[1.35rem] lg:text-[clamp(1.5rem,2.3vw,2.1rem)] transition-[color,transform] duration-300 ease-out
                                 ${active ? "text-bone lg:translate-x-1" : "text-faint hover:text-muted"}`}
                         >
                             {section.title}
                         </button>;
                     })}
                 </div>
+                </div>
             </div>
 
-            {/* Resume card: a real call to action, directly under the tabs at every width. */}
-            <div className="lg:col-span-4 lg:col-start-1 lg:row-start-2 self-start chamfer [--chamfer:16px] bg-raised p-6 [--btn-fill:var(--raised)]">
-                <div className="flex items-center gap-4">
-                    <span className="group/portrait chamfer [--chamfer:8px] relative shrink-0 w-16 h-16 overflow-hidden bg-ink">
-                        <Image src={portrait} alt="Lars Walraevens" fill sizes="64px" quality={90} className="object-cover grayscale contrast-[1.05] transition duration-300 group-hover/portrait:grayscale-0" />
-                    </span>
-                    <p className="text-bone text-[1.1rem] font-medium leading-snug">{t("section_about_resume_description")}</p>
-                </div>
-                <a href={resumeHref} rel='noopener noreferrer' target="_blank" className="btn btn-primary w-full mt-5">
-                    {t("main_my_resume")} <span aria-hidden="true">↗</span>
-                </a>
-            </div>
             {/* RIGHT: active panel, set straight on the section (no card). Each panel opens with a
                 large lead line; the step markers and arrows sit underneath as their own row. */}
             <div className="lg:col-span-7 lg:col-start-6 lg:row-start-1 lg:row-span-2 self-start flex flex-col">
@@ -137,7 +166,7 @@ export default function HomeAboutSection(props: HomeSectionProps) {
                         {content}
                     </div>
                 </div>
-                <div className="flex items-center gap-5 mt-10">
+                <div className="max-lg:hidden flex items-center gap-5 mt-10">
                     <div className="flex items-center gap-1 -ml-3">
                         <button type="button" onClick={() => step(-1)} aria-label={t("main_back")} className="flex items-center justify-center w-11 h-11 text-muted hover:text-bone transition-colors">
                             <span aria-hidden="true">&larr;</span>
@@ -155,6 +184,18 @@ export default function HomeAboutSection(props: HomeSectionProps) {
                 </div>
             </div>
 
+            {/* Resume card: under the tabs on desktop; after the active panel on mobile so a tab tap shows its content right away. */}
+            <div className="lg:col-span-4 lg:col-start-1 lg:row-start-2 self-start chamfer [--chamfer:16px] bg-raised p-6 [--btn-fill:var(--raised)]">
+                <div className="flex items-center gap-4">
+                    <span className="group/portrait chamfer [--chamfer:8px] relative shrink-0 w-16 h-16 overflow-hidden bg-ink">
+                        <Image src={portrait} alt="Lars Walraevens" fill sizes="64px" quality={90} className="object-cover lg:grayscale contrast-[1.05] transition duration-300 group-hover/portrait:grayscale-0" />
+                    </span>
+                    <p className="text-bone text-[1.1rem] font-medium leading-snug">{t("section_about_resume_description")}</p>
+                </div>
+                <a href={resumeHref} rel='noopener noreferrer' target="_blank" className="btn btn-primary w-full mt-5">
+                    {t("main_my_resume")} <span aria-hidden="true">↗</span>
+                </a>
+            </div>
             {/* Tools: part of "about", closing the section. */}
             <div className="lg:col-span-12 lg:row-start-3 mt-[clamp(32px,6vw,80px)]">
                 <h3 className="label text-faint mb-5">{t("section_tools_title")}</h3>
