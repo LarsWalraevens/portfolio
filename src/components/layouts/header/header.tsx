@@ -1,4 +1,4 @@
-import { githubIcon, linkedInIcon, logoIcon, mailIcon } from '@/assets/icons/icons';
+import { githubIcon, linkedInIcon, lwLogoIcon, mailIcon } from '@/assets/icons/icons';
 import { useAppStore } from '@/components/utils/appStore';
 import useTranslation from 'next-translate/useTranslation';
 import Link from 'next/link';
@@ -30,7 +30,7 @@ export default function Header() {
                 // MOBILE
                 <div className="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-50 overflow-hidden bg-black-300">
                     <div className="flex justify-between items-center mx-4 mt-5">
-                        <div className="scale-[130%] ml-[4px] mt-[-3px] w-[30px]">{logoIcon}</div>
+                        <Link href="/" onClick={() => setShowMenu(false)} aria-label="Home" className="block h-8">{lwLogoIcon}</Link>
                         <div className='flex items-center no-select' onClick={(e) => changeLang(lang === "nl" ? 'en' : 'nl')}>
                             <span className={`cursor-pointer text-[1.2rem]`}>EN</span>
                             <span className='mx-2 lang-stripe relative'>
@@ -102,15 +102,8 @@ export default function Header() {
         {/* DESKTOP */}
         <Slide duration={appStore.fadeConditional(600)} delay={appStore.fadeConditional(200)} direction='down' triggerOnce>
             <header className='container container-sm mx-auto wrapper h-[65px] flex items-center justify-between'>
-                <Link href="/" className='flex items-center hover:opacity-70'>
-                    <span className="mr-1 scale-[140%]">
-                        {logoIcon}
-                    </span>
-                    {/* <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="14.2857" height="14.2857" rx="7.14286" fill="white" />
-                        <path d="M6.35294 18.2773C6.47379 17.9956 6.70301 17.7663 6.96957 17.6819L11.1023 16.9331C14.0993 16.3337 16.3811 13.7755 16.656 10.75075L16.9512 7.50444C16.9771 7.21953 17.1485 6.96829 17.4044 6.84035C18.0537 6.56571 19 7.06513 19 7.87924V14.4887C19 17.201 16.8012 19.3997 14.289 19.3997H6.70953C6.08162 19.3997 5.67322 18.1389 6.35294 17.2773Z" fill="white" />
-                    </svg> */}
-                    <span className='ml-3 text-[20px] font-special max-lg:text-[17px]'>Lars Walraevens</span>
+                <Link href="/" aria-label="Home" className='flex h-8 items-center hover:opacity-70 max-lg:h-7'>
+                    {lwLogoIcon}
                 </Link>
                 <span className="max-lg:!block hidden" onClick={() => setShowMenu(!showMenu)}>
                     <svg width="25" height="18" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg">
