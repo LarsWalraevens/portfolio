@@ -19,7 +19,7 @@ export default function SkillsSection() {
                     title={t("section_about_skills_api")}
                     icon={backendAboutIcon}
                 >
-                    C#, .NET, Azure Functions, SQL Server, Azure OpenAI, Azure DevOps, ...
+                    .NET, SQL Server, Azure Functions, Azure OpenAI, Azure DevOps, ...
                 </SkillItem>
             </div>
         </div>

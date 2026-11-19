@@ -32,7 +32,9 @@
             "NextJS",
             "TypeScript",
             "TailwindCSS",
-            "React Query"
+            "React Query",
+            "shadcn/ui",
+            "Azure"
         ],
         "description_short": "project_myjobbox_description",
         "status": {
