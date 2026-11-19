@@ -35,8 +35,8 @@ export default function Document() {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <link rel="icon" type="image/png" href="favicon.png" />
-        <link rel="shortcut icon" href="favicon.svg" type="image/x-icon" />
+        <link rel="icon" type="image/png" href="/favicon.png" />
+        <link rel="shortcut icon" href="/favicon.svg" type="image/x-icon" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-title" content="portfolio" />
         <link rel="manifest" href="/manifest.json" />
@@ -59,14 +59,13 @@ export default function Document() {
         <meta property="twitter:image" content="/og-image.png" />
 
         {/* THEME STUFF */}
-        <meta name="theme-color" content="#131313" />
-        <meta name="msapplication-TileColor" content="#131313" />
+        <meta name="theme-color" content="#0B0B0C" />
+        <meta name="msapplication-TileColor" content="#0B0B0C" />
         <meta name="msapplication-TileImage" content="/favicon.svg" />
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Titillium+Web:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" integrity="sha512-42kB9yDlYiCEfx2xVwq0q7hT4uf26FUgSIZBK8uiaEnTdShXjwr8Ip1V4xGJMg3mHkUt9nNuTDxunHF0/EgxLQ==" crossOrigin="anonymous" referrerPolicy="no-referrer" />
       </Head>
       <body>

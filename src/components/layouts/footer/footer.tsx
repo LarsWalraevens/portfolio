@@ -1,11 +1,16 @@
 import { lwLogoIcon } from "@/assets/icons/icons";
 
 export default function Footer() {
-    return <>
-        <footer className="bg-black-300 py-[15px]  relative">
-            <div className="container container-sm wrapper text-base text-grey-100 mx-auto relative flex justify-center items-center font-secondary">
-                <span className="mr-2 inline-block h-5">{lwLogoIcon}</span> Lars Walraevens - 2026
+    return <footer className="bg-ink">
+        <div className="shell flex items-center justify-between gap-4 py-6">
+            <div className="flex items-center gap-4 text-sm text-muted">
+                <span className="inline-flex h-6 text-bone">{lwLogoIcon}</span>
+                <span className="text-line2" aria-hidden="true">/</span>
+                <span>Lars Walraevens &copy; 2026</span>
             </div>
-        </footer>
-    </>
+            <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }} className="link-arrow label text-faint hover:text-bone">
+                Top <span aria-hidden="true">↑</span>
+            </a>
+        </div>
+    </footer>
 }

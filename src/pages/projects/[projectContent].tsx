@@ -1,117 +1,97 @@
 import projects from '@/assets/data/projects.json';
-import { rightSideEffectIcon } from '@/assets/icons/icons';
 import ProjectLayout from "@/components/layouts/project/project-layout";
 import { ProjectDataItem } from "@/components/utils/types/types";
-import produce from 'immer';
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ImageGallery, { ReactImageGalleryItem } from 'react-image-gallery';
+
+const getProject = (code: string): ProjectDataItem | null =>
+    (projects as unknown as Array<ProjectDataItem & { disabled?: boolean }>)
+        .find((item) => !item.disabled && item.isPublic && item.code === code) || null;
 
 export default function ProjectPage() {
     // # CLIENT STATES
     const [projectData, setProjectData] = useState<false | null | ProjectDataItem>(false);
-    const [projectImages, setProjectImages] = useState<Array<ReactImageGalleryItem>>([])
 
     // # UTILS
     const router = useRouter();
-    const { query } = router
-    const projectCode = query.projectContent!.toString()
+    const projectCode = router.query.projectContent?.toString();
     const { t } = useTranslation('common');
-    const getProject = (name: string) => projects?.filter((x)=> !x.disabled).filter((item, i) => item.code === name && item.isPublic);
 
+    // Wait until the router query is available before resolving the project.
     useEffect(() => {
-        setProjectData(projectCode ? getProject(projectCode).length === 0 ? null : getProject(projectCode)[0] : null)
-    }, [])
+        if (!router.isReady) { return }
+        setProjectData(projectCode ? getProject(projectCode) : null);
+    }, [router.isReady, projectCode]);
 
-    useEffect(() => {
-        if (!projectData) { return }
-        if (projectData.showcase.format === "images") {
-            for (let index = 1; index <= projectData.showcase.amount!; index++) {
-                setProjectImages(produce(draft => {
-                    draft.push({ original: `/img/${projectData.code}/${index}.png` });
-                }))
-            }
-        }
-    }, [projectData])
+    const projectImages: Array<ReactImageGalleryItem> =
+        projectData && projectData.showcase.format === "images" ?
+            Array.from({ length: projectData.showcase.amount || 0 }, (_, i) => ({
+                original: `/img/${projectData.code}/${i + 1}.png`,
+                originalAlt: `${projectData.name} — screenshot ${i + 1} / ${projectData.showcase.amount}`,
+            })) :
+            [];
 
-    return <>
-        <ProjectLayout
-            data={projectData}
-        >
-            {
-                !projectData ? null :
-                    <>
-                        <main>
-                            <h1 className="hidden">{projectData.name}</h1>
-                            <section id="project-head" className="container container-sm wrapper mx-auto mb-10 max-lg:mt-5">
-                                <div className="mb-7 relative min-w-[120px] min-h-[80px] ">
+    return <ProjectLayout data={projectData}>
+        {
+            !projectData ? null :
+                <main>
+                    <section id="project-head" className="shell pt-10 pb-12 lg:pt-14">
+                        <div className="grid lg:grid-cols-12 gap-x-8 gap-y-8">
+                            <div className="lg:col-span-7">
+                                <div className="label text-faint flex items-center gap-3 mb-5">
+                                    <span className="diamond" aria-hidden="true" />
+                                    {t("nav_projects")}
+                                </div>
+                                <h1 className="font-display text-[clamp(3rem,7vw,6rem)] text-bone">{projectData.name}</h1>
+                                <p className="text-muted mt-8 max-w-[68ch]" dangerouslySetInnerHTML={{ __html: t(projectData.description_short) }}></p>
+                            </div>
+                            <aside className="lg:col-span-4 lg:col-start-9 flex flex-col gap-8 lg:pt-2 self-start bg-surface chamfer [--chamfer:16px] p-6">
+                                <div className="relative h-16 w-full max-w-[220px]">
                                     <Image
-                                        layout="fill" objectFit="contain"
-                                        className="max-w-[260px] mx-auto"
-                                        sizes='contain'
+                                        fill
+                                        className="object-contain object-left"
+                                        sizes="220px"
                                         quality={100}
-                                        alt={projectData.code + "-header-image"}
+                                        alt={`${projectData.name} logo`}
                                         src={`/img/${projectData.code}/header.png`}
                                     />
                                 </div>
-                                <div className="flex justify-center w-full">
-                                    <p className="text-grey-100 text-left mb-3 max-w-[900px]" dangerouslySetInnerHTML={{ __html: t(projectData.description_short) }}></p>
-                                </div>
-                                <div className="flex items-center justify-center flex-wrap mb-6 gap-3">
-                                    {
-                                        (projectData.tags).map((tag: string, i: number) => {
-                                            return <Fragment key={i}>
-                                                <div>
-                                                    <span className="text-medium font-semibold mr-[2px]">#</span>
-                                                    <span className="text-medium font-secondary">{tag}</span>
-                                                </div>
-                                            </Fragment>
-                                        })
-                                    }
-                                </div>
-                                {
-                                    !projectData.status.isLive ?
-                                        <div className="flex justify-center">
-                                            <a href={projectData.status.src} target="_blank" className="btn inline-block">{t("main_see_more")}</a>
-                                        </div>
-                                        :
-                                        <div className="flex justify-center">
-                                            <a href={projectData.status.src} target="_blank" className="btn inline-block">{t("main_see_live")}</a>
-                                        </div>
-                                }
-                            </section>
-                            <section id="project-showcase" className='mt-[8vh] mb-[10vh] max-lg:mt-[3vh] max-lg:mb-[10vh] inline-block w-full relative'>
-                                {
-                                    projectData.showcase.format === "images" && <>
-                                        <span className="absolute right-[20vw] top-[5%] ">{rightSideEffectIcon}</span>
-                                        <span className="absolute left-[20vw] bottom-[5%] rotate-[-170deg] ">{rightSideEffectIcon}</span>
-                                    </>
-                                }
-                                <div className="container container-sm wrapper mx-auto">
-                                    <div className="flex justify-center">
-                                        {
-                                            projectData.showcase.format === "images" ?
-                                                <ImageGallery
-                                                    items={projectImages}
-                                                    autoPlay={true}
-                                                    slideInterval={5000}
-                                                /> :
-                                                projectData.showcase.format === "video" ?
-                                                    <iframe
-                                                        src={projectData.showcase.src}
-                                                        className='w-full h-full max-w-full aspect-video min-h-[400px] max-lg:h-auto'
-                                                    /> :
-                                                    null
-                                        }
+                                <ul className="flex flex-wrap gap-2">
+                                    {projectData.tags.map((tag) => <li key={tag} className="label !text-[0.68rem] text-muted bg-raised px-2.5 py-1.5">{tag}</li>)}
+                                </ul>
+                                {projectData.status.src &&
+                                    <div>
+                                        <a href={projectData.status.src} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+                                            {projectData.status.isLive ? t("main_see_live") : t("main_see_more")} <span aria-hidden="true">↗</span>
+                                        </a>
                                     </div>
-                                </div>
-                            </section>
+                                }
+                            </aside>
+                        </div>
+                    </section>
 
-                        </main>
-                    </>
-            }
-        </ProjectLayout>
-    </>
+                    <section id="project-showcase" className="shell pb-[clamp(64px,9vw,112px)]">
+                        <div className="pt-6">
+                            {
+                                projectData.showcase.format === "images" ?
+                                    <ImageGallery
+                                        items={projectImages}
+                                        showPlayButton={false}
+                                    /> :
+                                    projectData.showcase.format === "video" ?
+                                        <iframe
+                                            src={projectData.showcase.src}
+                                            title={projectData.showcase.alt || projectData.name}
+                                            className='w-full aspect-video bg-surface'
+                                        /> :
+                                        null
+                            }
+                        </div>
+                    </section>
+                </main>
+        }
+    </ProjectLayout>
 }
