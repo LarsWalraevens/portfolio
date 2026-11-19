@@ -1,8 +1,7 @@
 import projects from '@/assets/data/projects.json';
-import Title from "@/components/layouts/title/title";
 import { ProjectDataItem } from "@/components/utils/types/types";
 import useTranslation from "next-translate/useTranslation";
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ProjectTeaser from "../project/project-teaser";
 import { HomeSectionProps } from './home-hero';
 
@@ -14,33 +13,33 @@ export default function HomeProjectsSection(props: HomeSectionProps) {
     const { t } = useTranslation('common');
 
     useEffect(() => {
-        setAllProjects(projects.filter((x)=> !x.disabled));
-    }, [projects]);
+        setAllProjects(
+            (projects as unknown as Array<ProjectDataItem>)
+                .filter((x: any) => !x.disabled && x.isPublic)
+                .sort((a, b) => a.sort > b.sort ? 1 : -1)
+        );
+    }, []);
 
-    return <>
-        <section id="projects" className="py-[100px] max-lg:py-20 relative">
-            <div className="container container-sm wrapper mx-auto relative">
-                <Title className="mb-2 max-md:text-left max-md:ml-1 text-center md:[&_span]:text-4xl md:[&_.logo-icon]:scale-[200%]  md:[&_.logo-icon]:mr-6">{t("section_projects_title")}</Title>
-                <p className="text-grey-50 max-md:text-left md:text-xl mb-14 max-md:mb-7 text-center">{t("section_projects_description")}</p>
-                <div className="max-md:-mx-4 mb-5 flex flex-row items-center justify-start flex-wrap gap-y-20 max-lg:gap-y-6 max-lg:flex-wrap lg:[&_.project-teaser:nth-child(even)>div]:-order-1">
-                    {
-                        !allProjects ? null :
-                            (allProjects.sort((a: ProjectDataItem, b: ProjectDataItem) => a.sort > b.sort ? 1 : -1)).map((project: ProjectDataItem, i: number) => !project.isPublic ? null : <Fragment key={i}>
-                                <ProjectTeaser data={project} />
-                            </Fragment>)
-                    }
-                    {/* <div className="w-1/2 max-lg:w-full min-h-[80px] flex items-center justify-center text-xl h-full">MORE SOON...</div> */}
-                </div>
-                <div className="flex justify-center pt-1">
-                    {endIcon}
-                </div>
+    return <section id="projects" className="py-[clamp(64px,9vw,112px)]">
+        <div className="shell">
+            {/* Centered, stacked opener: the showcase gets the biggest section title on the page. */}
+            <div className="flex flex-col items-center text-center mb-[clamp(48px,7vw,96px)]">
+                <span className="diamond !w-[10px] !h-[10px] mr-3 mb-2" aria-hidden="true" />
+                <h2 className="font-display text-[clamp(2.75rem,6vw,5.5rem)] leading-[0.9] text-bone">{t("section_projects_title")}</h2>
+                <p className="text-muted text-[clamp(1.05rem,1.4vw,1.2rem)] max-w-[44ch] mt-6">{t("section_projects_description")}</p>
             </div>
-        </section>
-    </>
+            <div className="flex flex-col">
+                {
+                    !allProjects ? null :
+                        allProjects.map((project, i) => <ProjectTeaser
+                            key={project.code}
+                            data={project}
+                            index={i + 1}
+                            total={allProjects.length}
+                            flip={i % 2 === 1}
+                        />)
+                }
+            </div>
+        </div>
+    </section>
 }
-
-const endIcon = <svg width="15" height="97" viewBox="0 0 15 97" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="9" width="70" height="1.99998" rx="0.999992" transform="rotate(90 9 0)" fill="white" />
-    <rect x="15" y="83.6279" width="17.4556" height="2.49366" rx="1.24683" transform="rotate(135 15 83.6279)" fill="white" />
-    <rect width="17.4556" height="2.49366" rx="1.24683" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 15 94.4004)" fill="white" />
-</svg>;

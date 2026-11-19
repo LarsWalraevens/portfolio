@@ -1,16 +1,13 @@
-import { logoIcon } from "@/assets/icons/icons";
-
 interface TitleProps {
     children: any;
     className?: string;
     id?: string;
 }
 
+/** Section header: the oxblood diamond followed by a condensed display title. */
 export default function Title(props: TitleProps) {
-    return <>
-        <h3 id={props.id || ""} className={`${props.className}`}>
-            <span className="logo-icon mr-4 inline-block mb-[2px] scale-[140%]">{logoIcon}</span>
-            <span className="text-[1.6rem] uppercase font-semibold font-secondary">{props.children}</span>
-        </h3>
-    </>
+    return <div className={`flex items-center gap-4 ${props.className || ""}`}>
+        <span className="diamond !w-[9px] !h-[9px]" aria-hidden="true" />
+        <h2 id={props.id} className="font-display text-[clamp(2.5rem,5vw,4rem)] text-bone">{props.children}</h2>
+    </div>
 }

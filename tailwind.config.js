@@ -3,44 +3,42 @@ module.exports = {
   content: ["./src/pages/**/*.{html,js,tsx,ts}", "./src/components/**/*.{html,js,tsx,ts}"],
   theme: {
     colors: {
+      transparent: 'transparent',
+      current: 'currentColor',
+      // Design tokens ("set in iron"): ink-black surfaces, bone text, one oxblood accent.
+      ink: '#0B0B0C',
+      surface: '#121214',
+      raised: '#18181B',
+      line: '#26262A',
+      line2: '#3A3A40',
+      bone: '#ECE8E1',
+      muted: '#A19D96',
+      faint: '#8A867F',
+      accent: {
+        DEFAULT: '#A3202A',
+        hover: '#C42B36',
+      },
+      // Legacy scales, remapped onto the tokens so older markup stays on-palette.
       white: {
-        100: '#FFFFFF',
-        200: '#E2E2E2',
+        100: '#ECE8E1',
+        200: '#D6D1C8',
       },
       black: {
-        100: '#39393A',
-        200: '#262525',
-        300: '#171717',
-        400: '#121212',
-        500: '#0f0f0f',
+        100: '#3A3A40',
+        200: '#26262A',
+        300: '#121214',
+        400: '#0B0B0C',
+        500: '#0B0B0C',
         900: '#000000',
       },
       grey: {
-        100: '#D7D7D7',
-        200: '#B1B1B1',
-        300: '#AAAAAA',
-        400: '#939393',
-        500: '#545454',
-        600: '#393939',
+        100: '#C9C5BE',
+        200: '#B5B1AA',
+        300: '#A19D96',
+        400: '#8A867F',
+        500: '#6B6862',
+        600: '#3A3A40',
       },
-      blue: {
-        100: '#CEDAF3',
-        400: '#3C8AE5',
-      },
-      green: {
-        100: '#D1E7DD',
-        400: '#00E2B8',
-        600: '#256245',
-      },
-      red: {
-        100: '#F8D7DA',
-        500: '#C5162E',
-      },
-      yellow: {
-        100: '#FFF3CD',
-        300: '#D8A915',
-        600: '#725A11',
-      }
     },
     fontSize: {
       sm: '0.9rem',
@@ -55,8 +53,8 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        Marcellus: ['Marcellus', 'sans-serif'],
-        secondary: ['Titillium Web', 'sans-serif'],
+        sans: ['Archivo', 'system-ui', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
       },
       keyframes: {
         animatedgradient: {

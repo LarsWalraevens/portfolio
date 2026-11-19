@@ -1,17 +1,19 @@
+import portrait from "@/assets/img/portrait.jpg";
 import Title from "@/components/layouts/title/title";
+import Image from "next/image";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
-import { Fragment, useState } from "react";
+import { KeyboardEvent, useEffect, useRef, useState } from "react";
 import MotivationSection from "./about-sections/motivation-section";
+import HobbiesSection from "./about-sections/hobbies-section";
 import OtherSection from "./about-sections/other-section";
 import SkillsSection from './about-sections/skills-section';
 import { HomeSectionProps } from './home-hero';
+import { ToolsGrid } from './home-tools';
 
 export interface AboutSectionProps {
     key: number;
-    number: string;
     title: string;
-    emoji?: string;
 }
 
 export default function HomeAboutSection(props: HomeSectionProps) {
@@ -19,110 +21,145 @@ export default function HomeAboutSection(props: HomeSectionProps) {
     const { t } = useTranslation('common');
     const router = useRouter();
     const { locale } = router;
-    const optionTitleClass = (number: number) => `font-secondary transition-all flex items-center mb-2 cursor-pointer transition ${number === activeSection.key ? "font-semibold text-white-100 " : " text-grey-100 opacity-50 hover:opacity-100 ml-4 hover:ml-0"}`
     const optionsData: Array<AboutSectionProps> = [
-        {
-            key: 1,
-            number: "01",
-            title: t("section_about_option_skills"),
-            emoji: "💪"
-        },
-        {
-            key: 2,
-            number: "02",
-            title: t("section_about_option_motivation"),
-            emoji: "🤘"
-        },
-        {
-            key: 3,
-            number: "03",
-            title: t("section_about_option_others"),
-            emoji: "💻"
-        },
-    ]
+        { key: 1, title: t("section_about_option_skills") },
+        { key: 3, title: t("section_about_option_others") },
+        { key: 2, title: t("section_about_option_motivation") },
+        { key: 4, title: t("section_about_option_hobbies") },
+    ];
 
     // # CLIENT STATES
-    const [activeSection, setActiveSection] = useState<AboutSectionProps>(optionsData[0]);
+    const [activeKey, setActiveKey] = useState<number>(1);
+    const activeSection = optionsData.find((x) => x.key === activeKey) || optionsData[0];
+    const goTo = (key: number) => setActiveKey(key);
+    const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
 
-    return <>
-        <section id="about" className="bg-black-300 py-[80px] z-10 max-lg:py-[50px] pb-[100px] border-t border-t-black-200 relative">
-            {/* MOBILE */}
-            <div className="hidden container container-sm wrapper mx-auto max-lg:block">
-                <Title className="mb-4">{t("section_about_title")}</Title>
-                <div className="bg-black-100 rounded-full flex items-center justify-between text-grey-100 mx-[-5px] no-select">
-                    {
-                        optionsData.map((section: AboutSectionProps, i: number) => <Fragment key={i}>
-                            <div
-                                onClick={() => setActiveSection(section)}
-                                className={`${activeSection.key === section.key ? 'bg-white-100 py-2.5 rounded-full h-100 text-black-300 font-semibold' : ''} text-center w-1/3 px-2 font-secondary`}
-                            >
-                                {section.title}
-                            </div>
-                        </Fragment>)
-                    }
+    // Position of the sliding diamond: just left of the active tab's label, vertically centred.
+    const [marker, setMarker] = useState({ left: 0, top: 0, ready: false });
+    useEffect(() => {
+        const place = () => {
+            const index = optionsData.findIndex((x) => x.key === activeKey);
+            const el = tabRefs.current[index];
+            if (!el) { return }
+            setMarker({ left: el.offsetLeft + 4, top: el.offsetTop + el.offsetHeight / 2, ready: true });
+        };
+        place();
+        // Fonts change the label metrics once they load.
+        document.fonts?.ready.then(place);
+        window.addEventListener("resize", place);
+        return () => window.removeEventListener("resize", place);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [activeKey, locale]);
+
+    // Left/right (and up/down) arrows move between tabs, Home/End jump to the ends.
+    const onTabKeyDown = (e: KeyboardEvent<HTMLButtonElement>, i: number) => {
+        const last = optionsData.length - 1;
+        const next =
+            e.key === "ArrowRight" || e.key === "ArrowDown" ? (i === last ? 0 : i + 1) :
+                e.key === "ArrowLeft" || e.key === "ArrowUp" ? (i === 0 ? last : i - 1) :
+                    e.key === "Home" ? 0 :
+                        e.key === "End" ? last : null;
+        if (next === null) { return }
+        e.preventDefault();
+        goTo(optionsData[next].key);
+        tabRefs.current[next]?.focus();
+    };
+
+    // Previous / next controls in the panel header (wrap around).
+    const activeIndex = optionsData.findIndex((x) => x.key === activeSection.key);
+    const step = (delta: number) => {
+        const index = (activeIndex + delta + optionsData.length) % optionsData.length;
+        goTo(optionsData[index].key);
+    };
+
+    const content = activeSection.key === 1 ?
+        <SkillsSection /> :
+        activeSection.key === 2 ?
+            <MotivationSection /> :
+            activeSection.key === 3 ?
+                <OtherSection /> :
+                <HobbiesSection />;
+
+    const resumeHref = locale === "nl" ? process.env.NEXT_PUBLIC_RESUME_NL : process.env.NEXT_PUBLIC_RESUME_EN;
+
+    return <section id="about" className="bg-surface py-[clamp(72px,10vw,128px)] [--btn-fill:var(--surface)]">
+        <div className="shell grid lg:grid-cols-12 gap-x-8 gap-y-10">
+            {/* LEFT: title + tab list */}
+            <div className="lg:col-span-4 lg:row-start-1">
+                <Title>{t("section_about_title")}</Title>
+
+                <div role="tablist" aria-label={t("section_about_title")} className="relative mt-10 flex flex-wrap gap-x-6 gap-y-1 lg:flex-col lg:gap-2">
+                    {/* Sliding marker: the oxblood diamond moves to the active tab. */}
+                    <span
+                        aria-hidden="true"
+                        className="diamond !w-[10px] !h-[10px] absolute transition-[left,top] duration-300 ease-out"
+                        style={{ left: marker.left, top: marker.top, opacity: marker.ready ? 1 : 0, transform: "translateY(-50%) rotate(45deg)" }}
+                    />
+                    {optionsData.map((section, i) => {
+                        const active = section.key === activeSection.key;
+                        return <button
+                            key={section.key}
+                            ref={(el) => { tabRefs.current[i] = el; }}
+                            id={`about-tab-${section.key}`}
+                            type="button"
+                            role="tab"
+                            aria-selected={active}
+                            aria-controls="about-panel"
+                            tabIndex={active ? 0 : -1}
+                            onClick={() => goTo(section.key)}
+                            onKeyDown={(e) => onTabKeyDown(e, i)}
+                            className={`group relative text-left pl-7 py-1.5 font-display tab-word text-[clamp(1.5rem,2.3vw,2.1rem)] transition-[color,transform] duration-300 ease-out
+                                ${active ? "text-bone lg:translate-x-1" : "text-faint hover:text-muted"}`}
+                        >
+                            {section.title}
+                        </button>;
+                    })}
                 </div>
-                <div className="md:mx-3 mt-7">
-
-                    {
-                        activeSection.key === 1 ?
-                            <SkillsSection goNext={() => setActiveSection(optionsData[1])} /> :
-                            activeSection.key === 2 ?
-                                <MotivationSection goNext={() => setActiveSection(optionsData[2])} /> :
-                                activeSection.key === 3 ?
-                                    <OtherSection goNext={() => setActiveSection(optionsData[0])} /> : null
-                    }
-                </div>
-
             </div>
-            {/* DESKTOP */}
-            <div className="container container-sm wrapper mx-auto max-lg:hidden relative">
-                <div className="flex flex-row align-start min-h-[330px]">
-                    <div className="mr-10">
-                        <Title className="mb-4">{t("section_about_title")}</Title>
-                        <div className="flex flex-col">
-                            {
-                                optionsData.map((section: AboutSectionProps, i: number) => <Fragment key={i}>
-                                    <div onClick={() => setActiveSection(section)} style={{ fontSize: 18 }} className={optionTitleClass(section.key)}>
-                                        <span className="font-secondary text-[1.4rem] mr-2 ">{section.number}</span>{section.title}
-                                    </div>
-                                </Fragment>)
-                            }
-                        </div>
-                        <div className="mt-5">
-                            <p className="mb-4 text-grey-100">📄 {t("section_about_resume_description")}</p>
-                            <a href={locale === "nl" ? process.env.NEXT_PUBLIC_RESUME_NL : process.env.NEXT_PUBLIC_RESUME_EN} rel='noopener noreferrer' target="_blank" className="btn-special ml-0">{t("main_my_resume")}</a>
-                        </div>
+
+            {/* Resume card: a real call to action, directly under the tabs at every width. */}
+            <div className="lg:col-span-4 lg:col-start-1 lg:row-start-2 self-start chamfer [--chamfer:16px] bg-raised p-6 [--btn-fill:var(--raised)]">
+                <div className="flex items-center gap-4">
+                    <span className="group/portrait chamfer [--chamfer:8px] relative shrink-0 w-16 h-16 overflow-hidden bg-ink">
+                        <Image src={portrait} alt="Lars Walraevens" fill sizes="64px" quality={90} className="object-cover grayscale contrast-[1.05] transition duration-300 group-hover/portrait:grayscale-0" />
+                    </span>
+                    <p className="text-bone text-[1.1rem] font-medium leading-snug">{t("section_about_resume_description")}</p>
+                </div>
+                <a href={resumeHref} rel='noopener noreferrer' target="_blank" className="btn btn-primary w-full mt-5">
+                    {t("main_my_resume")} <span aria-hidden="true">↗</span>
+                </a>
+            </div>
+            {/* RIGHT: active panel, set straight on the section (no card). Each panel opens with a
+                large lead line; the step markers and arrows sit underneath as their own row. */}
+            <div className="lg:col-span-7 lg:col-start-6 lg:row-start-1 lg:row-span-2 self-start flex flex-col">
+                <div role="tabpanel" id="about-panel" aria-labelledby={`about-tab-${activeSection.key}`} tabIndex={0}>
+                    <div key={activeSection.key} className="fadeIn">
+                        {content}
                     </div>
-                    <div className="my-4 mb-5 relative opacity-0">
-                        <svg width="11" height="10" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="1.23669" y="0.000976562" width="12.2431" height="1.74901" rx="0.874505" transform="rotate(45 1.23669 0.000976562)" fill="white" />
-                            <rect width="12.2431" height="1.74901" rx="0.874505" transform="matrix(-0.707107 0.707107 0.707107 0.707107 8.79248 0.000976562)" fill="white" />
-                        </svg>
-                        <div className="border-r-[#A4A4A4] border-r-2 h-full flex items-center mt-3 mr-[5px]"></div>
+                </div>
+                <div className="flex items-center gap-5 mt-10">
+                    <div className="flex items-center gap-1 -ml-3">
+                        <button type="button" onClick={() => step(-1)} aria-label={t("main_back")} className="flex items-center justify-center w-11 h-11 text-muted hover:text-bone transition-colors">
+                            <span aria-hidden="true">&larr;</span>
+                        </button>
+                        <button type="button" onClick={() => step(1)} aria-label={t("main_next")} className="flex items-center justify-center w-11 h-11 text-muted hover:text-bone transition-colors">
+                            <span aria-hidden="true">&rarr;</span>
+                        </button>
                     </div>
-                    <div className="ml-7 mr-5 max-w-[70%] ">
-                        <div>
-                            <h4 className="font-secondary font-semibold uppercase flex items-center">
-                                <span className="opacity-50 mr-3 text-[2.7rem] font-secondary font-bold mb-1">{activeSection.number}</span>
-                                <span className="mr-1 font-bold text-[1.3rem] ">
-                                    {activeSection.title}
-                                </span>
-                                <span className="text-[1.3rem]">
-                                    {activeSection.emoji}
-                                </span>
-                            </h4>
-                            {
-                                activeSection.key === 1 ?
-                                    <SkillsSection goNext={() => setActiveSection(optionsData[1])} /> :
-                                    activeSection.key === 2 ?
-                                        <MotivationSection goNext={() => setActiveSection(optionsData[2])} /> :
-                                        activeSection.key === 3 ?
-                                            <OtherSection goNext={() => setActiveSection(optionsData[0])} /> : null
-                            }
-                        </div>
+                    <div className="flex items-center gap-2.5" aria-hidden="true">
+                        {optionsData.map((section) => <span
+                            key={section.key}
+                            className={`inline-block w-[7px] h-[7px] rotate-45 transition-colors duration-300 ${section.key === activeSection.key ? "bg-accent-hover" : "bg-line2"}`}
+                        />)}
                     </div>
                 </div>
             </div>
-        </section>
-    </>
+
+            {/* Tools: part of "about", closing the section. */}
+            <div className="lg:col-span-12 lg:row-start-3 mt-[clamp(32px,6vw,80px)]">
+                <h3 className="label text-faint mb-5">{t("section_tools_title")}</h3>
+                <ToolsGrid />
+            </div>
+        </div>
+    </section>
 }

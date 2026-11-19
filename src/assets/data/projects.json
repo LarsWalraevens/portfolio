@@ -24,23 +24,24 @@
         }
     },
     {
-        "code": "wisepeople",
+        "code": "myjobbox",
         "name": "myJobbox",
         "sort": 10,
         "isPublic": true,
         "tags": [
             "NextJS",
+            "TypeScript",
             "TailwindCSS",
-            "Typescript"
+            "React Query"
         ],
-        "description_short": "project_wisepeople_description",
+        "description_short": "project_myjobbox_description",
         "status": {
             "isLive": true,
             "src": "https://myjobbox.eu/"
         },
         "showcase": {
             "format": "images",
-            "amount": 5
+            "amount": 4
         }
     },
     {
@@ -67,7 +68,7 @@
     {
         "code": "api-docs",
         "name": "API docs template",
-        "sort":80,
+        "sort": 80,
         "isPublic": true,
         "tags": [
             "NextJS",
@@ -202,8 +203,8 @@
         },
         "showcase": {
             "format": "video",
-            "alt":"mallorca-video",
-            "src": "https://www.youtube.com/embed/1k8bh3kS6FU"            
+            "alt": "mallorca-video",
+            "src": "https://www.youtube.com/embed/1k8bh3kS6FU"
         }
     },
     {
