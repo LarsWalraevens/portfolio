@@ -17,7 +17,7 @@ export default function HomeHeroSection(props: HomeSectionProps) {
 
     return <section id="hero" className="relative overflow-hidden">
         <div className="shell relative">
-            <div className="relative grid lg:grid-cols-12 gap-x-8 lg:h-[min(780px,calc(100svh-72px))] lg:min-h-[640px]">
+            <div className="relative grid lg:grid-cols-12 gap-x-8 max-lg:min-h-[max(520px,calc(88svh-72px))] lg:h-[min(780px,calc(100svh-72px))] lg:min-h-[640px]">
 
                 {/* Brand panel (desktop): wide plate with a deep cut corner; the full "lw" mark is the visual
                     (nudged right of the headline overlap), so the looping trace always draws the complete logo. */}
@@ -35,10 +35,10 @@ export default function HomeHeroSection(props: HomeSectionProps) {
                 </div>
 
                 {/* Type column overlaps onto the panel. */}
-                <div className="lg:col-start-1 lg:col-span-8 lg:row-start-1 relative z-10 flex flex-col justify-center py-16 lg:py-0 pointer-events-none">
+                <div className="lg:col-start-1 lg:col-span-8 lg:row-start-1 relative z-10 flex flex-col justify-center pt-10 pb-28 lg:py-0 pointer-events-none">
                     {/* Mobile watermark */}
-                    <span aria-hidden="true" className="lg:hidden absolute -right-[18%] top-1/2 -translate-y-1/2 h-[90%]">
-                        <LogoTrace />
+                    <span aria-hidden="true" className="lg:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[92%] max-w-[440px] opacity-40">
+                        <LogoTrace className="!w-full !h-auto" />
                     </span>
 
                     <div className="label text-faint mb-7 relative">
@@ -58,9 +58,9 @@ export default function HomeHeroSection(props: HomeSectionProps) {
                         </span>
                     </h1>
 
-                    <div className="flex flex-wrap items-center gap-3 mt-10 relative pointer-events-auto">
-                        <Link href="/#projects" className="btn btn-primary max-sm:grow">{t("nav_projects")} <span aria-hidden="true">&rarr;</span></Link>
-                        <Link href="/#about" className="btn max-sm:grow">{t("nav_about")}</Link>
+                    <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-3 mt-10 relative pointer-events-auto">
+                        <Link href="/#projects" className="btn btn-primary">{t("nav_projects")} <span aria-hidden="true">&rarr;</span></Link>
+                        <Link href="/#about" className="btn">{t("nav_about")}</Link>
                     </div>
 
                 </div>

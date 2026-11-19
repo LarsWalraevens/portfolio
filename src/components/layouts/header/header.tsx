@@ -131,14 +131,14 @@ export default function Header() {
         <span className="diamond pop" aria-hidden="true" /> :
         <span className="label !text-[0.68rem] text-faint" aria-hidden="true">{p.number}</span>;
 
-    const LangSwitch = () => <div className="label flex items-center gap-2" role="group" aria-label="Language">
+    const LangSwitch = (p: { large?: boolean }) => <div className="label flex items-center gap-2" role="group" aria-label="Language">
         {(["en", "nl"] as const).map((code, i) => <span key={code} className="flex items-center gap-2">
             {i > 0 && <span className="text-line2" aria-hidden="true">/</span>}
             <button
                 type="button"
                 onClick={() => changeLang(code)}
                 aria-current={lang === code ? "true" : undefined}
-                className={`transition-colors ${lang === code ? "text-bone cursor-default" : "text-faint hover:text-bone"}`}
+                className={`transition-colors ${p.large ? "inline-flex items-center justify-center min-h-[44px] min-w-[44px]" : ""} ${lang === code ? "text-bone cursor-default" : "text-faint hover:text-bone"}`}
             >
                 {code.toUpperCase()}
             </button>
@@ -146,7 +146,7 @@ export default function Header() {
     </div>;
 
     return <>
-        <header className={`sticky top-0 z-40 transition-[transform,background-color,backdrop-filter] duration-300 ease-out focus-within:translate-y-0 ${hidden && !showMenu ? "-translate-y-full" : "translate-y-0"} ${scrolled ? "bg-ink/70 backdrop-blur-md" : "bg-transparent"}`}>
+        <header className={`sticky top-0 z-40 transition-[transform,background-color,backdrop-filter] duration-300 ease-out focus-within:translate-y-0 ${hidden && !showMenu ? "translate-y-0 lg:-translate-y-full" : "translate-y-0"} ${scrolled ? "bg-ink/70 backdrop-blur-md" : "bg-transparent"}`}>
             <div className="shell h-[72px] flex items-center justify-between lg:grid lg:grid-cols-[1fr_auto_1fr] lg:gap-6">
                 <Link href="/" aria-label="Home" className="flex h-9 items-center justify-self-start text-bone transition-opacity hover:opacity-70">
                     {lwLogoIcon}
@@ -210,8 +210,8 @@ export default function Header() {
             <div className="min-h-full flex flex-col">
                 <div className="shell h-[72px] flex items-center justify-between shrink-0">
                     <Link href="/" onClick={() => setShowMenu(false)} aria-label="Home" className="flex h-9 items-center text-bone">{lwLogoIcon}</Link>
-                    <div className="flex items-center gap-5">
-                        <LangSwitch />
+                    <div className="flex items-center gap-3">
+                        <LangSwitch large />
                         <button ref={closeButtonRef} type="button" onClick={() => setShowMenu(false)} aria-label="Close menu" className="flex items-center justify-center w-11 h-11 bg-surface text-bone chamfer [--chamfer:7px]">
                             <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true">
                                 <path d="M1 17L17 1M1 1l16 16" stroke="currentColor" strokeWidth="1.5" />
@@ -219,7 +219,7 @@ export default function Header() {
                         </button>
                     </div>
                 </div>
-                <nav aria-label="Main" className="shell flex-1 flex flex-col gap-2 pt-10">
+                <nav aria-label="Main" className="shell flex-1 flex flex-col gap-1 pt-6 sm:pt-10">
                     {navItems.map((item) => {
                         const active = activeId === item.id;
                         return <Link
@@ -230,7 +230,7 @@ export default function Header() {
                             className="flex items-center gap-4 py-2"
                         >
                             <span className="w-6 flex justify-center"><NavMarker active={active} number={item.number} /></span>
-                            <span className="font-display text-[3.5rem] text-bone">{item.label}</span>
+                            <span className="font-display text-[clamp(2.5rem,11vw,3.5rem)] text-bone">{item.label}</span>
                         </Link>;
                     })}
                     <a href={resumeHref} target="_blank" rel="noopener noreferrer" className="btn btn-primary mt-10 w-full">{t("nav_resume")} <span aria-hidden="true">↗</span></a>
