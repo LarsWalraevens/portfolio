@@ -212,6 +212,16 @@ b {
     background: #ffffff;
 }
 
+/* Hero call-to-actions: about 10% larger on desktop. */
+@media (min-width: 1024px) {
+    .btn-hero {
+        min-height: 53px;
+        padding: 0.9rem 1.65rem;
+        font-size: 0.86rem;
+        --chamfer: 11px;
+    }
+}
+
 .btn-sm {
     min-height: 38px;
     padding: 0.6rem 1rem;
@@ -435,11 +445,11 @@ dialog.mobile-menu::backdrop {
 
 /* Headline lines rise from behind a mask on load. */
 .rise {
-    animation: rise 850ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation: rise 1150ms cubic-bezier(0.2, 0.7, 0.2, 1) 100ms both;
 }
 
 .rise-2 {
-    animation-delay: 90ms;
+    animation-delay: 240ms;
 }
 
 @keyframes rise {
@@ -534,10 +544,753 @@ dialog.mobile-menu::backdrop {
         display: inline;
     }
 
+    /* No swing-in and no moving light: the fixed 3D pose with a lit sheen and a slightly warmer glow. */
+    .hero-tilt,
+    .status-diamond,
+    .status-word,
+    .status-cursor,
+    .screen-clock-colon {
+        animation: none;
+    }
+
+    .status-word {
+        color: var(--faint);
+        background: none;
+    }
+
+
+    .logo-trace-line {
+        filter: drop-shadow(0 0 4px rgba(224, 65, 76, 0.9)) drop-shadow(0 0 22px rgba(163, 32, 42, 0.7));
+    }
+
+    .hero-plate-sheen {
+        display: block;
+    }
+
+    .hero-plate-glow {
+        background: radial-gradient(50% 50% at 56% 50%, rgba(163, 32, 42, 0.38) 0%, rgba(163, 32, 42, 0) 100%);
+    }
+
     /* The mobile watermark can be bolder when it isn't flashing. */
     .hero-watermark {
         opacity: 0.55 !important;
     }
+}
+
+/* ---------- Hero plate ----------
+   A chamfered iron plate: 1px gradient border that warms to oxblood at the cut corner,
+   a faint ruled grid, a soft oxblood glow and mono meta in the corners. */
+.hero-plate {
+    --chamfer: 28px;
+    clip-path: polygon(0 0, calc(100% - var(--chamfer)) 0, 100% var(--chamfer), 100% 100%, var(--chamfer) 100%, 0 calc(100% - var(--chamfer)));
+    background: linear-gradient(225deg, #C42B36 0, rgba(163, 32, 42, 0.7) 44px, var(--line-2) 140px, var(--line) 55%, var(--line-2) 100%);
+}
+
+.hero-plate-inner {
+    --chamfer: 28px;
+    clip-path: polygon(0 0, calc(100% - var(--chamfer) + 0.4px) 0, 100% calc(var(--chamfer) - 0.4px), 100% 100%, calc(var(--chamfer) - 0.4px) 100%, 0 calc(100% - var(--chamfer) + 0.4px));
+    background:
+        radial-gradient(120% 90% at 100% 0%, rgba(163, 32, 42, 0.10) 0%, rgba(163, 32, 42, 0) 55%),
+        linear-gradient(180deg, #1A1A1D 0%, var(--surface) 100%);
+}
+
+.hero-plate-grid {
+    background-image:
+        linear-gradient(rgba(236, 232, 225, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(236, 232, 225, 0.045) 1px, transparent 1px);
+    background-size: 48px 48px;
+    background-position: -1px -1px;
+    -webkit-mask-image: radial-gradient(70% 70% at 56% 50%, #000 0%, transparent 100%);
+    mask-image: radial-gradient(70% 70% at 56% 50%, #000 0%, transparent 100%);
+}
+
+.hero-plate-glow {
+    background: radial-gradient(50% 50% at 56% 50%, rgba(163, 32, 42, 0.26) 0%, rgba(163, 32, 42, 0) 100%);
+}
+
+/* Static diagonal sheen, only used when motion is reduced. */
+.hero-plate-sheen {
+    display: none;
+    background: linear-gradient(115deg, transparent 30%, rgba(236, 232, 225, 0.035) 44%, rgba(236, 232, 225, 0.07) 48%, rgba(236, 232, 225, 0.035) 52%, transparent 66%);
+}
+
+/* Ruler ticks along the bottom edge: a long tick every 5th. */
+.hero-plate-ruler {
+    background-image:
+        linear-gradient(90deg, var(--line-2) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(58, 58, 64, 0.7) 1px, transparent 1px);
+    background-size: 60px 100%, 12px 50%;
+    background-position: 0 0, 0 100%;
+    background-repeat: repeat-x;
+}
+
+/* Short oxblood pen stroke running parallel to the cut corner, just outside it. */
+.hero-plate-stroke {
+    width: 26px;
+    height: 2px;
+    background: var(--accent-hover);
+    /* Centred 8px outside the middle of the 28px cut. */
+    position: absolute;
+    right: -4.7px;
+    top: 7.3px;
+    transform: rotate(45deg);
+    box-shadow: 0 0 10px rgba(224, 65, 76, 0.6);
+}
+
+/* ---------- Hero 3D ----------
+   The plate holds one fixed 3D pose. On load it swings in from a steeper angle and settles into it
+   (once); after that only the cursor lens reacts to the mouse (usePlateLens sets --px/--py). */
+.hero-stage {
+    perspective: 1500px;
+}
+
+.hero-tilt {
+    transform: rotateY(-3.2deg) rotateX(-1.8deg);
+    animation: plate-settle 2200ms cubic-bezier(0.16, 1, 0.3, 1) 450ms both;
+}
+
+/* No "to" frame: it settles into the resting transform above. */
+@keyframes plate-settle {
+    from {
+        opacity: 0;
+        transform: translateZ(-160px) rotateY(-26deg) rotateX(12deg);
+    }
+}
+
+/* Cursor lens. --px/--py are the cursor in plate pixels (set by usePlateLens); the lens, guides and
+   readout fade in while .is-pointing is on the plate. */
+.hero-lens,
+.hero-guide,
+.hero-readout {
+    opacity: 0;
+    transition: opacity 260ms ease;
+    pointer-events: none;
+}
+
+.hero-plate.is-pointing .hero-lens,
+.hero-plate.is-pointing .hero-guide,
+.hero-plate.is-pointing .hero-readout {
+    opacity: 1;
+}
+
+/* Everything in the lens is only visible in a soft circle around the cursor, plus inside the selection box. */
+.hero-lens {
+    -webkit-mask-image: radial-gradient(circle 150px at var(--px, -999px) var(--py, -999px), #000 0%, #000 55%, transparent 100%), linear-gradient(#000, #000);
+    mask-image: radial-gradient(circle 150px at var(--px, -999px) var(--py, -999px), #000 0%, #000 55%, transparent 100%), linear-gradient(#000, #000);
+    -webkit-mask-size: 100% 100%, var(--sw, 0px) var(--sh, 0px);
+    mask-size: 100% 100%, var(--sw, 0px) var(--sh, 0px);
+    -webkit-mask-position: 0 0, var(--sx, 0px) var(--sy, 0px);
+    mask-position: 0 0, var(--sx, 0px) var(--sy, 0px);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+}
+
+.hero-plate.is-selecting .hero-lens,
+.hero-plate.has-selection .hero-lens {
+    opacity: 1;
+}
+
+.hero-plate.is-interactive {
+    cursor: crosshair;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* Bending the selection: a grab hand over the box, a closed hand while pulling. While the iron bends the
+   glowing outline holds steady (fully drawn), so the changing shape stays readable; when the class goes,
+   the trace restarts and runs over the restored mark once more. */
+.hero-plate.is-interactive.can-grab {
+    cursor: grab;
+}
+
+.hero-plate.is-interactive.is-bending {
+    cursor: grabbing;
+}
+
+.hero-plate.is-bending .logo-trace-line {
+    animation: none;
+    stroke-dashoffset: 0;
+    opacity: 1;
+}
+
+.hero-plate.is-bending .hero-marquee {
+    animation-duration: 300ms; /* the ants hurry while you pull */
+}
+
+/* ---------- Breaking the mark ----------
+   Deleted points disappear from the blueprint. While points are missing (.is-broken) the plate is in a
+   critical state: a pulsing red wash, a flickering outline, a small glitch on the mark and an error
+   pop-up with a Fix button. .is-fixing calms it while the points come back. */
+.blueprint-anchor.is-deleted,
+.blueprint-handle-group.is-deleted {
+    display: none;
+}
+
+.hero-alert-wash {
+    pointer-events: none;
+    opacity: 0;
+    background:
+        radial-gradient(80% 70% at 50% 50%, rgba(224, 65, 76, 0) 40%, rgba(224, 65, 76, 0.22) 100%),
+        rgba(163, 32, 42, 0.08);
+    transition: opacity 300ms ease;
+}
+
+.hero-plate.is-broken .hero-alert-wash {
+    animation: alert-pulse 1.1s ease-in-out infinite;
+}
+
+.hero-plate.is-fixing .hero-alert-wash {
+    animation: none;
+    opacity: 0.35;
+}
+
+@keyframes alert-pulse {
+    0%, 100% { opacity: 0.35; }
+    50% { opacity: 1; }
+}
+
+/* The broken mark: the outline flickers like a failing signal and the shape jolts now and then. */
+.hero-plate.is-broken:not(.is-fixing) .logo-trace-line {
+    stroke-dashoffset: 0;
+    animation: signal-flicker 2.4s steps(1) infinite;
+}
+
+.hero-plate.is-broken:not(.is-fixing) .hero-mark {
+    animation: mark-glitch 3.2s steps(1) infinite;
+}
+
+@keyframes signal-flicker {
+    0%, 100% { opacity: 1; }
+    8% { opacity: 0.25; }
+    10% { opacity: 1; }
+    46% { opacity: 0.5; }
+    48% { opacity: 1; }
+    71% { opacity: 0.15; }
+    72% { opacity: 1; }
+}
+
+@keyframes mark-glitch {
+    0%, 100% { transform: none; }
+    30% { transform: translateX(-4px); }
+    31% { transform: translateX(3px) skewX(-2deg); }
+    32% { transform: none; }
+    78% { transform: translateX(2px); }
+    79% { transform: none; }
+}
+
+/* Error pop-up, centred on the plate, styled like a small terminal dialog. */
+.hero-alert {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.55rem;
+    min-width: 15rem;
+    padding: 1rem 1.1rem 1.1rem;
+    background: rgba(11, 11, 12, 0.92);
+    border: 1px solid #E0414C;
+    box-shadow: 0 0 0 4px rgba(163, 32, 42, 0.18), 0 18px 50px rgba(0, 0, 0, 0.6);
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+    transform: translate(-50%, -50%) scale(0.92);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 220ms ease, transform 260ms cubic-bezier(0.3, 1.5, 0.5, 1);
+}
+
+.hero-plate.is-broken .hero-alert {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    pointer-events: auto;
+}
+
+.hero-plate.is-fixing .hero-alert {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.96);
+    pointer-events: none;
+}
+
+.hero-alert-title {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: #E0414C;
+}
+
+.hero-alert-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.15rem;
+    height: 1.15rem;
+    background: #E0414C;
+    color: var(--ink);
+    font-weight: 700;
+    animation: cursor-blink 0.9s steps(1) infinite;
+}
+
+.hero-alert-text {
+    color: var(--bone);
+    font-size: 0.7rem;
+}
+
+.hero-fix {
+    margin-top: 0.35rem;
+    cursor: pointer;
+}
+
+/* Status line tones: a takeover by the logo interaction shows on the line itself, with a test-runner
+   style badge in place of the diamond (FAIL / RUN / PASS).
+   - alert: the line becomes a red error bar that slams in, shakes once, glows and keeps pulsing;
+   - fixing: a calmer working bar, the light sweeping fast over the text;
+   - ok: a bone bar with PASS that flashes once on arrival. */
+.status-line {
+    position: relative;
+    margin: -0.35rem -0.55rem;
+    padding: 0.35rem 0.55rem;
+    border: 1px solid transparent;
+    transition: background-color 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.status-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.12rem 0.4rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    line-height: 1.2;
+    animation: tag-in 260ms cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+
+@keyframes tag-in {
+    from { transform: scale(0.6); opacity: 0; }
+    to { transform: none; opacity: 1; }
+}
+
+.status-line.is-alert {
+    background: linear-gradient(90deg, rgba(163, 32, 42, 0.55), rgba(163, 32, 42, 0.18));
+    border-color: #E0414C;
+    animation: alert-slam 420ms cubic-bezier(0.3, 1.4, 0.5, 1), alert-glow 1.1s ease-in-out 420ms infinite;
+}
+
+.status-line.is-alert .status-tag {
+    background: #E0414C;
+    color: var(--ink);
+    animation: tag-in 260ms cubic-bezier(0.3, 1.6, 0.5, 1), tag-blink 0.8s steps(1) 300ms infinite;
+}
+
+/* The FAIL badge dims rather than vanishes, so the bar never looks empty. */
+@keyframes tag-blink {
+    50% { opacity: 0.4; }
+}
+
+.status-line.is-alert .status-word {
+    animation: none;
+    color: #FFE3E5;
+    background: none;
+}
+
+.status-line.is-alert .status-cursor {
+    background: #FFE3E5;
+}
+
+@keyframes alert-slam {
+    0% { transform: translateX(-10px); opacity: 0; box-shadow: 0 0 0 rgba(224, 65, 76, 0); }
+    30% { transform: translateX(6px); opacity: 1; box-shadow: 0 0 34px rgba(224, 65, 76, 0.9); }
+    50% { transform: translateX(-4px); }
+    70% { transform: translateX(2px); }
+    100% { transform: none; }
+}
+
+@keyframes alert-glow {
+    0%, 100% { box-shadow: 0 0 10px rgba(224, 65, 76, 0.35); }
+    50% { box-shadow: 0 0 26px rgba(224, 65, 76, 0.75); }
+}
+
+.status-line.is-fixing {
+    background: rgba(236, 232, 225, 0.07);
+    border-color: var(--line-2);
+}
+
+.status-line.is-fixing .status-tag {
+    border: 1px solid var(--bone);
+    color: var(--bone);
+}
+
+.status-line.is-fixing .status-word {
+    animation-duration: 0.9s; /* the light sweeps faster while it works */
+}
+
+.status-line.is-ok {
+    background: rgba(236, 232, 225, 0.1);
+    border-color: var(--bone);
+    animation: ok-flash 700ms ease-out;
+}
+
+.status-line.is-ok .status-tag {
+    background: var(--bone);
+    color: var(--ink);
+}
+
+.status-line.is-ok .status-word {
+    animation: none;
+    color: var(--bone);
+    background: none;
+}
+
+@keyframes ok-flash {
+    from { background: rgba(236, 232, 225, 0.45); box-shadow: 0 0 24px rgba(236, 232, 225, 0.35); }
+    to { background: rgba(236, 232, 225, 0.1); box-shadow: none; }
+}
+
+/* While a bend is being repaired (released, waiting to spring back), the held points blink like they're
+   being worked on. */
+.hero-plate.is-repairing .blueprint-anchor.is-selected {
+    animation: cursor-blink 0.5s steps(1) infinite;
+}
+
+/* Clock and location-pin icons on the taskbar clock. */
+.screen-clock-icon {
+    width: 15px;
+    height: 15px;
+    fill: none;
+    stroke: var(--bone);
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+}
+
+/* The big check after "All tests passing". */
+.status-check {
+    margin-left: -0.35rem;
+    color: var(--bone);
+    font-size: 1.35em;
+    line-height: 1;
+    font-weight: 700;
+    animation: tag-in 300ms cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+
+/* ---------- Discoverability ----------
+   A quiet hint (top-right, under the cut corner) while the mouse is over the screen and nothing is selected yet, and a
+   right-click menu with the same actions as the keys. */
+.hero-hint {
+    position: absolute;
+    right: 1.75rem;
+    top: 1.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: var(--faint);
+    font-size: 0.66rem;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 260ms ease, transform 260ms ease;
+    pointer-events: none;
+}
+
+.hero-plate.is-pointing:not(.has-selection):not(.is-selecting):not(.is-broken):not(.menu-open) .hero-hint {
+    opacity: 1;
+    transform: none;
+}
+
+.hero-hint-icon {
+    width: 13px;
+    height: 13px;
+    fill: none;
+    stroke: var(--muted);
+    stroke-width: 1.2;
+    flex-shrink: 0;
+}
+
+.hero-hint-button {
+    fill: #E0414C;
+    stroke: none;
+    animation: cursor-blink 1.6s steps(1) infinite;
+}
+
+.hero-menu {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    min-width: 14.5rem;
+    padding: 0.3rem;
+    background: rgba(18, 18, 20, 0.97);
+    border: 1px solid var(--line-2);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+    font-size: 0.66rem;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 120ms ease, visibility 0s linear 120ms;
+}
+
+.hero-plate.menu-open .hero-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 120ms ease;
+}
+
+.hero-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    width: 100%;
+    padding: 0.55rem 0.65rem;
+    color: var(--bone);
+    text-align: left;
+    text-transform: inherit;
+    letter-spacing: inherit;
+    background: none;
+    border: 0;
+    cursor: pointer;
+}
+
+.hero-menu-item:hover {
+    background: var(--accent);
+}
+
+.hero-menu-item kbd {
+    margin-left: auto;
+    padding-left: 1.2rem;
+    color: var(--faint);
+    font-family: inherit;
+}
+
+.hero-menu-item:hover kbd {
+    color: var(--bone);
+}
+
+.hero-menu-item[data-action="delete"]:not(:hover) {
+    color: #FF6B74;
+}
+
+.hero-menu-note {
+    padding: 0.35rem 0.65rem 0.5rem;
+    color: var(--faint);
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 0.2rem;
+}
+
+/* Items only make sense in some states. */
+.hero-menu .when-selection,
+.hero-menu .when-broken {
+    display: none;
+}
+
+.hero-plate.has-nodes .hero-menu .when-selection,
+.hero-plate.is-broken .hero-menu .when-broken {
+    display: flex;
+}
+
+.hero-plate.has-nodes .hero-menu .when-empty {
+    display: none;
+}
+
+/* Marquee: marching-ants outline (four dashed edges that crawl) over a faint oxblood fill. */
+.hero-marquee {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: var(--sw, 0px);
+    height: var(--sh, 0px);
+    transform: translate(var(--sx, 0px), var(--sy, 0px));
+    background:
+        linear-gradient(90deg, #E0414C 50%, transparent 50%) 0 0 / 10px 1px repeat-x,
+        linear-gradient(90deg, #E0414C 50%, transparent 50%) 0 100% / 10px 1px repeat-x,
+        linear-gradient(0deg, #E0414C 50%, transparent 50%) 0 0 / 1px 10px repeat-y,
+        linear-gradient(0deg, #E0414C 50%, transparent 50%) 100% 0 / 1px 10px repeat-y,
+        rgba(163, 32, 42, 0.12);
+    animation: marching-ants 600ms linear infinite;
+    opacity: 0;
+    transition: opacity 300ms ease;
+    pointer-events: none;
+}
+
+.hero-plate.is-selecting .hero-marquee,
+.hero-plate.has-selection .hero-marquee {
+    opacity: 1;
+}
+
+@keyframes marching-ants {
+    to { background-position: 10px 0, -10px 100%, 0 -10px, 100% 10px; }
+}
+
+.hero-marquee-label {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    margin-top: 6px;
+    padding: 0.2rem 0.4rem;
+    background: rgba(11, 11, 12, 0.85);
+    color: var(--bone);
+    font-size: 0.66rem;
+}
+
+.hero-plate.marquee-label-above .hero-marquee-label {
+    top: auto;
+    bottom: 100%;
+    margin-top: 0;
+    margin-bottom: 6px;
+}
+
+/* Selected anchor points fill with oxblood and pop. */
+.blueprint-anchor {
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+.blueprint-anchor.is-selected {
+    fill: #E0414C;
+    stroke: #FFD9DC;
+    animation: anchor-pop 360ms cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+
+@keyframes anchor-pop {
+    from { transform: scale(0.4); }
+    to { transform: scale(1); }
+}
+
+.hero-lens-grid {
+    background-image:
+        linear-gradient(rgba(224, 65, 76, 0.16) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(224, 65, 76, 0.16) 1px, transparent 1px);
+    background-size: 12px 12px;
+}
+
+.blueprint-outline {
+    stroke: var(--bone);
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+    opacity: 0.9;
+}
+
+.blueprint-handle {
+    stroke: #E0414C;
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+    opacity: 0.8;
+}
+
+.blueprint-handle-dot {
+    fill: #E0414C;
+}
+
+.blueprint-anchor {
+    fill: var(--ink);
+    stroke: var(--bone);
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+}
+
+/* Crosshair guides through the cursor, fading out towards the plate edges. */
+.hero-guide-x {
+    height: 1px;
+    transform: translateY(var(--py, -999px));
+    background: linear-gradient(90deg, transparent, rgba(224, 65, 76, 0.55) 30%, rgba(224, 65, 76, 0.55) 70%, transparent);
+    will-change: transform;
+}
+
+.hero-guide-y {
+    width: 1px;
+    transform: translateX(var(--px, -999px));
+    background: linear-gradient(180deg, transparent, rgba(224, 65, 76, 0.55) 30%, rgba(224, 65, 76, 0.55) 70%, transparent);
+    will-change: transform;
+}
+
+/* X/Y readout riding just below-right of the cursor. */
+.hero-readout {
+    transform: translate(calc(var(--px, -999px) + 14px), calc(var(--py, -999px) + 14px));
+    padding: 0.2rem 0.4rem;
+    background: rgba(11, 11, 12, 0.85);
+    color: var(--bone);
+    font-size: 0.66rem;
+    will-change: transform;
+}
+
+/* Status ticker (top-left of the plate): the diamond turns and pulses like a busy indicator, each new
+   word rises in, and a soft light sweeps across the text. */
+.status-diamond {
+    animation: status-spin 1.8s cubic-bezier(0.6, 0, 0.4, 1) infinite;
+}
+
+@keyframes status-spin {
+    0% { transform: rotate(45deg) scale(1); box-shadow: 0 0 0 rgba(224, 65, 76, 0); }
+    50% { transform: rotate(135deg) scale(0.7); box-shadow: 0 0 10px rgba(224, 65, 76, 0.8); }
+    100% { transform: rotate(225deg) scale(1); box-shadow: 0 0 0 rgba(224, 65, 76, 0); }
+}
+
+.status-word {
+    display: inline-block;
+    color: transparent;
+    background: linear-gradient(90deg, var(--faint) 0%, var(--faint) 38%, var(--bone) 50%, var(--faint) 62%, var(--faint) 100%);
+    background-size: 250% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: status-shimmer 2.2s linear infinite;
+}
+
+@keyframes status-shimmer {
+    from { background-position: 100% 0; }
+    to { background-position: -50% 0; }
+}
+
+/* The plate as a workstation screen: faint scanlines, a darkened edge like the glass of a monitor,
+   a terminal cursor after the status word and a ticking colon in the clock. */
+.hero-screen-glass {
+    pointer-events: none;
+    background: repeating-linear-gradient(180deg, rgba(0, 0, 0, 0.22) 0, rgba(0, 0, 0, 0.22) 1px, transparent 1px, transparent 3px);
+    box-shadow: inset 0 0 90px 10px rgba(0, 0, 0, 0.55);
+    opacity: 0.55;
+}
+
+.status-cursor {
+    display: inline-block;
+    width: 0.55em;
+    height: 1.05em;
+    margin-left: -0.35rem;
+    background: var(--faint);
+    opacity: 0.7;
+    animation: cursor-blink 1.1s steps(1) infinite;
+}
+
+/* Solid while a word is being typed or erased, like a real terminal. */
+.status-cursor.is-typing {
+    animation: none;
+    opacity: 0.85;
+}
+
+@keyframes cursor-blink {
+    50% { opacity: 0; }
+}
+
+/* Where the time is, as a small outlined tag next to it. */
+.screen-clock-zone {
+    padding: 0.15rem 0.4rem;
+    border: 1px solid var(--line-2);
+    color: var(--faint);
+    font-size: 0.66rem;
+    line-height: 1;
+}
+
+.screen-clock-colon {
+    animation: cursor-blink 2s steps(1) infinite;
+}
+
+/* The mark's extruded side: a fixed stack of offset copies on its own (static) layer, so neither the
+   tilt nor the looping trace repaints it. The plate tilt and parallax supply the movement. */
+.logo-trace-side {
+    will-change: transform;
+}
+
+.logo-trace-depth {
+    transform: translate(calc(var(--i) * 2.3px), calc(var(--i) * 1.3px));
 }
 
 /* About intro lines: soft base colour so the bold phrases clearly stand out. */

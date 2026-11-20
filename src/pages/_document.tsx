@@ -52,11 +52,15 @@ export default function Document() {
         <meta property="og:locale:alternate" content="en_US" />
         <meta property="og:site_name" content="Lars Walraevens - Portfolio" />
         <meta property="og:url" content="https://larswalraevens.be/" />
-        <meta property="og:image" content="/og-image.png" />
+        {/* Absolute URL (some scrapers ignore relative ones); bump ?v= when the image changes so caches refresh. */}
+        <meta property="og:image" content="https://larswalraevens.be/og-image.png?v=2" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Lars Walraevens, Software Developer, next to the lw logo on a dark workstation screen" />
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://larswalraevens.be/" />
-        <meta property="twitter:image" content="/og-image.png" />
+        <meta property="twitter:image" content="https://larswalraevens.be/og-image.png?v=2" />
 
         {/* THEME STUFF */}
         <meta name="theme-color" content="#0B0B0C" />
