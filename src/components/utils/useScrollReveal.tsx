@@ -11,7 +11,7 @@ import { useEffect } from "react";
 export function useScrollReveal() {
     useEffect(() => {
         if (typeof IntersectionObserver === "undefined") { return }
-        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { return }
+        // if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { return }
 
         const io = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {

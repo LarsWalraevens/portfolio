@@ -156,7 +156,8 @@ const SPRING_K = 380, SPRING_C = 22;
 const usePlateLens = (ref: React.RefObject<HTMLElement>, readoutRef: React.RefObject<HTMLElement>) => {
     useEffect(() => {
         const el = ref.current;
-        if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        // if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        if (!el) return;
 
         let frame = 0, last = 0, x = -999, y = -999, tx = -999, ty = -999, inside = false;
         const pad = (n: number) => String(Math.max(0, Math.round(n))).padStart(4, "0");
@@ -558,7 +559,7 @@ const StatusTicker = () => {
     const [typing, setTyping] = useState(false);
     const [tone, setTone] = useState<StatusTone>("normal");
     useEffect(() => {
-        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        // if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
         let workIndex = 0, offIndex = 0, lastWasOff = false, cancelled = false;
         let gen = 0; // bumped on every takeover; any older loop stops at its next step
         const timers = new Set<number>();

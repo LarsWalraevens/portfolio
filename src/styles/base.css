@@ -355,18 +355,6 @@ b {
     border-color: var(--bone);
 }
 
-/* ---------- Motion ---------- */
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-    }
-}
-
 /* Square icon button with a hairline border (socials, hobbies). */
 .social-square {
     display: inline-flex;
@@ -543,12 +531,6 @@ dialog.mobile-menu.is-closing .menu-item {
     to { transform: none; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-    .rise {
-        animation: none;
-    }
-}
-
 /* Registered so the cut corner can animate (deepens on hover). Browsers without
    @property simply switch instantly. */
 @property --chamfer {
@@ -608,61 +590,6 @@ dialog.mobile-menu.is-closing .menu-item {
     95%, 100% { fill: var(--bone); opacity: 0.05; }
 }
 
-/* Static gradient fill: only shown when motion is reduced. */
-.logo-trace-static {
-    display: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    /* No loop: show the finished mark, filled with an oxblood gradient and a glowing outline. */
-    .logo-trace-line {
-        animation: none !important;
-        stroke-dashoffset: 0;
-        opacity: 1;
-    }
-
-    .logo-trace-fill {
-        animation: none !important;
-        opacity: 0;
-    }
-
-    .logo-trace-static {
-        display: inline;
-    }
-
-    /* No swing-in and no moving light: the fixed 3D pose with a lit sheen and a slightly warmer glow. */
-    .hero-tilt,
-    .status-diamond,
-    .status-word,
-    .status-cursor,
-    .screen-clock-colon {
-        animation: none;
-    }
-
-    .status-word {
-        color: var(--faint);
-        background: none;
-    }
-
-
-    .logo-trace-line {
-        filter: drop-shadow(0 0 4px rgba(224, 65, 76, 0.9)) drop-shadow(0 0 22px rgba(163, 32, 42, 0.7));
-    }
-
-    .hero-plate-sheen {
-        display: block;
-    }
-
-    .hero-plate-glow {
-        background: radial-gradient(50% 50% at 56% 50%, rgba(163, 32, 42, 0.38) 0%, rgba(163, 32, 42, 0) 100%);
-    }
-
-    /* The mobile watermark can be bolder when it isn't flashing. */
-    .hero-watermark {
-        opacity: 0.55 !important;
-    }
-}
-
 /* ---------- Hero plate ----------
    A chamfered iron plate: 1px gradient border that warms to oxblood at the cut corner,
    a faint ruled grid, a soft oxblood glow and mono meta in the corners. */
@@ -694,11 +621,6 @@ dialog.mobile-menu.is-closing .menu-item {
     background: radial-gradient(50% 50% at 56% 50%, rgba(163, 32, 42, 0.26) 0%, rgba(163, 32, 42, 0) 100%);
 }
 
-/* Static diagonal sheen, only used when motion is reduced. */
-.hero-plate-sheen {
-    display: none;
-    background: linear-gradient(115deg, transparent 30%, rgba(236, 232, 225, 0.035) 44%, rgba(236, 232, 225, 0.07) 48%, rgba(236, 232, 225, 0.035) 52%, transparent 66%);
-}
 
 /* Ruler ticks along the bottom edge: a long tick every 5th. */
 .hero-plate-ruler {
