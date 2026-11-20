@@ -435,11 +435,11 @@ dialog.mobile-menu::backdrop {
 
 /* Headline lines rise from behind a mask on load. */
 .rise {
-    animation: rise 850ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation: rise 1150ms cubic-bezier(0.2, 0.7, 0.2, 1) 100ms both;
 }
 
 .rise-2 {
-    animation-delay: 90ms;
+    animation-delay: 240ms;
 }
 
 @keyframes rise {
@@ -534,10 +534,139 @@ dialog.mobile-menu::backdrop {
         display: inline;
     }
 
+    /* No swing-in and no moving light: the fixed 3D pose with a lit sheen and a slightly warmer glow. */
+    .hero-tilt {
+        animation: none;
+    }
+
+    .hero-plate-light {
+        display: none;
+    }
+
+    .logo-trace-line {
+        filter: drop-shadow(0 0 4px rgba(224, 65, 76, 0.9)) drop-shadow(0 0 22px rgba(163, 32, 42, 0.7));
+    }
+
+    .hero-plate-sheen {
+        display: block;
+    }
+
+    .hero-plate-glow {
+        background: radial-gradient(50% 50% at 56% 50%, rgba(163, 32, 42, 0.38) 0%, rgba(163, 32, 42, 0) 100%);
+    }
+
     /* The mobile watermark can be bolder when it isn't flashing. */
     .hero-watermark {
         opacity: 0.55 !important;
     }
+}
+
+/* ---------- Hero plate ----------
+   A chamfered iron plate: 1px gradient border that warms to oxblood at the cut corner,
+   a faint ruled grid, a soft oxblood glow and mono meta in the corners. */
+.hero-plate {
+    --chamfer: 28px;
+    clip-path: polygon(0 0, calc(100% - var(--chamfer)) 0, 100% var(--chamfer), 100% 100%, var(--chamfer) 100%, 0 calc(100% - var(--chamfer)));
+    background: linear-gradient(225deg, #C42B36 0, rgba(163, 32, 42, 0.7) 44px, var(--line-2) 140px, var(--line) 55%, var(--line-2) 100%);
+}
+
+.hero-plate-inner {
+    --chamfer: 28px;
+    clip-path: polygon(0 0, calc(100% - var(--chamfer) + 0.4px) 0, 100% calc(var(--chamfer) - 0.4px), 100% 100%, calc(var(--chamfer) - 0.4px) 100%, 0 calc(100% - var(--chamfer) + 0.4px));
+    background:
+        radial-gradient(120% 90% at 100% 0%, rgba(163, 32, 42, 0.10) 0%, rgba(163, 32, 42, 0) 55%),
+        linear-gradient(180deg, #1A1A1D 0%, var(--surface) 100%);
+}
+
+.hero-plate-grid {
+    background-image:
+        linear-gradient(rgba(236, 232, 225, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(236, 232, 225, 0.045) 1px, transparent 1px);
+    background-size: 48px 48px;
+    background-position: -1px -1px;
+    -webkit-mask-image: radial-gradient(70% 70% at 56% 50%, #000 0%, transparent 100%);
+    mask-image: radial-gradient(70% 70% at 56% 50%, #000 0%, transparent 100%);
+}
+
+.hero-plate-glow {
+    background: radial-gradient(50% 50% at 56% 50%, rgba(163, 32, 42, 0.26) 0%, rgba(163, 32, 42, 0) 100%);
+}
+
+/* Static diagonal sheen, only used when motion is reduced. */
+.hero-plate-sheen {
+    display: none;
+    background: linear-gradient(115deg, transparent 30%, rgba(236, 232, 225, 0.035) 44%, rgba(236, 232, 225, 0.07) 48%, rgba(236, 232, 225, 0.035) 52%, transparent 66%);
+}
+
+/* Ruler ticks along the bottom edge: a long tick every 5th. */
+.hero-plate-ruler {
+    background-image:
+        linear-gradient(90deg, var(--line-2) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(58, 58, 64, 0.7) 1px, transparent 1px);
+    background-size: 60px 100%, 12px 50%;
+    background-position: 0 0, 0 100%;
+    background-repeat: repeat-x;
+}
+
+/* Short oxblood pen stroke running parallel to the cut corner, just outside it. */
+.hero-plate-stroke {
+    width: 26px;
+    height: 2px;
+    background: var(--accent-hover);
+    /* Centred 8px outside the middle of the 28px cut. */
+    position: absolute;
+    right: -4.7px;
+    top: 7.3px;
+    transform: rotate(45deg);
+    box-shadow: 0 0 10px rgba(224, 65, 76, 0.6);
+}
+
+/* ---------- Hero 3D ----------
+   The plate holds one fixed 3D pose. On load it swings in from a steeper angle and settles into it
+   (once); after that only the light moves, following the mouse (usePlateLight sets --lx/--ly). */
+.hero-stage {
+    perspective: 1500px;
+}
+
+.hero-tilt {
+    transform: rotateY(-3.2deg) rotateX(-1.8deg);
+    animation: plate-settle 2200ms cubic-bezier(0.16, 1, 0.3, 1) 450ms both;
+}
+
+/* No "to" frame: it settles into the resting transform above. */
+@keyframes plate-settle {
+    from {
+        opacity: 0;
+        transform: translateZ(-160px) rotateY(-26deg) rotateX(12deg);
+    }
+}
+
+/* Soft glint that slides over the plate under the mouse. It is twice the plate's size, so a
+   50% shift moves its centre by one plate width. */
+.hero-plate {
+    --lx: -0.3;
+    --ly: -0.35;
+}
+
+.hero-plate-light {
+    will-change: transform;
+    left: -50%;
+    top: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(18% 22% at 50% 50%, rgba(236, 232, 225, 0.09) 0%, rgba(236, 232, 225, 0.03) 45%, rgba(236, 232, 225, 0) 100%);
+    transform: translate(calc(var(--lx) * 50%), calc(var(--ly) * 50%));
+    pointer-events: none;
+}
+
+/* The mark's extruded side: a fixed stack of offset copies on its own (static) layer, so neither the
+   tilt nor the looping trace repaints it. The plate tilt and parallax supply the movement. */
+.logo-trace-side {
+    will-change: transform;
+}
+
+.logo-trace-depth {
+    transform: translate(calc(var(--i) * 2.3px), calc(var(--i) * 1.3px));
 }
 
 /* About intro lines: soft base colour so the bold phrases clearly stand out. */
