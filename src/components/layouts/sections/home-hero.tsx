@@ -791,7 +791,7 @@ export default function HomeHeroSection(props: HomeSectionProps) {
                             </span>
                         </h1>
 
-                        <p className="relative mt-5 max-w-[46ch] text-muted text-[1.0625rem] sm:text-lg leading-relaxed pointer-events-auto">
+                        <p className="hero-intro relative mt-5 max-w-[46ch] text-grey-100 lg:text-muted text-[1.0625rem] sm:text-lg leading-relaxed pointer-events-auto">
                             {t("hero_intro")}
                         </p>
 

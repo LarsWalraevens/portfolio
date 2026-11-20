@@ -2,7 +2,7 @@ import { githubIcon, linkedInIcon, lwLogoIcon, mailIcon } from '@/assets/icons/i
 import useTranslation from 'next-translate/useTranslation';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect, useRef, useState } from 'react';
+import { CSSProperties, useEffect, useRef, useState } from 'react';
 
 export default function Header() {
     // # CLIENT STATES
@@ -46,11 +46,20 @@ export default function Header() {
         const dialog = dialogRef.current;
         if (!dialog) { return }
         if (showMenu && !dialog.open) {
+            dialog.classList.remove("is-closing");
             dialog.showModal();
             closeButtonRef.current?.focus();
             document.body.style.overflow = "hidden";
         } else if (!showMenu && dialog.open) {
-            dialog.close();
+            // Play the exit animation, then close for real.
+            const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            dialog.classList.add("is-closing");
+            const timer = window.setTimeout(() => {
+                dialog.classList.remove("is-closing");
+                if (dialog.open) { dialog.close(); }
+            }, reduced ? 0 : 260);
+            document.body.style.overflow = "";
+            return () => window.clearTimeout(timer);
         }
         if (!showMenu) {
             document.body.style.overflow = "";
@@ -175,14 +184,16 @@ export default function Header() {
                 <button
                     ref={menuButtonRef}
                     type="button"
-                    className="lg:hidden label flex items-center gap-3 h-11 px-4 bg-surface text-bone chamfer [--chamfer:7px]"
+                    className="menu-trigger lg:hidden label flex items-center gap-3 h-11 px-4 bg-surface text-bone chamfer [--chamfer:7px]"
                     onClick={() => setShowMenu(true)}
                     aria-expanded={showMenu}
                     aria-controls="mobile-menu"
                 >
                     Menu
-                    <svg width="18" height="12" viewBox="0 0 22 14" fill="none" aria-hidden="true">
-                        <path d="M0 1h22M6 7h16M0 13h22" stroke="currentColor" strokeWidth="1.5" />
+                    <svg width="18" height="12" viewBox="0 0 22 14" fill="none" aria-hidden="true" className="menu-trigger-icon overflow-visible">
+                        <path d="M0 1h22" stroke="currentColor" strokeWidth="1.5" />
+                        <path d="M6 7h16" stroke="currentColor" strokeWidth="1.5" />
+                        <path d="M0 13h22" stroke="currentColor" strokeWidth="1.5" />
                     </svg>
                 </button>
             </div>
@@ -194,10 +205,14 @@ export default function Header() {
             id="mobile-menu"
             aria-label="Menu"
             className="mobile-menu lg:hidden"
+            // Escape: animate out through state instead of the instant native close.
+            onCancel={(e) => { e.preventDefault(); setShowMenu(false); }}
             onClose={() => {
                 setShowMenu(false);
-                // A section was picked: its heading is focused from the click handler.
+                // A section was picked: focus its heading now that the dialog (which restores
+                // focus to the Menu button on close) is really closed.
                 if (pendingFocusId.current) {
+                    focusSectionHeading(pendingFocusId.current);
                     pendingFocusId.current = null;
                     return;
                 }
@@ -219,25 +234,37 @@ export default function Header() {
                         </button>
                     </div>
                 </div>
-                <nav aria-label="Main" className="shell flex-1 flex flex-col gap-1 pt-6 sm:pt-10">
-                    {navItems.map((item) => {
-                        const active = activeId === item.id;
-                        return <Link
-                            key={item.href}
-                            href={item.href}
-                            onClick={() => { pendingFocusId.current = item.id; setShowMenu(false); focusSectionHeading(item.id); }}
-                            aria-current={active ? "location" : undefined}
-                            className="flex items-center gap-4 py-2"
-                        >
-                            <span className="w-6 flex justify-center"><NavMarker active={active} number={item.number} /></span>
-                            <span className="font-display text-[clamp(2.5rem,11vw,3.5rem)] text-bone">{item.label}</span>
-                        </Link>;
-                    })}
-                    <a href={resumeHref} target="_blank" rel="noopener noreferrer" className="btn btn-primary mt-10 w-full">{t("nav_resume")} <span aria-hidden="true">↗</span></a>
-                    <div className="flex items-center gap-3 mt-auto pb-8 pt-8">
-                        <a href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`} aria-label="E-mail" className="social-square">{mailIcon}</a>
-                        <a href={process.env.NEXT_PUBLIC_URL_LINKEDIN} target="_blank" rel="noreferrer noopener" aria-label="LinkedIn" className="social-square">{linkedInIcon}</a>
-                        <a href={process.env.NEXT_PUBLIC_URL_GITHUB} target="_blank" rel="noreferrer noopener" aria-label="GitHub" className="social-square">{githubIcon}</a>
+                <nav aria-label="Main" className="shell flex-1 flex flex-col pt-4 sm:pt-10">
+                    <ul className="border-t border-line">
+                        {navItems.map((item, i) => {
+                            const active = activeId === item.id;
+                            return <li key={item.href} className="menu-item border-b border-line" style={{ "--i": i } as CSSProperties}>
+                                <Link
+                                    href={item.href}
+                                    onClick={() => { pendingFocusId.current = item.id; setShowMenu(false); }}
+                                    aria-current={active ? "location" : undefined}
+                                    className="group flex items-center gap-4 py-4"
+                                >
+                                    <span className="w-6 flex justify-center"><NavMarker active={active} number={item.number} /></span>
+                                    <span className={`font-display text-[clamp(2.5rem,11vw,3.5rem)] leading-[0.95] ${active ? "text-bone" : "text-bone/90"}`}>{item.label}</span>
+                                    <span className={`ml-auto text-2xl transition-transform group-active:translate-x-1 ${active ? "text-accent-hover" : "text-faint"}`} aria-hidden="true">&rarr;</span>
+                                </Link>
+                            </li>;
+                        })}
+                    </ul>
+                    <a href={resumeHref} target="_blank" rel="noopener noreferrer" className="menu-item btn btn-primary mt-8 w-full" style={{ "--i": 3 } as CSSProperties}>{t("nav_resume")} <span aria-hidden="true">↗</span></a>
+                    <div className="menu-item mt-auto pt-10 pb-[max(2rem,env(safe-area-inset-bottom))]" style={{ "--i": 4 } as CSSProperties}>
+                        <div className="flex items-center justify-between gap-4 border-t border-line pt-6">
+                            <div className="flex flex-col gap-1">
+                                <span className="label text-bone">{t("menu_connect")}</span>
+                                <span className="label !text-[0.68rem] text-faint">{t("hero_location_city")}, {t("hero_location_country")}</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <a href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`} aria-label="E-mail" className="social-square">{mailIcon}</a>
+                                <a href={process.env.NEXT_PUBLIC_URL_LINKEDIN} target="_blank" rel="noreferrer noopener" aria-label="LinkedIn" className="social-square">{linkedInIcon}</a>
+                                <a href={process.env.NEXT_PUBLIC_URL_GITHUB} target="_blank" rel="noreferrer noopener" aria-label="GitHub" className="social-square">{githubIcon}</a>
+                            </div>
+                        </div>
                     </div>
                 </nav>
             </div>

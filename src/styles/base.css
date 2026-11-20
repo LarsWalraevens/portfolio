@@ -398,6 +398,27 @@ b {
     to { opacity: 1; transform: none; }
 }
 
+/* Hero intro on phones: sits on top of the glowing watermark, so it gets brighter type
+   and a soft ink halo to lift it off the logo. */
+@media (max-width: 1023px) {
+    .hero-intro {
+        isolation: isolate;
+        font-weight: 500;
+        text-shadow: 0 1px 2px rgba(11, 11, 12, 0.9);
+    }
+
+    /* A soft ink scrim behind the paragraph dims the watermark exactly where the text sits. */
+    .hero-intro::before {
+        content: "";
+        position: absolute;
+        inset: -18px -24px;
+        z-index: -1;
+        background: radial-gradient(closest-side, rgba(11, 11, 12, 0.85), rgba(11, 11, 12, 0.6) 60%, rgba(11, 11, 12, 0));
+        filter: blur(6px);
+        pointer-events: none;
+    }
+}
+
 /* Clamp long excerpts to three lines on small screens. */
 @media (max-width: 1023px) {
     .clamp-3-mobile {
@@ -424,7 +445,8 @@ b {
 
 /* Mobile menu (native modal dialog). */
 dialog.mobile-menu {
-    animation: fade-in 160ms ease;
+    /* Wipes down from the top (where the Menu button sits); rows rise in after it. */
+    animation: menu-in 380ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
     position: fixed;
     inset: 0;
     width: 100%;
@@ -440,7 +462,60 @@ dialog.mobile-menu {
 }
 
 dialog.mobile-menu::backdrop {
-    background: var(--ink);
+    background: rgba(11, 11, 12, 0.6);
+}
+
+dialog.mobile-menu .menu-item {
+    animation: menu-item-in 520ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation-delay: calc(140ms + var(--i, 0) * 55ms);
+}
+
+dialog.mobile-menu.is-closing {
+    animation: menu-out 240ms cubic-bezier(0.5, 0, 0.75, 0) both;
+}
+
+dialog.mobile-menu.is-closing .menu-item {
+    animation: none;
+}
+
+@keyframes menu-in {
+    from { clip-path: inset(0 0 100% 0); }
+    to { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes menu-out {
+    from { clip-path: inset(0 0 0 0); opacity: 1; }
+    to { clip-path: inset(0 0 100% 0); opacity: 0.6; }
+}
+
+@keyframes menu-item-in {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: none; }
+}
+
+/* Menu button: press feedback, and the short middle bar stretches on press. */
+.menu-trigger {
+    transition: background-color 160ms ease, transform 120ms ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.menu-trigger:active {
+    background: var(--line-2);
+    transform: scale(0.96);
+}
+
+.menu-trigger-icon path {
+    transition: transform 220ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.menu-trigger-icon path:nth-child(2) {
+    transform-origin: right center;
+    transform-box: fill-box;
+}
+
+.menu-trigger:active .menu-trigger-icon path:nth-child(2),
+.menu-trigger:hover .menu-trigger-icon path:nth-child(2) {
+    transform: scaleX(1.375);
 }
 
 /* Headline lines rise from behind a mask on load. */
