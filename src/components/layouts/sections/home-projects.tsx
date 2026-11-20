@@ -23,7 +23,7 @@ export default function HomeProjectsSection(props: HomeSectionProps) {
     return <section id="projects" className="py-[clamp(64px,9vw,112px)]">
         <div className="shell">
             {/* Centered, stacked opener: the showcase gets the biggest section title on the page. */}
-            <div className="flex flex-col items-center text-center mb-[clamp(48px,7vw,96px)]">
+            <div data-reveal className="flex flex-col items-center text-center mb-[clamp(48px,7vw,96px)]">
                 <span className="diamond !w-[10px] !h-[10px] mr-3 mb-2" aria-hidden="true" />
                 <h2 className="font-display text-[clamp(2.75rem,6vw,5.5rem)] leading-[0.9] text-bone">{t("section_projects_title")}</h2>
                 <p className="text-muted text-[clamp(1.05rem,1.4vw,1.2rem)] max-w-[44ch] mt-6">{t("section_projects_description")}</p>

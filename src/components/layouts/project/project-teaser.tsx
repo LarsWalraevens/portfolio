@@ -32,12 +32,12 @@ export default function ProjectTeaser(props: ProjectTeaserProps) {
         className="group grid lg:grid-cols-12 gap-x-10 gap-y-4 lg:gap-y-6 items-center pt-12 pb-6 lg:py-[clamp(36px,6vw,80px)] first:pt-0"
     >
         {/* Phones: each project opens with a numbered rule so the start of the next one is unmistakable. */}
-        <div className="lg:hidden flex items-center gap-3 -mb-1" aria-hidden="true">
+        <div data-reveal className="lg:hidden flex items-center gap-3 -mb-1" aria-hidden="true">
             <span className="diamond" />
             <span className="label text-faint"><span className="text-bone">{pad(props.index)}</span> / {pad(props.total)}</span>
             <span className="h-px flex-1 bg-line2" />
         </div>
-        <div className={`lg:col-span-7 ${props.flip ? "lg:order-2" : ""}`}>
+        <div data-reveal className={`lg:col-span-7 ${props.flip ? "lg:order-2" : ""}`}>
             <div className="chamfer chamfer-hover relative overflow-hidden bg-raised aspect-[16/9] [--chamfer:14px] group-hover:[--chamfer:28px]">
                 <Image
                     quality={100}
@@ -51,7 +51,7 @@ export default function ProjectTeaser(props: ProjectTeaserProps) {
             </div>
         </div>
 
-        <div className={`lg:col-span-5 ${props.flip ? "lg:order-1" : ""}`}>
+        <div data-reveal data-reveal-delay="140" className={`lg:col-span-5 ${props.flip ? "lg:order-1" : ""}`}>
             <div className="max-lg:sr-only label text-faint mb-2 lg:mb-4">
                 <span className="text-bone">{pad(props.index)}</span> / {pad(props.total)}
             </div>

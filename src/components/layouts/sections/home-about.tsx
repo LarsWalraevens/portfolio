@@ -114,7 +114,7 @@ export default function HomeAboutSection(props: HomeSectionProps) {
     return <section id="about" className="bg-surface py-[clamp(72px,10vw,128px)] [--btn-fill:var(--surface)]">
         <div className="shell grid lg:grid-cols-12 gap-x-8 gap-y-10">
             {/* LEFT: title + tab list */}
-            <div className="min-w-0 lg:col-span-4 lg:row-start-1">
+            <div data-reveal className="min-w-0 lg:col-span-4 lg:row-start-1">
                 <Title>{t("section_about_title")}</Title>
 
                 {/* Mobile: one swipeable row so the panel (the focus) starts right below it. Desktop: vertical list. */}
@@ -160,7 +160,7 @@ export default function HomeAboutSection(props: HomeSectionProps) {
 
             {/* RIGHT: active panel, set straight on the section (no card). Each panel opens with a
                 large lead line; the step markers and arrows sit underneath as their own row. */}
-            <div className="lg:col-span-7 lg:col-start-6 lg:row-start-1 lg:row-span-2 self-start flex flex-col">
+            <div data-reveal data-reveal-delay="120" className="lg:col-span-7 lg:col-start-6 lg:row-start-1 lg:row-span-2 self-start flex flex-col">
                 <div role="tabpanel" id="about-panel" aria-labelledby={`about-tab-${activeSection.key}`} tabIndex={0}>
                     <div key={activeSection.key} className="fadeIn">
                         {content}
@@ -185,7 +185,7 @@ export default function HomeAboutSection(props: HomeSectionProps) {
             </div>
 
             {/* Resume card: under the tabs on desktop; after the active panel on mobile so a tab tap shows its content right away. */}
-            <div className="lg:col-span-4 lg:col-start-1 lg:row-start-2 self-start chamfer [--chamfer:16px] bg-raised p-6 [--btn-fill:var(--raised)]">
+            <div data-reveal data-reveal-delay="80" className="lg:col-span-4 lg:col-start-1 lg:row-start-2 self-start chamfer [--chamfer:16px] bg-raised p-6 [--btn-fill:var(--raised)]">
                 <div className="flex items-center gap-4">
                     <span className="group/portrait chamfer [--chamfer:8px] relative shrink-0 w-16 h-16 overflow-hidden bg-ink">
                         <Image src={portrait} alt="Lars Walraevens" fill sizes="64px" quality={90} className="object-cover lg:grayscale contrast-[1.05] transition duration-300 group-hover/portrait:grayscale-0" />
@@ -198,7 +198,7 @@ export default function HomeAboutSection(props: HomeSectionProps) {
             </div>
             {/* Tools: part of "about", closing the section. */}
             <div className="lg:col-span-12 lg:row-start-3 mt-[clamp(32px,6vw,80px)]">
-                <h3 className="label text-faint mb-5">{t("section_tools_title")}</h3>
+                <h3 data-reveal className="label text-faint mb-5">{t("section_tools_title")}</h3>
                 <ToolsGrid />
             </div>
         </div>

@@ -40,7 +40,7 @@ export default function ProjectPage() {
                 <main>
                     <section id="project-head" className="shell pt-8 pb-6 lg:pt-14 lg:pb-12">
                         <div className="grid lg:grid-cols-12 gap-x-8 gap-y-6 lg:gap-y-8">
-                            <div className="lg:col-span-7">
+                            <div data-reveal className="lg:col-span-7">
                                 <div className="label text-faint flex items-center gap-3 mb-5">
                                     <span className="diamond" aria-hidden="true" />
                                     {t("nav_projects")}
@@ -48,7 +48,7 @@ export default function ProjectPage() {
                                 <h1 className="font-display text-[clamp(3rem,7vw,6rem)] text-bone">{projectData.name}</h1>
                                 <p className="text-muted mt-5 lg:mt-8 max-w-[68ch]" dangerouslySetInnerHTML={{ __html: t(projectData.description_short) }}></p>
                             </div>
-                            <aside className="lg:col-span-4 lg:col-start-9 flex flex-col gap-5 lg:gap-8 lg:pt-2 self-start bg-surface chamfer [--chamfer:16px] p-5 lg:p-6">
+                            <aside data-reveal data-reveal-delay="120" className="lg:col-span-4 lg:col-start-9 flex flex-col gap-5 lg:gap-8 lg:pt-2 self-start bg-surface chamfer [--chamfer:16px] p-5 lg:p-6">
                                 <div className="relative h-12 lg:h-16 w-full max-w-[220px]">
                                     <Image
                                         fill
@@ -74,7 +74,7 @@ export default function ProjectPage() {
                     </section>
 
                     <section id="project-showcase" className="shell pb-[clamp(64px,9vw,112px)]">
-                        <div className="lg:pt-6">
+                        <div data-reveal className="lg:pt-6">
                             {
                                 projectData.showcase.format === "images" ?
                                     <ImageGallery

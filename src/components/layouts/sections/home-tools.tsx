@@ -18,7 +18,7 @@ const tools = [
 /** The six tools as chamfered tiles; used inside the About section. */
 export function ToolsGrid() {
     return <ul className="grid grid-cols-3 lg:grid-cols-6 gap-2">
-        {tools.map((tool) => <li key={tool.alt} className="group chamfer chamfer-hover [--chamfer:8px] hover:[--chamfer:16px] h-24 max-sm:h-20 flex items-center justify-center bg-ink px-3 lg:px-6 hover:bg-raised">
+        {tools.map((tool, i) => <li key={tool.alt} data-reveal data-reveal-delay={i * 60} className="group chamfer chamfer-hover [--chamfer:8px] hover:[--chamfer:16px] h-24 max-sm:h-20 flex items-center justify-center bg-ink px-3 lg:px-6 hover:bg-raised">
             <Image
                 quality={100}
                 src={tool.src}

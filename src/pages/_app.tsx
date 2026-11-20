@@ -5,12 +5,14 @@ import type { AppProps } from 'next/app';
 import Router from 'next/router';
 import NProgress from 'nprogress';
 import { useEffect } from 'react';
+import { useScrollReveal } from '@/components/utils/useScrollReveal';
 import "swiper/css";
 import 'tippy.js/dist/tippy.css';
 
 
 export default function App({ Component, pageProps }: AppProps) {
   NProgress.configure({ showSpinner: false });
+  useScrollReveal();
 
   useEffect(() => {
     Router.events.on("routeChangeStart", (url) => {
