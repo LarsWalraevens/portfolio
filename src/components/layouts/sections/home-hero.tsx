@@ -1,15 +1,28 @@
 import { LW_PATH, LW_VIEWBOX } from '@/assets/icons/icons.jsx';
 import useTranslation from 'next-translate/useTranslation';
 import Link from "next/link";
+import { useId } from 'react';
 
 export interface HomeSectionProps {
 }
 
-/** The "lw" mark as a faint fill with an oxblood line that traces its outline on a loop. */
-const LogoTrace = (p: { className?: string }) => <svg viewBox={LW_VIEWBOX} fill="none" aria-hidden="true" className={`logo-trace block h-full w-auto ${p.className || ""}`}>
-    <path d={LW_PATH} fillRule="evenodd" className="logo-trace-fill" />
-    <path d={LW_PATH} pathLength={1} className="logo-trace-line" />
-</svg>;
+/** The "lw" mark as a faint fill with an oxblood line that traces its outline on a loop.
+    With reduced motion it shows a finished, static version: oxblood gradient fill and a glowing outline. */
+const LogoTrace = (p: { className?: string }) => {
+    const gradientId = `lw-grad-${useId().replace(/:/g, "")}`;
+    return <svg viewBox={LW_VIEWBOX} fill="none" aria-hidden="true" className={`logo-trace block h-full w-auto ${p.className || ""}`}>
+        <defs>
+            <linearGradient id={gradientId} x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor="#E0414C" stopOpacity="0.55" />
+                <stop offset="55%" stopColor="#A3202A" stopOpacity="0.3" />
+                <stop offset="100%" stopColor="#A3202A" stopOpacity="0.08" />
+            </linearGradient>
+        </defs>
+        <path d={LW_PATH} fillRule="evenodd" className="logo-trace-fill" />
+        <path d={LW_PATH} fillRule="evenodd" fill={`url(#${gradientId})`} className="logo-trace-static" />
+        <path d={LW_PATH} pathLength={1} className="logo-trace-line" />
+    </svg>;
+};
 
 export default function HomeHeroSection(props: HomeSectionProps) {
     // # UTILS
@@ -36,31 +49,33 @@ export default function HomeHeroSection(props: HomeSectionProps) {
 
                 {/* Type column overlaps onto the panel. */}
                 <div className="lg:col-start-1 lg:col-span-8 lg:row-start-1 relative z-10 flex flex-col justify-center pt-10 pb-28 lg:py-0 pointer-events-none">
-                    {/* Mobile watermark */}
-                    <span aria-hidden="true" className="lg:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[92%] max-w-[440px] opacity-40">
-                        <LogoTrace className="!w-full !h-auto" />
-                    </span>
-
-                    <div className="label text-faint mb-7 relative">
-                        Lars Walraevens <span className="mx-2 text-line2" aria-hidden="true">/</span> <span className="text-bone">{t("hero_location_city")}</span>, {t("hero_location_country")}
-                    </div>
-
-                    <h1 className="font-display text-bone relative pointer-events-auto">
-                        <span className="sr-only">Lars Walraevens. {t("hero_lars_is")} </span>
-                        <span className="block overflow-hidden pb-[0.04em]">
-                            <span className="rise block text-[clamp(3.1rem,8.6vw,8.2rem)] leading-[0.86]">Software</span>
+                    <div className="relative">
+                        {/* Mobile watermark, centred on the text block itself (not the padded column). */}
+                        <span aria-hidden="true" className="hero-watermark lg:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[92%] max-w-[440px] opacity-40">
+                            <LogoTrace className="!w-full !h-auto" />
                         </span>
-                        {" "}
-                        <span className="block overflow-hidden pb-[0.06em] -mt-[0.02em]">
-                            <span className="rise rise-2 block text-[clamp(4rem,11vw,10.5rem)] leading-[0.86] whitespace-nowrap">
-                                Developer
+
+                        <div className="label text-faint mb-7 relative">
+                            Lars Walraevens <span className="mx-2 text-line2" aria-hidden="true">/</span> <span className="text-bone">{t("hero_location_city")}</span>, {t("hero_location_country")}
+                        </div>
+
+                        <h1 className="font-display text-bone relative pointer-events-auto">
+                            <span className="sr-only">Lars Walraevens. {t("hero_lars_is")} </span>
+                            <span className="block overflow-hidden pb-[0.04em]">
+                                <span className="rise block text-[clamp(3.1rem,8.6vw,8.2rem)] leading-[0.86]">Software</span>
                             </span>
-                        </span>
-                    </h1>
+                            {" "}
+                            <span className="block overflow-hidden pb-[0.06em] -mt-[0.02em]">
+                                <span className="rise rise-2 block text-[clamp(4rem,11vw,10.5rem)] leading-[0.86] whitespace-nowrap">
+                                    Developer
+                                </span>
+                            </span>
+                        </h1>
 
-                    <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-3 mt-10 relative pointer-events-auto">
-                        <Link href="/#projects" className="btn btn-primary">{t("nav_projects")} <span aria-hidden="true">&rarr;</span></Link>
-                        <Link href="/#about" className="btn">{t("nav_about")}</Link>
+                        <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-3 mt-10 relative pointer-events-auto">
+                            <Link href="/#projects" className="btn btn-primary">{t("nav_projects")} <span aria-hidden="true">&rarr;</span></Link>
+                            <Link href="/#about" className="btn">{t("nav_about")}</Link>
+                        </div>
                     </div>
 
                 </div>

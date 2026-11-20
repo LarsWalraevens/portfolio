@@ -512,16 +512,31 @@ dialog.mobile-menu::backdrop {
     95%, 100% { fill: var(--bone); opacity: 0.05; }
 }
 
+/* Static gradient fill: only shown when motion is reduced. */
+.logo-trace-static {
+    display: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
-    /* Show the finished outline, static. */
+    /* No loop: show the finished mark, filled with an oxblood gradient and a glowing outline. */
     .logo-trace-line {
-        animation: none;
+        animation: none !important;
         stroke-dashoffset: 0;
-        opacity: 0.8;
+        opacity: 1;
     }
 
     .logo-trace-fill {
-        animation: none;
+        animation: none !important;
+        opacity: 0;
+    }
+
+    .logo-trace-static {
+        display: inline;
+    }
+
+    /* The mobile watermark can be bolder when it isn't flashing. */
+    .hero-watermark {
+        opacity: 0.55 !important;
     }
 }
 
