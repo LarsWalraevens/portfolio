@@ -786,6 +786,94 @@ dialog.mobile-menu.is-closing .menu-item {
     79% { transform: none; }
 }
 
+/* Fixing redraws the mark in three calm phases (timed in usePlateLens's fix()):
+   .is-clearing  the broken mark dissolves (face, fills and extruded side fade out);
+   .is-tracing   the clean outline is drawn in one stroke, each point popping in as the line reaches it;
+   .is-filling   the face fills back in, the extruded side follows layer by layer, the line and points fade. */
+.logo-trace-body,
+.logo-trace-depth {
+    transition: opacity 450ms ease;
+}
+
+.logo-redraw-line {
+    fill: none;
+    stroke: #E0414C;
+    stroke-width: 2.5;
+    vector-effect: non-scaling-stroke;
+    stroke-linejoin: miter;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    opacity: 0;
+    filter: drop-shadow(0 0 6px rgba(224, 65, 76, 0.85)) drop-shadow(0 0 18px rgba(163, 32, 42, 0.6));
+}
+
+.logo-redraw-nodes rect {
+    fill: var(--ink);
+    stroke: var(--bone);
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+.hero-plate.is-fixing .logo-trace-line {
+    animation: none;
+    opacity: 0;
+}
+
+.hero-plate.is-clearing .logo-trace-body,
+.hero-plate.is-clearing .logo-trace-depth {
+    opacity: 0;
+}
+
+.hero-plate.is-tracing .logo-redraw-line {
+    animation: redraw-line 1.5s cubic-bezier(0.45, 0, 0.55, 1) forwards;
+}
+
+.hero-plate.is-tracing .logo-redraw-nodes rect {
+    /* The line eases in and out, so the point delays follow the same curve only roughly; close enough
+       that each point lands as the line passes it. */
+    animation: redraw-node 320ms cubic-bezier(0.3, 1.6, 0.5, 1) calc(var(--at) * 1.5s) both;
+}
+
+.hero-plate.is-filling .logo-trace-body {
+    transition-duration: 550ms;
+}
+
+.hero-plate.is-filling .logo-trace-depth {
+    transition-duration: 300ms;
+    transition-delay: calc(150ms + var(--i) * 25ms);
+}
+
+.hero-plate.is-filling .logo-redraw-line {
+    animation: redraw-line-out 900ms ease-in forwards;
+}
+
+.hero-plate.is-filling .logo-redraw-nodes rect {
+    animation: redraw-node-out 400ms ease forwards;
+}
+
+@keyframes redraw-line {
+    from { stroke-dashoffset: 1; opacity: 1; }
+    to { stroke-dashoffset: 0; opacity: 1; }
+}
+
+@keyframes redraw-line-out {
+    from { stroke-dashoffset: 0; opacity: 1; }
+    to { stroke-dashoffset: 0; opacity: 0; }
+}
+
+@keyframes redraw-node {
+    from { opacity: 0; transform: scale(0.3); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes redraw-node-out {
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0; transform: scale(0.6); }
+}
+
 /* Error pop-up, centred on the plate, styled like a small terminal dialog. */
 .hero-alert {
     position: absolute;

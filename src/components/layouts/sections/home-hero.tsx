@@ -47,10 +47,20 @@ const LogoTrace = (p: { fit?: "height" | "width" }) => {
                 </linearGradient>
             </defs>
             {/* Opaque face so the extruded side never shows through the translucent fills. */}
-            <path d={LW_PATH} data-lw-shape="" fillRule="evenodd" fill={`url(#${faceId})`} />
-            <path d={LW_PATH} data-lw-shape="" fillRule="evenodd" className="logo-trace-fill" />
-            <path d={LW_PATH} data-lw-shape="" fillRule="evenodd" fill={`url(#${gradientId})`} className="logo-trace-static" />
+            <g className="logo-trace-body">
+                <path d={LW_PATH} data-lw-shape="" fillRule="evenodd" fill={`url(#${faceId})`} />
+                <path d={LW_PATH} data-lw-shape="" fillRule="evenodd" className="logo-trace-fill" />
+                <path d={LW_PATH} data-lw-shape="" fillRule="evenodd" fill={`url(#${gradientId})`} className="logo-trace-static" />
+            </g>
             <path d={LW_PATH} data-lw-shape="" pathLength={1} className="logo-trace-line" />
+            {/* Redraw after a fix (hero plate only): the clean outline is drawn first, its points popping in
+                as the line reaches them, and only then does the solid mark fill back in. */}
+            <path d={LW_PATH} pathLength={1} className="logo-redraw-line" />
+            <g className="logo-redraw-nodes">
+                {LW_GEOMETRY.anchors.map(([x, y], k) => k === LW_GEOMETRY.twin ? null :
+                    <rect key={k} x={x - 7} y={y - 7} width={14} height={14} style={{ "--at": LW_GEOMETRY.along[k] } as CSSProperties} />
+                )}
+            </g>
         </svg>
     </span>;
 };
@@ -79,7 +89,25 @@ const LW_GEOMETRY = (() => {
     });
     const last = anchors.length - 1;
     const twin = last > 0 && anchors[last][0] === anchors[0][0] && anchors[last][1] === anchors[0][1] ? last : -1;
-    return { segs, anchors, handles, twin };
+    // Where each anchor sits along the outline (0..1 of its drawn length; M jumps aren't drawn), so the
+    // redraw after a fix can pop each point in just as the line reaches it.
+    const lengths = segs.map((seg, k) => {
+        if (seg.cmd === "M" || k === 0) return 0;
+        const [x0, y0] = anchors[k - 1], p = seg.p;
+        if (seg.cmd === "L") return Math.hypot(p[0] - x0, p[1] - y0);
+        let len = 0, px = x0, py = y0;
+        for (let s = 1; s <= 24; s++) {
+            const t = s / 24, u = 1 - t;
+            const x = u * u * u * x0 + 3 * u * u * t * p[0] + 3 * u * t * t * p[2] + t * t * t * p[4];
+            const y = u * u * u * y0 + 3 * u * u * t * p[1] + 3 * u * t * t * p[3] + t * t * t * p[5];
+            len += Math.hypot(x - px, y - py); px = x; py = y;
+        }
+        return len;
+    });
+    const total = lengths.reduce((a, b) => a + b, 0) || 1;
+    let run = 0;
+    const along = lengths.map(l => (run += l) / total);
+    return { segs, anchors, handles, twin, along };
 })();
 
 /** Rebuilds the logo's path (and its blueprint points) with the anchors moved by `off` (x,y per anchor). */
@@ -145,13 +173,14 @@ const PLATE_EDIT_EVENT = "plate:edit";
     dragging, reveals the blueprint inside it, and on release selects the anchor points it covers.
 
     Then press inside the box and pull: the selected points (and their bezier handles) follow the mouse,
-    so the logo's face, 3D side, glowing outline and blueprint all bend live. The pull gets harder the
-    further you go (rubber band), and on release the iron springs back with one small overshoot.
+    so the logo's face, 3D side, glowing outline and blueprint all bend live. They follow the mouse freely for a
+    good distance, then a soft rubber band takes over; on release the iron springs back with one small overshoot.
     Or press Delete/Backspace: the selected points are removed, the mark breaks and the screen goes into a
     critical alert with a Fix button, which puts the points back one by one. Escape clears the selection.
     The status line narrates all of it. The selection clears a few seconds after the last action, or on a
     new press outside it. Touch and reduced motion: none of this. */
-const PULL_RESISTANCE = 90;  // SVG units; the pull can never go much past this
+const PULL_FREE = 260;        // SVG units the points follow the mouse 1:1 (about a quarter of the mark's height)
+const PULL_RESISTANCE = 320;  // past that, a soft rubber band: at most this much further, however far you pull
 const SPRING_K = 380, SPRING_C = 22;
 const usePlateLens = (ref: React.RefObject<HTMLElement>, readoutRef: React.RefObject<HTMLElement>) => {
     useEffect(() => {
@@ -275,29 +304,37 @@ const usePlateLens = (ref: React.RefObject<HTMLElement>, readoutRef: React.RefOb
             fixing = true;
             el.classList.add("is-fixing");
             say("fixing", "Fixing\u2026");
-            // Diagnose for a moment, then put the points back one by one in path order (about 2.2s in total,
-            // whatever the count), so the mark visibly re-forms; hold briefly before calling it fixed.
-            const order = Array.from(deleted).sort((a, b) => a - b);
-            const perPoint = Math.min(160, Math.max(60, 2200 / order.length));
-            const step = () => {
-                const k = order.shift();
-                if (k !== undefined) {
-                    deleted.delete(k);
+            // A calm rebuild instead of a shape that jumps with every restored point: the broken mark
+            // dissolves, the clean outline is drawn in one stroke (points popping in as the line reaches
+            // them), then the solid mark fills back in, front face first and the extruded side behind it.
+            // Timings match the .is-clearing / .is-tracing / .is-filling transitions in base.css.
+            const later = (ms: number, fn: () => void) => { fixTimer = window.setTimeout(fn, ms); };
+            later(350, () => {
+                el.classList.add("is-clearing");
+                later(450, () => {
+                    deleted.clear();
                     syncDeletedPoints();
-                    restoreShape();
-                    fixTimer = window.setTimeout(step, perPoint);
-                    return;
-                }
-                fixTimer = window.setTimeout(() => {
-                    fixing = false;
-                    el.classList.remove("is-broken", "is-fixing");
-                    restoreShape();
-                    say("ok", "All tests passing");
-                }, 600);
-            };
-            fixTimer = window.setTimeout(step, 900);
+                    restoreShape(); // swapped in while the mark is invisible
+                    el.classList.add("is-tracing");
+                    later(1700, () => {
+                        el.classList.add("is-filling");
+                        el.classList.remove("is-clearing");
+                        later(900, () => {
+                            fixing = false;
+                            el.classList.remove("is-broken", "is-fixing", "is-tracing", "is-filling");
+                            say("ok", "All tests passing");
+                        });
+                    });
+                });
+            });
         };
-        const resist = (d: number, rPx: number) => d * rPx / (rPx + Math.abs(d)); // rubber band per axis
+        // Free within a radius, then a rubber band on the distance (not per axis, so diagonals feel the same).
+        const resist = (dx: number, dy: number, freePx: number, rPx: number) => {
+            const d = Math.hypot(dx, dy);
+            if (d <= freePx) return { x: dx, y: dy };
+            const extra = d - freePx, scale = (freePx + extra * rPx / (rPx + extra)) / d;
+            return { x: dx * scale, y: dy * scale };
+        };
 
         const springBack = () => {
             const from = { ...pullPx }, unitsPerPx = pull!.unitsPerPx;
@@ -365,8 +402,7 @@ const usePlateLens = (ref: React.RefObject<HTMLElement>, readoutRef: React.RefOb
                     say("alert", "Issues detected\u2026");
                     alertAt = performance.now();
                 }
-                const rPx = PULL_RESISTANCE / pull.unitsPerPx;
-                const dxPx = resist(nx - pull.x0, rPx), dyPx = resist(ny - pull.y0, rPx);
+                const { x: dxPx, y: dyPx } = resist(nx - pull.x0, ny - pull.y0, PULL_FREE / pull.unitsPerPx, PULL_RESISTANCE / pull.unitsPerPx);
                 applyOffset(dxPx, dyPx, pull.unitsPerPx);
                 if (label) label.textContent = `\u0394X ${signed(dxPx)}  \u0394Y ${signed(dyPx)}`;
             } else if (selected.length) {
@@ -529,7 +565,7 @@ const usePlateLens = (ref: React.RefObject<HTMLElement>, readoutRef: React.RefOb
             fixButton?.removeEventListener("click", onFix);
             el.removeEventListener("contextmenu", onContextMenu);
             menu?.removeEventListener("click", onMenuClick);
-            el.classList.remove("is-interactive", "is-bending", "is-repairing", "can-grab", "is-broken", "is-fixing", "menu-open");
+            el.classList.remove("is-interactive", "is-bending", "is-repairing", "can-grab", "is-broken", "is-fixing", "is-clearing", "is-tracing", "is-filling", "menu-open");
         };
     }, [ref, readoutRef]);
 };
