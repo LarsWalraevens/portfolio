@@ -285,17 +285,72 @@ const usePlateLens = (ref: React.RefObject<HTMLElement>, readoutRef: React.RefOb
 
         // --- Breaking and fixing.
         const alertText = el.querySelector<HTMLElement>(".hero-alert-text");
+        const alertEl = el.querySelector<HTMLElement>(".hero-alert");
         const fixButton = el.querySelector<HTMLButtonElement>(".hero-fix");
         let fixing = false, fixTimer = 0;
+        // Where the deleted points were (plate px), grown with every delete until the mark is fixed.
+        let damage: { x0: number, y0: number, x1: number, y1: number } | null = null;
+        const recordDamage = () => {
+            const r = el.getBoundingClientRect();
+            const grow = (x0: number, y0: number, x1: number, y1: number) => {
+                damage = damage
+                    ? { x0: Math.min(damage.x0, x0), y0: Math.min(damage.y0, y0), x1: Math.max(damage.x1, x1), y1: Math.max(damage.y1, y1) }
+                    : { x0, y0, x1, y1 };
+            };
+            let found = false;
+            selected.forEach(k => {
+                const a = anchorEls[k]?.getBoundingClientRect();
+                if (!a || (!a.width && !a.height)) return;
+                found = true;
+                grow(a.left - r.left, a.top - r.top, a.right - r.left, a.bottom - r.top);
+            });
+            if (!found && box.w && box.h) grow(box.x, box.y, box.x + box.w, box.y + box.h);
+        };
+        // Mark the damaged area and put the pop-up beside it (right, else left, else below / above),
+        // inside the plate, with a short leader line from the pop-up to the marked area.
+        const placeAlert = () => {
+            if (!damage || !alertEl) return;
+            const W = el.clientWidth, H = el.clientHeight, edge = 18, gap = 30, pad = 12;
+            const clamp = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v));
+            const t = { x: damage.x0 - pad, y: damage.y0 - pad, w: damage.x1 - damage.x0 + pad * 2, h: damage.y1 - damage.y0 + pad * 2 };
+            const aw = alertEl.offsetWidth, ah = alertEl.offsetHeight;
+            const cx = t.x + t.w / 2, cy = t.y + t.h / 2;
+            let side: "right" | "left" | "below" | "above", ax: number, ay: number;
+            if (t.x + t.w + gap + aw <= W - edge) { side = "right"; ax = t.x + t.w + gap; }
+            else if (t.x - gap - aw >= edge) { side = "left"; ax = t.x - gap - aw; }
+            else { side = t.y + t.h + gap + ah <= H - edge ? "below" : "above"; ax = clamp(cx - aw / 2, edge, W - aw - edge); }
+            if (side === "right" || side === "left") ay = clamp(cy - ah / 2, edge, H - ah - edge);
+            else ay = side === "below" ? t.y + t.h + gap : Math.max(edge, t.y - gap - ah);
+            let lx: number, ly: number, lw: number, lh: number;
+            if (side === "right" || side === "left") {
+                ly = clamp(cy, ay + 14, ay + ah - 14); lh = 1;
+                lx = side === "right" ? t.x + t.w : ax + aw;
+                lw = Math.max(0, (side === "right" ? ax : t.x) - lx);
+            } else {
+                lx = clamp(cx, ax + 14, ax + aw - 14); lw = 1;
+                ly = side === "below" ? t.y + t.h : ay + ah;
+                lh = Math.max(0, (side === "below" ? ay : t.y) - ly);
+            }
+            const set = (k: string, v: number) => el.style.setProperty(k, `${Math.round(v)}px`);
+            set("--tx", t.x); set("--ty", t.y); set("--tw", t.w); set("--th", t.h);
+            set("--ax", ax); set("--ay", ay);
+            set("--lx", lx); set("--ly", ly); set("--lw", lw); set("--lh", lh);
+            el.style.setProperty("--tcx", `${Math.round((cx / W) * 100)}%`);
+            el.style.setProperty("--tcy", `${Math.round((cy / H) * 100)}%`);
+            el.dataset.alertSide = side;
+            el.style.setProperty("--plate-h", `${H}px`); // how far the glitch tear bands roll
+        };
         const deleteSelected = () => {
             if (!selected.length || pull || fixing) return;
             window.clearTimeout(okTimer); // a pending "All tests passing" would now be a lie
+            recordDamage(); // before the points are hidden and the selection cleared
             selected.forEach(k => deleted.add(k));
             hasDeleted = true;
             clearSelection(true);
             syncDeletedPoints();
             restoreShape();
             if (alertText) alertText.textContent = `${missingCount()} node${missingCount() === 1 ? "" : "s"} missing from lw.svg`;
+            placeAlert(); // after the text is set, so the pop-up's size is current
             el.classList.add("is-broken");
             say("alert", criticalLine());
         };
@@ -321,6 +376,7 @@ const usePlateLens = (ref: React.RefObject<HTMLElement>, readoutRef: React.RefOb
                         el.classList.remove("is-clearing");
                         later(900, () => {
                             fixing = false;
+                            damage = null;
                             el.classList.remove("is-broken", "is-fixing", "is-tracing", "is-filling");
                             say("ok", "All tests passing");
                         });
@@ -700,7 +756,7 @@ const ScreenClock = () => {
     if (!now) return null;
     const parts = timeFormat.formatToParts(now);
     const get = (type: string) => parts.find(part => part.type === type)?.value ?? "";
-    return <span className="flex items-center gap-5 text-muted">
+    return <span className="flex items-center gap-5 text-[#CFCAC2]">
         <span className="flex items-center gap-2">
             <svg viewBox="0 0 16 16" className="screen-clock-icon" aria-hidden="true">
                 <circle cx="8" cy="8" r="6.25" />
@@ -757,6 +813,15 @@ export default function HomeHeroSection(props: HomeSectionProps) {
                             <span aria-hidden="true" ref={readoutRef} className="hero-readout label absolute left-0 top-0 tabular-nums whitespace-pre" />
                             {/* Critical state after deleting points: a pulsing red wash and an error pop-up with a Fix button. */}
                             <span aria-hidden="true" className="hero-alert-wash absolute inset-0" />
+                            {/* Signal breakup while broken: static noise and rolling tear bands over the screen. */}
+                            <span aria-hidden="true" className="hero-glitch absolute inset-0">
+                                <span className="hero-glitch-noise" />
+                                <span className="hero-glitch-tear" />
+                                <span className="hero-glitch-tear hero-glitch-tear--thin" />
+                            </span>
+                            {/* Marks where the points were deleted; the pop-up sits beside it, joined by a leader line. */}
+                            <span aria-hidden="true" className="hero-alert-target" />
+                            <span aria-hidden="true" className="hero-alert-leader" />
                             <span aria-hidden="true" className="hero-alert">
                                 <span className="label hero-alert-title"><span className="hero-alert-icon">!</span>Critical error</span>
                                 <span className="label hero-alert-text" />
@@ -766,7 +831,7 @@ export default function HomeHeroSection(props: HomeSectionProps) {
                             {/* A quiet hint while the mouse is over the screen, until something is selected. */}
                             <span aria-hidden="true" className="hero-hint label">
                                 <svg viewBox="0 0 16 16" className="hero-hint-icon"><rect x="3.5" y="1.5" width="9" height="13" rx="4.5" /><path d="M8 1.5v5M3.5 6.5h9" /><path className="hero-hint-button" d="M8 1.5a4.5 4.5 0 0 1 4.5 4.5v.5H8Z" /></svg>
-                                Drag to select <span className="text-line2">&middot;</span> right-click for more
+                                Drag to select <span className="text-faint">&middot;</span> right-click for more
                             </span>
 
                             {/* Right-click menu with the same actions as the keyboard shortcuts. */}
@@ -812,7 +877,10 @@ export default function HomeHeroSection(props: HomeSectionProps) {
                         </span>
 
                         <div className="label text-faint mb-7 relative">
-                            Lars Walraevens <span className="mx-2 text-line2" aria-hidden="true">/</span> <span className="text-bone">{t("hero_location_city")}</span>, {t("hero_location_country")}
+                            Lars Walraevens
+                            {/* Solid pin in a brighter red than the accent, so it holds up at label size on ink. */}
+                            <svg aria-hidden="true" viewBox="0 0 24 24" className="inline-block align-[-0.2em] w-[1.25em] h-[1.25em] ml-3 mr-1.5 drop-shadow-[0_0_6px_rgba(232,80,91,0.45)]"><path fill="#E8505B" d="M20 10c0 5-5.5 10.2-7.4 11.8a1 1 0 0 1-1.2 0C9.5 20.2 4 15 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" fill="var(--ink)" /></svg>
+                            <span className="text-bone">{t("hero_location_city")}, {t("hero_location_country")}</span>
                         </div>
 
                         <h1 className="font-display text-bone relative pointer-events-auto lg:pointer-events-none lg:select-none">

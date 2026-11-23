@@ -1,4 +1,5 @@
 import { githubIcon, linkedInIcon, lwLogoIcon, mailIcon } from '@/assets/icons/icons';
+import LogoHobbies from './logo-hobbies';
 import useTranslation from 'next-translate/useTranslation';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -7,6 +8,8 @@ import { CSSProperties, useEffect, useRef, useState } from 'react';
 export default function Header() {
     // # CLIENT STATES
     const [showMenu, setShowMenu] = useState(false);
+    // Counts logo hovers; each one shows the next hobby scene.
+    const [logoHover, setLogoHover] = useState(0);
 
     // # UTILS
     const { t, lang } = useTranslation('common');
@@ -157,8 +160,10 @@ export default function Header() {
     return <>
         <header className={`sticky top-0 z-40 transition-[transform,background-color,backdrop-filter] duration-300 ease-out focus-within:translate-y-0 ${hidden && !showMenu ? "translate-y-0 lg:-translate-y-full" : "translate-y-0"} ${scrolled ? "bg-ink/70 backdrop-blur-md" : "bg-transparent"}`}>
             <div className="shell h-[72px] flex items-center justify-between lg:grid lg:grid-cols-[1fr_auto_1fr] lg:gap-6">
-                <Link href="/" aria-label="Home" className="flex h-9 items-center justify-self-start text-bone transition-opacity hover:opacity-70">
-                    {lwLogoIcon}
+                <Link href="/" aria-label="Home" onMouseEnter={() => setLogoHover((n) => n + 1)} className="logo-hover relative flex h-9 items-center justify-self-start text-bone">
+                    <LogoHobbies hover={logoHover} layer="back" />
+                    <span className="relative h-full">{lwLogoIcon}</span>
+                    <LogoHobbies hover={logoHover} layer="front" />
                 </Link>
 
                 <nav aria-label="Main" className="max-lg:hidden flex items-center gap-2">
