@@ -1698,10 +1698,10 @@ dialog.mobile-menu.is-closing .menu-item {
     inset: -18px -22px -18px -18px;
 }
 
-.logo-hover:hover .logo-hobbies { opacity: 1; }
-
-@media (max-width: 767px) {
-    .logo-hobbies { display: none; }
+/* Hover only where there's a real pointer: on touch a tap would leave the scene stuck on.
+   Touch screens play it from the "psst" line under Hobbies instead (.is-peeking below). */
+@media (hover: hover) {
+    .logo-hover:hover .logo-hobbies { opacity: 1; }
 }
 
 /* Centre/percent origins below opt into fill-box per class; a global rule would also move
@@ -1759,9 +1759,14 @@ dialog.mobile-menu.is-closing .menu-item {
 @keyframes lh-orbit-front { 0% { opacity: 1; } 50% { opacity: 0; } }
 @keyframes lh-orbit-back { 0% { opacity: 0; } 50% { opacity: 1; } }
 .lh-carbon { fill: #7A7A84; }
-.lh-battery { fill: #55555E; stroke: var(--bone); stroke-width: .5; }
+.lh-battery { fill: #55555E; stroke: var(--bone); stroke-width: .4; }
 .lh-cam { fill: var(--ink); stroke: var(--bone); stroke-width: .6; }
 .lh-prop-disc { fill: var(--bone); opacity: .35; }
+.lh-duct { fill: #3A3A42; stroke: var(--bone); stroke-width: .6; }
+.lh-duct-rim { fill: none; stroke: var(--bone); stroke-width: .6; }
+.lh-canopy-shine { fill: none; stroke: #fff; stroke-width: .6; stroke-linecap: round; opacity: .45; }
+.lh-lens { fill: #2B2B33; stroke: var(--bone); stroke-width: .4; }
+.lh-glint { fill: #fff; }
 .lh-prop { transform-box: fill-box; transform-origin: center; animation: lh-prop .06s linear infinite alternate; }
 .lh-prop--b { animation-delay: -.03s; }
 @keyframes lh-prop { from { transform: scaleX(1); } to { transform: scaleX(.2); } }
@@ -1816,3 +1821,16 @@ dialog.mobile-menu.is-closing .menu-item {
     58% { transform: translateX(1.5px) rotate(6deg); }
     70% { transform: none; }
 }
+
+/* ---------- Contact ---------- */
+.contact-grid {
+    background-image:
+        linear-gradient(rgba(236, 232, 225, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(236, 232, 225, 0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    -webkit-mask-image: radial-gradient(60% 80% at 85% 50%, #000 0%, transparent 100%);
+    mask-image: radial-gradient(60% 80% at 85% 50%, #000 0%, transparent 100%);
+}
+
+/* The header logo plays its hobby scene while the "psst" line in About → Hobbies is hovered. */
+.logo-hover.is-peeking .logo-hobbies { opacity: 1; }

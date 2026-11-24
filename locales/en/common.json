@@ -36,7 +36,7 @@
     "section_projects_title": "Projects",
     "section_projects_description": "Below are projects that I have worked on with great pride and that I would like to share with you.",
     "menu_connect": "Let's connect",
-    "section_contact_title": "Let's connect!",
+    "section_contact_title": "Up for a chat?",
     "section_contact_description": "If you're interested in connecting or have any questions, feel free to shoot me a message, preferably via LinkedIn. I'll get back to you as promptly as possible!",
     "section_contact_cta": "Send mail",
     "main_404_title": "Page not found",
@@ -63,5 +63,12 @@
     "section_about_other_dotfiles": "My dotfiles & setup",
     "section_about_other_utils": "My util library",
     "section_about_skills_web": "Web apps",
-    "section_about_skills_api": "APIs & cloud"
+    "section_about_skills_api": "APIs & cloud",
+    "section_contact_local": "local time",
+    "section_contact_linkedin_sub": "Send me a message",
+    "section_contact_email": "E-mail",
+    "section_contact_copy": "Copy",
+    "section_contact_copied": "Copied",
+    "section_about_hobbies_psst": "Psst… hover my logo up top, or this line, to see these in action.",
+    "section_about_hobbies_psst_tap": "Psst… tap here and watch my logo up top."
 }

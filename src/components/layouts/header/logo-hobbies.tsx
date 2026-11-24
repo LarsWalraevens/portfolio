@@ -31,26 +31,34 @@ const tennis: Scene = {
     </>,
 };
 
-/** A side-on FPV quad: carbon arms, motors, blurred props, battery with strap, uptilted camera, antenna. */
+/** A ducted tiny whoop (Air65-style), seen from the side and a little above: prop ducts with
+    spinning props, a red canopy with a forward-tilted camera, the battery slung underneath and
+    a short antenna at the back. Faces +x. */
+function Duct({ cx, late }: { cx: number, late?: boolean }) {
+    return <>
+        <path d={`M${cx - 5.2} -2.5v2.6a5.2 1.6 0 0 0 10.4 0v-2.6a5.2 1.6 0 0 1 -10.4 0z`} className="lh-duct" />
+        <ellipse cx={cx} cy="-2.9" rx="4.4" ry="1.1" className="lh-prop-disc" />
+        <ellipse cx={cx} cy="-2.9" rx="4.4" ry=".4" className={`lh-accent lh-prop ${late ? "lh-prop--b" : ""}`} />
+        <ellipse cx={cx} cy="-2.5" rx="5.2" ry="1.6" className="lh-duct-rim" />
+    </>
+}
+
 function Drone() {
     return <>
-        <line x1="-6" y1="-1.6" x2="-9.5" y2="-7.5" className="lh-stroke-muted" strokeWidth=".7" strokeLinecap="round" />
-        <circle cx="-9.5" cy="-7.5" r=".9" className="lh-accent" />
-        <rect x="-11.5" y="-.8" width="23" height="1.6" rx=".8" className="lh-carbon" />
-        <rect x="-11.6" y="-3.1" width="3.6" height="2.5" rx=".6" className="lh-bone" />
-        <rect x="8" y="-3.1" width="3.6" height="2.5" rx=".6" className="lh-bone" />
-        <ellipse cx="-9.8" cy="-3.7" rx="6.2" ry=".9" className="lh-prop-disc" />
-        <ellipse cx="9.8" cy="-3.7" rx="6.2" ry=".9" className="lh-prop-disc" />
-        <ellipse cx="-9.8" cy="-3.7" rx="6" ry=".45" className="lh-accent lh-prop" />
-        <ellipse cx="9.8" cy="-3.7" rx="6" ry=".45" className="lh-accent lh-prop lh-prop--b" />
-        <rect x="-5.5" y="-2.3" width="10" height="4.2" rx="1.1" className="lh-bone" />
-        <rect x="-4.8" y="-5.8" width="8" height="3.3" rx=".8" className="lh-battery" />
-        <rect x="-1.4" y="-6.1" width="1.7" height="3.9" rx=".4" className="lh-accent" />
-        <g transform="translate(5.6 -.2) rotate(-22)">
-            <rect x="-1.6" y="-1.6" width="3.6" height="3.2" rx=".7" className="lh-cam" />
-            <circle cx="2" cy="0" r=".95" className="lh-accent" />
+        <line x1="-3.2" y1="-6" x2="-7" y2="-10.5" className="lh-stroke-muted" strokeWidth=".7" strokeLinecap="round" />
+        <circle cx="-7" cy="-10.5" r=".8" className="lh-accent" />
+        <rect x="-3.8" y=".6" width="7.6" height="2.8" rx=".6" className="lh-battery" />
+        <rect x="-5" y="-1.2" width="10" height="1.6" rx=".5" className="lh-carbon" />
+        <Duct cx={-9} />
+        <Duct cx={9} late />
+        <path d="M-4.6 -1.2C-4.6 -6.6 -1.5 -8 1 -8C3.8 -8 5.4 -6 5.6 -1.2Z" className="lh-accent" />
+        <path d="M-2.6 -5Q-1.4 -7 1 -7.1" className="lh-canopy-shine" />
+        <g transform="translate(4.3 -4.2) rotate(-18)">
+            <rect x="-1.5" y="-1.6" width="3.4" height="3.2" rx=".8" className="lh-cam" />
+            <circle cx="1.9" cy="0" r="1" className="lh-lens" />
+            <circle cx="2.2" cy="-.3" r=".3" className="lh-glint" />
         </g>
-        <circle cx="-3" cy=".3" r=".6" className="lh-led" />
+        <circle cx="-1.2" cy="-.4" r=".55" className="lh-led" />
     </>
 }
 
@@ -89,6 +97,9 @@ const gaming: Scene = {
         </g></g>
     </>,
 };
+
+/** Window event (detail: boolean) from elsewhere on the page asking the header logo to show / hide its scene. */
+export const LOGO_PEEK_EVENT = "logo-hobby-peek";
 
 const SCENES: Scene[] = [tennis, drone, code, gaming];
 const VIEWBOX = "-26 -14 92 64";

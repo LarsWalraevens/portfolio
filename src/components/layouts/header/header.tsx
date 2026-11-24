@@ -1,5 +1,5 @@
 import { githubIcon, linkedInIcon, lwLogoIcon, mailIcon } from '@/assets/icons/icons';
-import LogoHobbies from './logo-hobbies';
+import LogoHobbies, { LOGO_PEEK_EVENT } from './logo-hobbies';
 import useTranslation from 'next-translate/useTranslation';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -10,6 +10,8 @@ export default function Header() {
     const [showMenu, setShowMenu] = useState(false);
     // Counts logo hovers; each one shows the next hobby scene.
     const [logoHover, setLogoHover] = useState(0);
+    // Another part of the page (the "psst" line under Hobbies) can play the logo's next scene.
+    const [logoPeek, setLogoPeek] = useState(false);
 
     // # UTILS
     const { t, lang } = useTranslation('common');
@@ -17,9 +19,26 @@ export default function Header() {
     const { locale } = router;
     const resumeHref = locale === "nl" ? process.env.NEXT_PUBLIC_RESUME_NL : process.env.NEXT_PUBLIC_RESUME_EN;
 
-    const changeLang = (newLang: "nl" | "en") => {
+    // Switching language keeps the visitor where they are instead of jumping to the top. The texts differ
+    // in length, so rather than the raw scroll offset we pin the section being read: note where it sits on
+    // screen, switch without Next's scroll reset, then nudge the page so it sits there again.
+    const changeLang = async (newLang: "nl" | "en") => {
         if (newLang === lang) { return }
-        router.push(router.asPath.split("#")[0], router.asPath.split("#")[0], { locale: newLang });
+        const sections = ["hero", "about", "projects", "contact"]
+            .map((id) => document.getElementById(id))
+            .filter(Boolean) as HTMLElement[];
+        const anchor = [...sections].reverse().find((el) => el.getBoundingClientRect().top <= window.innerHeight * 0.35);
+        const anchorTop = anchor?.getBoundingClientRect().top;
+        const path = router.asPath.split("#")[0];
+        await router.push(path, path, { locale: newLang, scroll: false });
+        if (anchor && anchorTop !== undefined) {
+            requestAnimationFrame(() => {
+                const el = document.getElementById(anchor.id);
+                if (el) { window.scrollBy(0, el.getBoundingClientRect().top - anchorTop); }
+                // That nudge can read as "scrolling down" and slide the header away mid-click; keep it shown.
+                window.setTimeout(() => setHidden(false), 80);
+            });
+        }
     }
 
     // Mobile menu is a native modal <dialog>: background is inert, Escape closes it,
@@ -110,6 +129,16 @@ export default function Header() {
         return () => window.removeEventListener("scroll", onScroll);
     }, []);
 
+    useEffect(() => {
+        const onPeek = (e: Event) => {
+            const on = (e as CustomEvent<boolean>).detail;
+            setLogoPeek(on);
+            if (on) { setHidden(false); setLogoHover((n) => n + 1); }
+        };
+        window.addEventListener(LOGO_PEEK_EVENT, onPeek);
+        return () => window.removeEventListener(LOGO_PEEK_EVENT, onPeek);
+    }, []);
+
     // Highlight the section in view (home); project pages highlight "Projects".
     const [activeId, setActiveId] = useState<string | null>(null);
     useEffect(() => {
@@ -160,7 +189,7 @@ export default function Header() {
     return <>
         <header className={`sticky top-0 z-40 transition-[transform,background-color,backdrop-filter] duration-300 ease-out focus-within:translate-y-0 ${hidden && !showMenu ? "translate-y-0 lg:-translate-y-full" : "translate-y-0"} ${scrolled ? "bg-ink/70 backdrop-blur-md" : "bg-transparent"}`}>
             <div className="shell h-[72px] flex items-center justify-between lg:grid lg:grid-cols-[1fr_auto_1fr] lg:gap-6">
-                <Link href="/" aria-label="Home" onMouseEnter={() => setLogoHover((n) => n + 1)} className="logo-hover relative flex h-9 items-center justify-self-start text-bone">
+                <Link href="/" aria-label="Home" onMouseEnter={() => setLogoHover((n) => n + 1)} className={`logo-hover relative flex h-9 items-center justify-self-start text-bone ${logoPeek ? "is-peeking" : ""}`}>
                     <LogoHobbies hover={logoHover} layer="back" />
                     <span className="relative h-full">{lwLogoIcon}</span>
                     <LogoHobbies hover={logoHover} layer="front" />

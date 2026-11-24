@@ -36,7 +36,7 @@
     "section_projects_title": "Projecten",
     "section_projects_description": "Hieronder staan projecten waar ik met trots aan heb gewerkt en die ik graag met je wil delen.",
     "menu_connect": "Let's connect",
-    "section_contact_title": "Contacteer me!",
+    "section_contact_title": "Zin in een babbel?",
     "section_contact_description": "Heb je vragen of wil je me contacteren, stuur me gerust een bericht, liefst via LinkedIn. Ik zal zo snel mogelijk antwoorden!",
     "section_contact_cta": "E-mail sturen",
     "main_404_title": "Pagina niet gevonden",
@@ -62,5 +62,12 @@
     "section_about_other_dotfiles": "Mijn dotfiles & setup",
     "section_about_other_utils": "Mijn util library",
     "section_about_skills_web": "Webapps",
-    "section_about_skills_api": "API's & cloud"
+    "section_about_skills_api": "API's & cloud",
+    "section_contact_local": "lokale tijd",
+    "section_contact_linkedin_sub": "Stuur me een bericht",
+    "section_contact_email": "E-mail",
+    "section_contact_copy": "Kopieer",
+    "section_contact_copied": "Gekopieerd",
+    "section_about_hobbies_psst": "Psst… hover over mijn logo bovenaan, of over deze regel, en zie ze in actie.",
+    "section_about_hobbies_psst_tap": "Psst… tik hier en kijk naar mijn logo bovenaan."
 }
