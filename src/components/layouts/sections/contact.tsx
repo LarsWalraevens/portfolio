@@ -73,7 +73,7 @@ export default function ContactSection() {
 
         <div className="shell relative grid lg:grid-cols-12 gap-x-12 gap-y-10 lg:gap-y-12 items-center">
             <div data-reveal className="lg:col-span-6">
-                <div className="flex items-center gap-6 sm:gap-7 mb-7 sm:mb-8">
+                <div className="flex items-center gap-6 sm:gap-7 mb-10 sm:mb-8">
                     {/* Small portrait with the offset accent frame. */}
                     <span className="group/portrait relative shrink-0 w-[72px] h-[72px] sm:w-[84px] sm:h-[84px]">
                         <span aria-hidden="true" className="chamfer [--chamfer:10px] absolute inset-0 translate-x-1.5 translate-y-1.5 bg-accent" />
