@@ -2,14 +2,14 @@
     {
         "code": "sethub",
         "name": "Sethub",
-        "sort": 30,
+        "sort": 15,
         "isPublic": true,
         "tags": [
             "NextJS",
             "TypeScript",
             "Express",
             "MySQL",
-            "Firebase",
+            "NextAuth",
             "TailwindCSS"
         ],
         "description_short": "project_sethub_description",
@@ -34,6 +34,7 @@
             "TailwindCSS",
             "React Query",
             "shadcn/ui",
+            ".NET",
             "Azure"
         ],
         "description_short": "project_myjobbox_description",
